@@ -1,0 +1,48 @@
+package org.example.telegrambots.bot.services;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.example.telegrambots.currency.CurrencyBot;
+import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.Update;
+
+@Getter
+@Setter
+public class UserMessage {
+
+  private Long chatId;
+  private String userFirstName;
+  private String textFromUser;
+  private String callBack;
+
+  public static UserMessage fromTelegramUpdate(Update update){
+    Message message;
+    if (update.hasMessage()) {
+      message = update.getMessage();
+    } else if (update.hasCallbackQuery()) {
+      message = update.getCallbackQuery().getMessage();
+    } else {
+      CurrencyBot.LOG.warning("Unexpected update from user");
+      return null;
+    }
+
+    UserMessage userMessage =  new UserMessage();
+    userMessage.setChatId(message.getChatId());
+    userMessage.setUserFirstName(message.getFrom().getFirstName());
+
+    if (message.hasText()) {
+      userMessage.setTextFromUser(message.getText());
+    }
+
+    if (update.hasCallbackQuery()) {
+      userMessage.setCallBack(update.getCallbackQuery().getData());
+    }
+
+    CurrencyBot.LOG.info(
+        "[" + userMessage.getChatId() + ", " + userMessage.getUserFirstName() + "] : "
+            + userMessage.getTextFromUser() + ", callback[" + userMessage.getCallBack()
+            + "]");
+
+    return userMessage;
+  }
+}
