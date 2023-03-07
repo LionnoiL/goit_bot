@@ -9,6 +9,12 @@ public enum Commands {
   NUMBERS_2("2"),
   NUMBERS_3("3"),
   NUMBERS_4("4"),
+  CURRENCY_USD("USD"),
+  CURRENCY_EUR("EUR"),
+  BANK_NBU("NBU"),
+  BANK_PRIVATBANK("Privatbank"),
+  BANK_MONOBANK("Monobank"),
+  NOTIFICATION("Notification time")
   ;
 
   private String buttonText;
