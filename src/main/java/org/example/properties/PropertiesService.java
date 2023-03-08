@@ -1,13 +1,16 @@
 package org.example.properties;
 
+import static org.example.properties.ApplicationProperties.RESOURCES_PATH;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
+import org.example.AppLauncher;
+import org.example.users.User;
 
 public class PropertiesService {
-
-  private static final String RESOURCES_PATH = "src/main/resources/";
 
   public static String getApplicationProperties(String fileName, String propertyName) {
     String propertyValue = "";
@@ -20,5 +23,10 @@ public class PropertiesService {
       e.printStackTrace();
     }
     return propertyValue;
+  }
+
+  public static User getUserById(long id) {
+    Map<Integer, User> users = AppLauncher.APPLICATION_PROPERTIES.getUsers();
+    return users.get(id);
   }
 }
