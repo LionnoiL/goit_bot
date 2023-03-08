@@ -5,8 +5,6 @@ import org.example.currency.currencies.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Time;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,5 +15,5 @@ public class User {
     private Currency currency;
     private Bank bank;
     private int userHours;
-    private Time alertTime;
+    private int alertTime;
 }
