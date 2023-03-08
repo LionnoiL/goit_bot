@@ -7,17 +7,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Time;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class User {
-    private int userid;
+    private int userId;
     private String userName;
     private int symbolsAfterComma;
     private Currency currency;
-    private Bank bankName;
+    private Bank bank;
     private int userHours;
     private Time alertTime;
 }
