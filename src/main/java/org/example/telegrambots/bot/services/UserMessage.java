@@ -3,6 +3,8 @@ package org.example.telegrambots.bot.services;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.telegrambots.currency.CurrencyBot;
+import org.example.users.User;
+import org.example.users.UserService;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -14,8 +16,10 @@ public class UserMessage {
   private String userFirstName;
   private String textFromUser;
   private String callBack;
+  private User user;
 
   public static UserMessage fromTelegramUpdate(Update update){
+    UserService userService = new UserService();
     Message message;
     if (update.hasMessage()) {
       message = update.getMessage();
@@ -37,6 +41,15 @@ public class UserMessage {
     if (update.hasCallbackQuery()) {
       userMessage.setCallBack(update.getCallbackQuery().getData());
     }
+
+    Long userId = message.getChatId();
+    User user = userService.getUserById(userId);
+    if (user==null){
+      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName());
+      userService.addUser(user);
+    }
+
+    userMessage.setUser(user);
 
     CurrencyBot.LOG.info(
         "[" + userMessage.getChatId() + ", " + userMessage.getUserFirstName() + "] : "
