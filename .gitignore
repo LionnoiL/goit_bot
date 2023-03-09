@@ -4,9 +4,6 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-src/main/resources/application-prod.properties
-src/main/resources/currency-bot.properties
-src/main/resources/weather-bot.properties
 
 ### STS ###
 .apt_generated
