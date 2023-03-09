@@ -3,7 +3,7 @@ package org.example.currency.bank;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UaBankNames {
+public class UaBankNames implements BankNames{
     private static Map<Bank, String> bankNames = new HashMap<>();
     static {
         bankNames.put(Bank.MONOBANK, "Монобанк");
