@@ -79,7 +79,7 @@ public class ApplicationProperties {
         }
 
         try (FileReader fileReader = new FileReader(jsonFileName)) {
-            savedUsers = new Gson().fromJson(fileReader, new TypeToken<Map<Integer, User>>() {
+            savedUsers = new Gson().fromJson(fileReader, new TypeToken<Map<Long, User>>() {
             }.getType());
         } catch (Exception e) {
             //NOP
