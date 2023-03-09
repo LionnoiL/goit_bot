@@ -16,7 +16,7 @@ public class OptionsNumberSimbolsCommand extends BotCommand {
   @Override
   public void execute(UserMessage userMessage) {
 
-    InlineKeyboardMarkup menu = new ChoiceNumberSimbolsMenu().createMenu();
+    InlineKeyboardMarkup menu = new ChoiceNumberSimbolsMenu().createMenu(userMessage);
 
     getTelegramService().sendMessage(userMessage.getChatId(), "Choose the number of decimal places",
         menu);
