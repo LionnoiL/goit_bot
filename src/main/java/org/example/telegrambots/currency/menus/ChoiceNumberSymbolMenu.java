@@ -8,7 +8,7 @@ import org.example.telegrambots.currency.commands.Commands;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
-public class ChoiceNumberSimbolsMenu implements TelegramMenu {
+public class ChoiceNumberSymbolMenu implements TelegramMenu {
 
   public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
     int symbolsAfterComma = userMessage.getUser().getSymbolsAfterComma();
