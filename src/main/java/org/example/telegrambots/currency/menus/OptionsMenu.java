@@ -15,8 +15,8 @@ public class OptionsMenu implements TelegramMenu {
     List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
     List<InlineKeyboardButton> row1 = new ArrayList<>();
-    InlineKeyboardButton optionsNumberSimbolsButton = new InlineKeyboardButton(Commands.OPTIONS_NUMBER_SIMBOLS_AFTER_COMMA.getButtonText());
-    optionsNumberSimbolsButton.setCallbackData(Commands.OPTIONS_NUMBER_SIMBOLS_AFTER_COMMA.toString());
+    InlineKeyboardButton optionsNumberSimbolsButton = new InlineKeyboardButton(Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.getButtonText());
+    optionsNumberSimbolsButton.setCallbackData(Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString());
     row1.add(optionsNumberSimbolsButton);
 
     List<InlineKeyboardButton> row2 = new ArrayList<>();
