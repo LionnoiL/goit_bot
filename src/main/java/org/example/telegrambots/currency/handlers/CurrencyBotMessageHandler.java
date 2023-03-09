@@ -25,7 +25,7 @@ public class CurrencyBotMessageHandler {
       } else if (Commands.MAIN_OPTIONS.toString()
           .equals(userMessage.getCallBack())) {
         new OptionsMenuCommand().execute(userMessage);
-      } else if (Commands.OPTIONS_NUMBER_SIMBOLS_AFTER_COMMA.toString()
+      } else if (Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString()
           .equals(userMessage.getCallBack())) {
         new OptionsNumberSimbolsCommand().execute(userMessage);
       } else {

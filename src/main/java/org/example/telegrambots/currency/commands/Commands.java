@@ -1,9 +1,11 @@
 package org.example.telegrambots.currency.commands;
 
 public enum Commands {
+  BACK("⬅ Back"),
+  MAIN_MENU("Main menu"),
   MAIN_GET_INFO("Get info"),
   MAIN_OPTIONS("Options"),
-  OPTIONS_NUMBER_SIMBOLS_AFTER_COMMA("A number of simbols after comma"),
+  OPTIONS_NUMBER_SYMBOL_AFTER_COMMA("A number of symbols after comma"),
   OPTIONS_BANK("Bank"),
   OPTIONS_CURRENCY("Currency"),
   NUMBERS_2("2"),
