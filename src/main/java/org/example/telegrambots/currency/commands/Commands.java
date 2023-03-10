@@ -1,31 +1,35 @@
 package org.example.telegrambots.currency.commands;
 
 public enum Commands {
-  BACK("⬅ Back"),
-  MAIN_MENU("Main menu"),
-  MAIN_GET_INFO("Get info"),
-  MAIN_OPTIONS("Options"),
-  OPTIONS_NUMBER_SYMBOL_AFTER_COMMA("A number of symbols after comma"),
-  OPTIONS_BANK("Bank"),
-  OPTIONS_CURRENCY("Currency"),
-  NUMBERS_2("2"),
-  NUMBERS_3("3"),
-  NUMBERS_4("4"),
-  CURRENCY_USD("USD"),
-  CURRENCY_EUR("EUR"),
-  BANK_NBU("NBU"),
-  BANK_PRIVATBANK("Privatbank"),
-  BANK_MONOBANK("Monobank"),
-  NOTIFICATION("Notification time")
+  BACK("⬅ Назад", "⬅ Back"),
+  MAIN_MENU("Головне меню","Main menu"),
+  MAIN_GET_INFO("Інформація","Get info"),
+  MAIN_OPTIONS("Налаштування","Options"),
+  OPTIONS_NUMBER_SYMBOL_AFTER_COMMA("Знаків після коми","A number of symbols after comma"),
+  OPTIONS_BANK("Банк","Bank"),
+  OPTIONS_CURRENCY("Валюта","Currency"),
+  NUMBERS_2("2","2"),
+  NUMBERS_3("3","3"),
+  NUMBERS_4("4","4"),
+  CURRENCY_USD("Долар США","USD"),
+  CURRENCY_EUR("Євро","EUR"),
+  BANK_NBU("НБУ","NBU"),
+  BANK_PRIVATBANK("ПриватБанк","Privatbank"),
+  BANK_MONOBANK("Монобанк","Monobank"),
+  NOTIFICATION("Час сповіщення","Notification time")
   ;
 
-  private String buttonText;
+  private final String buttonText, buttonEngText;
 
-  Commands(String buttonText) {
+  Commands(String buttonText, String buttonEngText) {
     this.buttonText = buttonText;
+    this.buttonEngText = buttonEngText;
   }
 
   public String getButtonText() {
     return buttonText;
+  }
+  public String getButtonEngText(){
+    return buttonEngText;
   }
 }
