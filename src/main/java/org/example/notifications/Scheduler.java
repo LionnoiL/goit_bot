@@ -1,19 +1,15 @@
 package org.example.notifications;
 
-import com.google.gson.*;
-
-import java.io.File;
+import org.example.users.User;
 import java.util.*;
 
-public class Scheduler {
+import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
-    private static final File RESOURCES_PATH = new File("src/main/resources/");
-    private static final File FILE_NAME = new File(RESOURCES_PATH, "users.json");
+public class Scheduler {
     public static void setTimeReceived() {
 
 
         Date initialDate = new Date();
-
         int initialTime = initialDate.getHours() + 1;
 
         Calendar calendar = Calendar.getInstance();
@@ -40,27 +36,12 @@ public class Scheduler {
 
     public static void sendUsersNotifications(int currentTime) {
 
-        String json = jsonReader(FILE_NAME).toLowerCase();
+        Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
 
-        new JsonParser().parse(json).getAsJsonArray().asList().stream()
-                .filter(el -> el.getAsJsonObject().get("alerttime").getAsInt() == currentTime)
-                .map(el -> el.getAsJsonObject().get("userid").getAsLong())
-                .forEach(el -> System.out.println(el + " " + currentTime)); //TODO відправити повідомлення
-
-    }
-
-    public static String jsonReader(File file) {
-
-        StringJoiner result = new StringJoiner("\n");
-
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                result.add(scanner.nextLine());
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return result.toString();
+        users.entrySet()
+                .stream()
+                .map(Map.Entry::getValue)
+                .filter( e -> e.getAlertTime() == currentTime)
+                .forEach(el -> System.out.println(el.getUserId() + " " + currentTime)); //TODO викликати метод відправки повідомлення та передати йому el.getUserId()
     }
 }
