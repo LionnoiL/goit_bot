@@ -1,6 +1,8 @@
 package org.example.notifications;
 
 import org.example.users.User;
+
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
@@ -8,8 +10,7 @@ import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 public class Scheduler {
     public static void setTimeReceived() {
 
-        Date initialDate = new Date();
-        int initialTime = initialDate.getHours() + 1;
+        int initialTime = getCurrentTime() + 1;
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, initialTime);
@@ -19,8 +20,7 @@ public class Scheduler {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                Date currentDate = new Date();
-                int currentTime = currentDate.getHours();
+                int currentTime = getCurrentTime();
                 sendUsersNotifications(currentTime);
             }
         };
@@ -33,7 +33,12 @@ public class Scheduler {
         );
     }
 
-    public static void sendUsersNotifications(int currentTime) {
+    private static int getCurrentTime(){
+        
+        return LocalDateTime.now().getHour();
+    }
+
+    private static void sendUsersNotifications(int currentTime) {
 
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
 
