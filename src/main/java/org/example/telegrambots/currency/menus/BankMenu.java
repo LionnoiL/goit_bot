@@ -19,19 +19,19 @@ public class BankMenu implements TelegramMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton button2 = new InlineKeyboardButton((bank.equals(Commands.BANK_PRIVATBANK) ?  markEmoji: "") + Commands.BANK_PRIVATBANK.getButtonUkrText());
-        button2.setCallbackData(Commands.BANK_PRIVATBANK.toString());
-        row1.add(button2);
+        InlineKeyboardButton buttonPrivatbank = new InlineKeyboardButton((bank.equals(Commands.BANK_PRIVATBANK) ?  markEmoji: "") + Commands.BANK_PRIVATBANK.getButtonUkrText());
+        buttonPrivatbank.setCallbackData(Commands.BANK_PRIVATBANK.toString());
+        row1.add(buttonPrivatbank);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton button3 = new InlineKeyboardButton((bank.equals(Commands.BANK_MONOBANK) ?  markEmoji: "") + Commands.BANK_MONOBANK.getButtonUkrText());
-        button3.setCallbackData(Commands.BANK_MONOBANK.toString());
-        row2.add(button3);
+        InlineKeyboardButton buttonMonobank = new InlineKeyboardButton((bank.equals(Commands.BANK_MONOBANK) ?  markEmoji: "") + Commands.BANK_MONOBANK.getButtonUkrText());
+        buttonMonobank.setCallbackData(Commands.BANK_MONOBANK.toString());
+        row2.add(buttonMonobank);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton button4 = new InlineKeyboardButton((bank.equals(Commands.BANK_NBU) ?  markEmoji: "") + Commands.BANK_NBU.getButtonUkrText());
-        button4.setCallbackData(Commands.BANK_NBU.toString());
-        row3.add(button4);
+        InlineKeyboardButton buttonNbu = new InlineKeyboardButton((bank.equals(Commands.BANK_NBU) ?  markEmoji: "") + Commands.BANK_NBU.getButtonUkrText());
+        buttonNbu.setCallbackData(Commands.BANK_NBU.toString());
+        row3.add(buttonNbu);
 
         List<InlineKeyboardButton> row4 = new ArrayList<>();
         InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonUkrText());
