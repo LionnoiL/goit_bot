@@ -1,5 +1,6 @@
 package org.example.telegrambots.currency.menus;
 
+import org.example.currency.bank.Bank;
 import org.example.telegrambots.bot.menus.TelegramMenu;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
@@ -11,24 +12,24 @@ import java.util.List;
 
 public class BankMenu implements TelegramMenu {
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        String bankName = String.valueOf(userMessage.getUser().getBank());
+        Bank bank = userMessage.getUser().getBank();
         String markEmoji = "✔";
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton button2 = new InlineKeyboardButton((bankName.equals("Privatbank") ?  markEmoji: "") + Commands.BANK_PRIVATBANK.getButtonText());
+        InlineKeyboardButton button2 = new InlineKeyboardButton((bank.equals(Commands.BANK_PRIVATBANK) ?  markEmoji: "") + Commands.BANK_PRIVATBANK.getButtonText());
         button2.setCallbackData(Commands.BANK_PRIVATBANK.toString());
         row1.add(button2);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton button3 = new InlineKeyboardButton((bankName.equals("Monobank") ?  markEmoji: "") + Commands.BANK_MONOBANK.getButtonText());
+        InlineKeyboardButton button3 = new InlineKeyboardButton((bank.equals(Commands.BANK_MONOBANK) ?  markEmoji: "") + Commands.BANK_MONOBANK.getButtonText());
         button3.setCallbackData(Commands.BANK_MONOBANK.toString());
         row2.add(button3);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton button4 = new InlineKeyboardButton((bankName.equals("NBU") ?  markEmoji: "") + Commands.BANK_NBU.getButtonText());
+        InlineKeyboardButton button4 = new InlineKeyboardButton((bank.equals(Commands.BANK_NBU) ?  markEmoji: "") + Commands.BANK_NBU.getButtonText());
         button4.setCallbackData(Commands.BANK_NBU.toString());
         row3.add(button4);
 
