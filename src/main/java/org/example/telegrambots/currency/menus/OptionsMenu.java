@@ -15,22 +15,22 @@ public class OptionsMenu implements TelegramMenu {
     List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
     List<InlineKeyboardButton> row1 = new ArrayList<>();
-    InlineKeyboardButton optionsNumberSimbolsButton = new InlineKeyboardButton(Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.getButtonText());
+    InlineKeyboardButton optionsNumberSimbolsButton = new InlineKeyboardButton(Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.getButtonUkrText());
     optionsNumberSimbolsButton.setCallbackData(Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString());
     row1.add(optionsNumberSimbolsButton);
 
     List<InlineKeyboardButton> row2 = new ArrayList<>();
-    InlineKeyboardButton optionsBankButton = new InlineKeyboardButton(Commands.OPTIONS_BANK.getButtonText());
+    InlineKeyboardButton optionsBankButton = new InlineKeyboardButton(Commands.OPTIONS_BANK.getButtonUkrText());
     optionsBankButton.setCallbackData(Commands.OPTIONS_BANK.toString());
     row2.add(optionsBankButton);
 
     List<InlineKeyboardButton> row3 = new ArrayList<>();
-    InlineKeyboardButton optionsCurrencyButton = new InlineKeyboardButton(Commands.OPTIONS_CURRENCY.getButtonText());
+    InlineKeyboardButton optionsCurrencyButton = new InlineKeyboardButton(Commands.OPTIONS_CURRENCY.getButtonUkrText());
     optionsCurrencyButton.setCallbackData(Commands.OPTIONS_CURRENCY.toString());
     row3.add(optionsCurrencyButton);
 
     List<InlineKeyboardButton> row4 = new ArrayList<>();
-    InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+    InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonUkrText());
     buttonBack.setCallbackData(Commands.MAIN_MENU.toString());
     row4.add(buttonBack);
 

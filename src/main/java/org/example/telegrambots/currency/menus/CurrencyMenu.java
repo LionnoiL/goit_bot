@@ -18,17 +18,17 @@ public class CurrencyMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton button2 = new InlineKeyboardButton((currency.equals(Commands.CURRENCY_USD) ? markEmoji : "") + Commands.CURRENCY_USD.getButtonText());
+        InlineKeyboardButton button2 = new InlineKeyboardButton((currency.equals(Commands.CURRENCY_USD) ? markEmoji : "") + Commands.CURRENCY_USD.getButtonUkrText());
         button2.setCallbackData(Commands.CURRENCY_USD.toString());
         row1.add(button2);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton button3 = new InlineKeyboardButton((currency.equals(Commands.CURRENCY_EUR) ? markEmoji : "") + Commands.CURRENCY_EUR.getButtonText());
+        InlineKeyboardButton button3 = new InlineKeyboardButton((currency.equals(Commands.CURRENCY_EUR) ? markEmoji : "") + Commands.CURRENCY_EUR.getButtonUkrText());
         button3.setCallbackData(Commands.CURRENCY_EUR.toString());
         row2.add(button3);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonUkrText());
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row3.add(buttonBack);
 

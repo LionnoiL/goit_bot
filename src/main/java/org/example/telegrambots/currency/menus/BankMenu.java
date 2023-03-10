@@ -19,22 +19,22 @@ public class BankMenu implements TelegramMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton button2 = new InlineKeyboardButton((bank.equals(Commands.BANK_PRIVATBANK) ?  markEmoji: "") + Commands.BANK_PRIVATBANK.getButtonText());
+        InlineKeyboardButton button2 = new InlineKeyboardButton((bank.equals(Commands.BANK_PRIVATBANK) ?  markEmoji: "") + Commands.BANK_PRIVATBANK.getButtonUkrText());
         button2.setCallbackData(Commands.BANK_PRIVATBANK.toString());
         row1.add(button2);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton button3 = new InlineKeyboardButton((bank.equals(Commands.BANK_MONOBANK) ?  markEmoji: "") + Commands.BANK_MONOBANK.getButtonText());
+        InlineKeyboardButton button3 = new InlineKeyboardButton((bank.equals(Commands.BANK_MONOBANK) ?  markEmoji: "") + Commands.BANK_MONOBANK.getButtonUkrText());
         button3.setCallbackData(Commands.BANK_MONOBANK.toString());
         row2.add(button3);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton button4 = new InlineKeyboardButton((bank.equals(Commands.BANK_NBU) ?  markEmoji: "") + Commands.BANK_NBU.getButtonText());
+        InlineKeyboardButton button4 = new InlineKeyboardButton((bank.equals(Commands.BANK_NBU) ?  markEmoji: "") + Commands.BANK_NBU.getButtonUkrText());
         button4.setCallbackData(Commands.BANK_NBU.toString());
         row3.add(button4);
 
         List<InlineKeyboardButton> row4 = new ArrayList<>();
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonUkrText());
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row4.add(buttonBack);
 
