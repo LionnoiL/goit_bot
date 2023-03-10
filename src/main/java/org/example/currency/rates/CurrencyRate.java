@@ -1,5 +1,7 @@
-package org.example.currency.storage;
+package org.example.currency.rates;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 
@@ -8,41 +10,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+@Getter
+@AllArgsConstructor
 public class CurrencyRate {
-
     private Bank bank;
     private Calendar rateDate;
     private Currency currency;
     private BigDecimal sellingRate;
     private BigDecimal buyingRate;
-
-    public CurrencyRate(Bank bank, Calendar rateDate, Currency currency, BigDecimal sellingRate, BigDecimal buyingRate) {
-        this.bank = bank;
-        this.rateDate = rateDate;
-        this.currency = currency;
-        this.sellingRate = sellingRate;
-        this.buyingRate = buyingRate;
-    }
-
-    public Bank getBank() {
-        return bank;
-    }
-
-    public Calendar getRateDate() {
-        return rateDate;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public BigDecimal getSellingRate() {
-        return sellingRate;
-    }
-
-    public BigDecimal getBuyingRate() {
-        return buyingRate;
-    }
 
     @Override
     public String toString() {

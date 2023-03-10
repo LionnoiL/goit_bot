@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.FileReader;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
@@ -20,9 +21,12 @@ public class ApplicationProperties {
     static final String RESOURCES_PATH = "src/main/resources/";
     static final String APPLICATION_PROPERTIES_FILE_NAME = "application.properties";
     static final String JSON_USERS_FILE_NAME = "users.json";
+    public static final String CACHE_PATH = "src\\main\\resources\\cache\\";
     private int decimalPrecision;
     private Bank bank;
     private Currency currency;
+    private String cachePath;
+
     @Setter
     private Map<Long, User> users;
 
@@ -68,6 +72,7 @@ public class ApplicationProperties {
         } finally {
             currency = Currency.USD;
         }
+
     }
 
     public Map<Long, User> getUsersListFromFile() {
