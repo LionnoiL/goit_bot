@@ -22,7 +22,7 @@ public class CurrencyRateStorage {
     }
     public static String getCacheRatesJson(Bank bank) {
         String res = "";
-        Path filePath = Path.of(ApplicationProperties.CACHE_PATH + bank + "Rate.json");
+        Path filePath = Path.of(ApplicationProperties.CACHE_PATH + bank + "_Rate.json");
         if (!Files.exists(filePath, LinkOption.NOFOLLOW_LINKS)) {
             return res;
         }
