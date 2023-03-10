@@ -15,12 +15,12 @@ public class MainMenu implements TelegramMenu {
     List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
     List<InlineKeyboardButton> row1 = new ArrayList<>();
-    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(Commands.MAIN_GET_INFO.getButtonUkrText());
+    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(Commands.MAIN_GET_INFO.getButtonText());
     getInfoButton.setCallbackData(Commands.MAIN_GET_INFO.toString());
     row1.add(getInfoButton);
 
     List<InlineKeyboardButton> row2 = new ArrayList<>();
-    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(Commands.MAIN_OPTIONS.getButtonUkrText());
+    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(Commands.MAIN_OPTIONS.getButtonText());
     getOptionsButton.setCallbackData(Commands.MAIN_OPTIONS.toString());
     row2.add(getOptionsButton);
 

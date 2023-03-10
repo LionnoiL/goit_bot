@@ -19,15 +19,15 @@ public enum Commands {
   NOTIFICATION("Час сповіщення","Notification time")
   ;
 
-  private final String buttonUkrText, buttonEngText;
+  private final String buttonText, buttonEngText;
 
   Commands(String buttonText, String buttonEngText) {
-    this.buttonUkrText = buttonText;
+    this.buttonText = buttonText;
     this.buttonEngText = buttonEngText;
   }
 
-  public String getButtonUkrText() {
-    return buttonUkrText;
+  public String getButtonText() {
+    return buttonText;
   }
   public String getButtonEngText(){
     return buttonEngText;
