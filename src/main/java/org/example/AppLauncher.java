@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.notifications.Scheduler;
 import org.example.properties.ApplicationProperties;
 import org.example.telegrambots.currency.CurrencyBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -18,5 +19,6 @@ public class AppLauncher {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+        Scheduler.setTimeReceived();
     }
 }

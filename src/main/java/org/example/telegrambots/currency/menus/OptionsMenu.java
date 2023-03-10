@@ -26,7 +26,7 @@ public class OptionsMenu implements TelegramMenu {
 
     List<InlineKeyboardButton> row3 = new ArrayList<>();
     InlineKeyboardButton optionsCurrencyButton = new InlineKeyboardButton(Commands.OPTIONS_CURRENCY.getButtonText());
-    optionsCurrencyButton.setCallbackData(Commands.OPTIONS_BANK.toString());
+    optionsCurrencyButton.setCallbackData(Commands.OPTIONS_CURRENCY.toString());
     row3.add(optionsCurrencyButton);
 
     List<InlineKeyboardButton> row4 = new ArrayList<>();
