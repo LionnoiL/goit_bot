@@ -10,18 +10,18 @@ import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 public class Scheduler {
     public static void setTimeReceived() {
 
-        int initialTime = getCurrentTime() + 1;
+        int initialHour = getCurrentHour() + 1;
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, initialTime);
+        calendar.set(Calendar.HOUR_OF_DAY, initialHour);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 1);
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                int currentTime = getCurrentTime();
-                sendUsersNotifications(currentTime);
+                int currentHour = getCurrentHour();
+                sendUsersNotifications(currentHour);
             }
         };
 
@@ -33,19 +33,19 @@ public class Scheduler {
         );
     }
 
-    private static int getCurrentTime(){
-        
+    private static int getCurrentHour(){
+
         return LocalDateTime.now().getHour();
     }
 
-    private static void sendUsersNotifications(int currentTime) {
+    private static void sendUsersNotifications(int currentHour) {
 
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
 
         users.entrySet()
                 .stream()
                 .map(Map.Entry::getValue)
-                .filter(el -> el.getAlertTime() == currentTime)
-                .forEach(el -> System.out.println(el.getUserId() + " " + currentTime)); //TODO викликати метод відправки повідомлення та передати йому el.getUserId()
+                .filter(el -> el.getAlertTime() == currentHour)
+                .forEach(el -> System.out.println(el.getUserId() + " " + currentHour)); //TODO викликати метод відправки повідомлення та передати йому el.getUserId()
     }
 }
