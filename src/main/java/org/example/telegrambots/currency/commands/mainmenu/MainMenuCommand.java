@@ -16,7 +16,7 @@ public class MainMenuCommand extends BotCommand {
   @Override
   public void execute(UserMessage userMessage) {
 
-    InlineKeyboardMarkup mainMenu = new MainMenu().createMenu();
+    InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
 
     getTelegramService().sendMessage(userMessage.getChatId(), "Choose from the menu below ⤵️",
         mainMenu);

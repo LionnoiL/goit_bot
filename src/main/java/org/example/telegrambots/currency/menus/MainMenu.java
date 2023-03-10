@@ -3,13 +3,14 @@ package org.example.telegrambots.currency.menus;
 import java.util.ArrayList;
 import java.util.List;
 import org.example.telegrambots.bot.menus.TelegramMenu;
+import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 public class MainMenu implements TelegramMenu {
 
-  public InlineKeyboardMarkup createMenu() {
+  public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
     InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
     List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 

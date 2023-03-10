@@ -16,7 +16,7 @@ public class GetInfoCommand extends BotCommand {
   public void execute(UserMessage userMessage) {
     getTelegramService().sendMessage(userMessage.getChatId(), "get info");
 
-    InlineKeyboardMarkup mainMenu = new MainMenu().createMenu();
+    InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
     getTelegramService().sendMessage(userMessage.getChatId(), "Choose from the menu below ⤵️",
         mainMenu);
   }
