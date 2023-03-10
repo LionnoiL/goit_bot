@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private int userId;
+    private long userId;
     private String userName;
+    private String lastName;
     private int symbolsAfterComma;
     private Currency currency;
     private Bank bank;

@@ -16,7 +16,7 @@ public class OptionsMenuCommand extends BotCommand {
   @Override
   public void execute(UserMessage userMessage) {
 
-    InlineKeyboardMarkup optionsMenu = new OptionsMenu().createMenu();
+    InlineKeyboardMarkup optionsMenu = new OptionsMenu().createMenu(userMessage);
 
     getTelegramService().sendMessage(userMessage.getChatId(), "Options",
         optionsMenu);
