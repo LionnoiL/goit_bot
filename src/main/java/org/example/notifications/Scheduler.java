@@ -8,7 +8,6 @@ import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 public class Scheduler {
     public static void setTimeReceived() {
 
-
         Date initialDate = new Date();
         int initialTime = initialDate.getHours() + 1;
 
@@ -41,7 +40,7 @@ public class Scheduler {
         users.entrySet()
                 .stream()
                 .map(Map.Entry::getValue)
-                .filter( e -> e.getAlertTime() == currentTime)
+                .filter(el -> el.getAlertTime() == currentTime)
                 .forEach(el -> System.out.println(el.getUserId() + " " + currentTime)); //TODO викликати метод відправки повідомлення та передати йому el.getUserId()
     }
 }
