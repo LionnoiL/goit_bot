@@ -15,6 +15,6 @@ public class CurrencyOschadDto {
     private Currency currency;
     private BigDecimal buyRate;
     private BigDecimal sellRate;
-    private Bank bankName;
+    private Bank bank;
 }
 
