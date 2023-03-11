@@ -4,6 +4,7 @@ public enum Bank {
   NBU("НБУ"),
   PRIVATBANK("Приватбанк"),
   MONOBANK("Монобанк"),
+
   OSCHADBANK("Ощадбанк");
 
   private final String uaBankName;
