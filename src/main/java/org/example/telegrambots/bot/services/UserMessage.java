@@ -45,7 +45,8 @@ public class UserMessage {
     Long userId = message.getChatId();
     User user = userService.getUserById(userId);
     if (user==null){
-      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName());
+      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(),
+              message.getFrom().getLanguageCode().toString().toLowerCase()); // TODO added message.getFrom().getLanguageCode().toString().toLowerCase()
       userService.addUser(user);
     }
 

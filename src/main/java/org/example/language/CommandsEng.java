@@ -1,4 +1,4 @@
-package org.example.auto.language.switcher;
+package org.example.language;
 
 public enum CommandsEng {
   BACK("⬅ Back"),

@@ -1,6 +1,5 @@
 package org.example.telegrambots.currency.handlers;
 
-import org.example.auto.language.switcher.AutoLanguageSwitcher;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
 import org.example.telegrambots.currency.commands.mainmenu.GetInfoCommand;
@@ -11,14 +10,10 @@ import org.example.telegrambots.currency.commands.options.OptionsCurrencyCommand
 import org.example.telegrambots.currency.commands.options.OptionsNumberSimbolsCommand;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.Map;
 
 public class CurrencyBotMessageHandler {
-  public static Map<String, String> commandsLanguage; // TODO чи лишати чи ні тут
-
   private CurrencyBotMessageHandler() {
   }
-
   public static void resolveMessage(Update update) {
     if (update.hasMessage() || update.hasCallbackQuery()) {
       UserMessage userMessage = UserMessage.fromTelegramUpdate(update);

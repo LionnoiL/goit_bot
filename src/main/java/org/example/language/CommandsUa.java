@@ -1,6 +1,8 @@
-package org.example.auto.language.switcher;
+package org.example.language;
 
 public enum CommandsUa {
+
+
   BACK("⬅ Назад"),
   MAIN_MENU("Головне меню"),
   MAIN_GET_INFO("Інформація"),

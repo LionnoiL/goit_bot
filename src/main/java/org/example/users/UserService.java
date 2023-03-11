@@ -7,7 +7,7 @@ import org.example.properties.ApplicationProperties;
 
 public class UserService {
 
-    public User createUser(long userId, String firstName, String lastName){
+    public User createUser(long userId, String firstName, String lastName, String language){
         User user = new User();
         user.setUserId(userId);
         user.setUserName(firstName);
@@ -17,6 +17,7 @@ public class UserService {
         user.setSymbolsAfterComma(APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(APPLICATION_PROPERTIES.getBank());
         user.setCurrency(APPLICATION_PROPERTIES.getCurrency());
+        user.setLanguage(language);
         return user;
     }
 
