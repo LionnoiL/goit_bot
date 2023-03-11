@@ -49,6 +49,8 @@ public class UserMessage {
       userService.addUser(user);
     }
 
+    user.setLanguage(message.getFrom().getLanguageCode());
+
     userMessage.setUser(user);
 
     CurrencyBot.LOG.info(

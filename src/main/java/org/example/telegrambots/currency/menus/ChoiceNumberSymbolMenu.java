@@ -10,39 +10,46 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 public class ChoiceNumberSymbolMenu implements TelegramMenu {
 
-  public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-    int symbolsAfterComma = userMessage.getUser().getSymbolsAfterComma();
-    String markEmoji = "✔";
+    public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
+        int symbolsAfterComma = userMessage.getUser().getSymbolsAfterComma();
+        String markEmoji = "✔";
 
-    InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-    List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
-    List<InlineKeyboardButton> row1 = new ArrayList<>();
-    InlineKeyboardButton button2 = new InlineKeyboardButton((symbolsAfterComma==2 ?  markEmoji: "") + Commands.NUMBERS_2.getButtonText());
-    button2.setCallbackData(Commands.NUMBERS_2.toString());
-    row1.add(button2);
+        List<InlineKeyboardButton> row1 = new ArrayList<>();
+        InlineKeyboardButton button2 = new InlineKeyboardButton(
+            (symbolsAfterComma == 2 ? markEmoji : "") + Commands.NUMBERS_2.getButtonText(
+                userMessage));
+        button2.setCallbackData(Commands.NUMBERS_2.toString());
+        row1.add(button2);
 
-    List<InlineKeyboardButton> row2 = new ArrayList<>();
-    InlineKeyboardButton button3 = new InlineKeyboardButton((symbolsAfterComma==3 ?  markEmoji: "") + Commands.NUMBERS_3.getButtonText());
-    button3.setCallbackData(Commands.NUMBERS_3.toString());
-    row2.add(button3);
+        List<InlineKeyboardButton> row2 = new ArrayList<>();
+        InlineKeyboardButton button3 = new InlineKeyboardButton(
+            (symbolsAfterComma == 3 ? markEmoji : "") + Commands.NUMBERS_3.getButtonText(
+                userMessage));
+        button3.setCallbackData(Commands.NUMBERS_3.toString());
+        row2.add(button3);
 
-    List<InlineKeyboardButton> row3 = new ArrayList<>();
-    InlineKeyboardButton button4 = new InlineKeyboardButton((symbolsAfterComma==4 ?  markEmoji: "") + Commands.NUMBERS_4.getButtonText());
-    button4.setCallbackData(Commands.NUMBERS_4.toString());
-    row3.add(button4);
+        List<InlineKeyboardButton> row3 = new ArrayList<>();
+        InlineKeyboardButton button4 = new InlineKeyboardButton(
+            (symbolsAfterComma == 4 ? markEmoji : "") + Commands.NUMBERS_4.getButtonText(
+                userMessage));
+        button4.setCallbackData(Commands.NUMBERS_4.toString());
+        row3.add(button4);
 
-    List<InlineKeyboardButton> row4 = new ArrayList<>();
-    InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
-    buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
-    row4.add(buttonBack);
+        List<InlineKeyboardButton> row4 = new ArrayList<>();
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(
+            Commands.BACK.getButtonText(userMessage));
+        buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
+        row4.add(buttonBack);
 
-    rowList.add(row1);
-    rowList.add(row2);
-    rowList.add(row3);
-    rowList.add(row4);
-    inlineKeyboardMarkup.setKeyboard(rowList);
+        rowList.add(row1);
+        rowList.add(row2);
+        rowList.add(row3);
+        rowList.add(row4);
+        inlineKeyboardMarkup.setKeyboard(rowList);
 
-    return inlineKeyboardMarkup;
-  }
+        return inlineKeyboardMarkup;
+    }
 }

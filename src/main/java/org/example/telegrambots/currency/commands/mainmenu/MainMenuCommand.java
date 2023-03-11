@@ -10,16 +10,17 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 
 public class MainMenuCommand extends BotCommand {
 
-  public MainMenuCommand() {
-    super(new TelegramService(new CurrencySender()));
-  }
+    public MainMenuCommand() {
+        super(new TelegramService(new CurrencySender()));
+    }
 
-  @Override
-  public void execute(UserMessage userMessage) {
+    @Override
+    public void execute(UserMessage userMessage) {
 
-    InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
+        InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
 
-    getTelegramService().sendMessage(userMessage.getChatId(), Commands.HEADSIGN_MAINMENU.getButtonText(),
-        mainMenu);
-  }
+        getTelegramService().sendMessage(userMessage.getChatId(),
+            Commands.HEADSIGN_MAINMENU.getButtonText(userMessage),
+            mainMenu);
+    }
 }

@@ -10,24 +10,26 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 public class MainMenu implements TelegramMenu {
 
-  public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-    InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-    List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+    public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
-    List<InlineKeyboardButton> row1 = new ArrayList<>();
-    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(Commands.MAIN_GET_INFO.getButtonText());
-    getInfoButton.setCallbackData(Commands.MAIN_GET_INFO.toString());
-    row1.add(getInfoButton);
+        List<InlineKeyboardButton> row1 = new ArrayList<>();
+        InlineKeyboardButton getInfoButton = new InlineKeyboardButton(
+            Commands.MAIN_GET_INFO.getButtonText(userMessage));
+        getInfoButton.setCallbackData(Commands.MAIN_GET_INFO.toString());
+        row1.add(getInfoButton);
 
-    List<InlineKeyboardButton> row2 = new ArrayList<>();
-    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(Commands.MAIN_OPTIONS.getButtonText());
-    getOptionsButton.setCallbackData(Commands.MAIN_OPTIONS.toString());
-    row2.add(getOptionsButton);
+        List<InlineKeyboardButton> row2 = new ArrayList<>();
+        InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(
+            Commands.MAIN_OPTIONS.getButtonText(userMessage));
+        getOptionsButton.setCallbackData(Commands.MAIN_OPTIONS.toString());
+        row2.add(getOptionsButton);
 
-    rowList.add(row1);
-    rowList.add(row2);
-    inlineKeyboardMarkup.setKeyboard(rowList);
+        rowList.add(row1);
+        rowList.add(row2);
+        inlineKeyboardMarkup.setKeyboard(rowList);
 
-    return inlineKeyboardMarkup;
-  }
+        return inlineKeyboardMarkup;
+    }
 }

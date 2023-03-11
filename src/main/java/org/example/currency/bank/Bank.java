@@ -1,18 +1,18 @@
 package org.example.currency.bank;
 
 public enum Bank {
-  NBU("НБУ"),
-  PRIVATBANK("Приватбанк"),
-  MONOBANK("Монобанк"),
+  NBU("NBU"),
+  PRIVATBANK("Privatbank"),
+  MONOBANK("Monobank"),
 
-  OSCHADBANK("Ощадбанк");
+  OSCHADBANK("Oschadbank");
 
-  private final String uaBankName;
-  Bank (String uaBankName){
-    this.uaBankName = uaBankName;
+  private final String name;
+  Bank (String name){
+    this.name = name;
   }
 
-  public String getUaBankName() {
-    return uaBankName;
+  public String getName() {
+    return name;
   }
 }

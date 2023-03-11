@@ -1,15 +1,15 @@
 package org.example.telegrambots.currency.menus;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.example.currency.currencies.Currency;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CurrencyMenu {
+
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
         Currency currency = userMessage.getUser().getCurrency();
         String markEmoji = "✔";
@@ -18,17 +18,22 @@ public class CurrencyMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((Currency.USD.equals(currency) ? markEmoji : "") + Commands.CURRENCY_USD.getButtonText());
+        InlineKeyboardButton buttonUsd = new InlineKeyboardButton(
+            (Currency.USD.equals(currency) ? markEmoji : "") + Commands.CURRENCY_USD.getButtonText(
+                userMessage));
         buttonUsd.setCallbackData(Commands.CURRENCY_USD.toString());
         row1.add(buttonUsd);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton buttonEur = new InlineKeyboardButton((Currency.EUR.equals(currency) ? markEmoji : "") + Commands.CURRENCY_EUR.getButtonText());
+        InlineKeyboardButton buttonEur = new InlineKeyboardButton(
+            (Currency.EUR.equals(currency) ? markEmoji : "") + Commands.CURRENCY_EUR.getButtonText(
+                userMessage));
         buttonEur.setCallbackData(Commands.CURRENCY_EUR.toString());
         row2.add(buttonEur);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(
+            Commands.BACK.getButtonText(userMessage));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row3.add(buttonBack);
 
