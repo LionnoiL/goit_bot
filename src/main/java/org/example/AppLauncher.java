@@ -1,9 +1,11 @@
 package org.example;
 
+import org.example.auto.language.switcher.AutoLanguageSwitcher;
 import org.example.notifications.Scheduler;
 import org.example.properties.ApplicationProperties;
 import org.example.telegrambots.currency.CurrencyBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 

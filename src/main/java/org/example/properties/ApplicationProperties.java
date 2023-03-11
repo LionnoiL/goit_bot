@@ -4,12 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.FileReader;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.AppLauncher;
+import org.example.auto.language.switcher.CommandsEng;
+import org.example.auto.language.switcher.CommandsUa;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 import org.example.users.User;
@@ -29,10 +30,16 @@ public class ApplicationProperties {
 
     @Setter
     private Map<Long, User> users;
+    @Setter
+    Map<String, String> commandsLanguageUa;
+    @Setter
+    Map<String, String> commandsLanguageEng;
 
     public ApplicationProperties() {
         loadFromFile();
         users = getUsersListFromFile();
+        commandsLanguageUa = createUaVocabularyMap();
+        commandsLanguageEng = createEngVocabularyMap();
     }
 
     public static void saveUsersListToFile() {
@@ -90,5 +97,22 @@ public class ApplicationProperties {
             //NOP
         }
         return savedUsers;
+    }
+
+    private static Map<String, String> createUaVocabularyMap() {
+        Map<String, String> uaMap = new HashMap<>();
+
+        for (CommandsUa commandsUa : CommandsUa.values()) {
+            uaMap.put(commandsUa.toString(), commandsUa.getButtonText());
+        }
+        return uaMap;
+    }
+    private static Map<String, String> createEngVocabularyMap() {
+        Map<String, String> engMap = new HashMap<>();
+
+        for (CommandsEng commandsEng : CommandsEng.values()) {
+            engMap.put(commandsEng.toString(), commandsEng.getButtonText());
+        }
+        return engMap;
     }
 }

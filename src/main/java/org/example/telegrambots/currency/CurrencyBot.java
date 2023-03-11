@@ -2,6 +2,7 @@ package org.example.telegrambots.currency;
 
 import java.util.logging.Logger;
 import lombok.Getter;
+import org.example.auto.language.switcher.AutoLanguageSwitcher;
 import org.example.telegrambots.currency.handlers.CurrencyBotMessageHandler;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
