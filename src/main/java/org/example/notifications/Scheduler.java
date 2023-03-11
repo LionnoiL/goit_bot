@@ -1,5 +1,6 @@
 package org.example.notifications;
 
+import org.example.currency.services.CurrencyRateCollector;
 import org.example.telegrambots.bot.services.TelegramService;
 import org.example.telegrambots.currency.messages.MessageService;
 import org.example.telegrambots.currency.sender.CurrencySender;
@@ -13,6 +14,9 @@ import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 public class Scheduler {
     public static void setTimeReceived() {
 
+        CurrencyRateCollector currencyRateCollector = new CurrencyRateCollector();
+        currencyRateCollector.collectAllRates();
+
         int initialHour = getCurrentHour() + 1;
 
         Calendar calendar = Calendar.getInstance();
@@ -25,6 +29,7 @@ public class Scheduler {
             public void run() {
                 int currentHour = getCurrentHour();
                 sendUsersNotifications(currentHour);
+                currencyRateCollector.collectAllRates();
             }
         };
 
