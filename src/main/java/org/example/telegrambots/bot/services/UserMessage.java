@@ -45,11 +45,11 @@ public class UserMessage {
     Long userId = message.getChatId();
     User user = userService.getUserById(userId);
     if (user==null){
-      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName());
-      userService.addUser(user);
+      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(), message.getFrom().getLanguageCode());
     }
 
     user.setLanguage(message.getFrom().getLanguageCode());
+    userService.addUser(user);
 
     userMessage.setUser(user);
 
