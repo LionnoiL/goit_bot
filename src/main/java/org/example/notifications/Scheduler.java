@@ -1,5 +1,8 @@
 package org.example.notifications;
 
+import org.example.telegrambots.bot.services.TelegramService;
+import org.example.telegrambots.currency.messages.MessageService;
+import org.example.telegrambots.currency.sender.CurrencySender;
 import org.example.users.User;
 
 import java.time.LocalDateTime;
@@ -33,7 +36,7 @@ public class Scheduler {
         );
     }
 
-    private static int getCurrentHour(){
+    private static int getCurrentHour() {
 
         return LocalDateTime.now().getHour();
     }
@@ -41,11 +44,12 @@ public class Scheduler {
     private static void sendUsersNotifications(int currentHour) {
 
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
+        TelegramService telegramService = new TelegramService(new CurrencySender());
 
         users.entrySet()
                 .stream()
                 .map(Map.Entry::getValue)
                 .filter(el -> el.getAlertTime() == currentHour)
-                .forEach(el -> System.out.println(el.getUserId() + " " + currentHour)); //TODO викликати метод відправки повідомлення та передати йому el.getUserId()
+                .forEach(el -> telegramService.sendMessage(el.getUserId(), MessageService.getInformationMessageByUserId(el.getUserId())));
     }
 }
