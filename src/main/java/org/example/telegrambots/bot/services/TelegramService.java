@@ -1,8 +1,7 @@
 package org.example.telegrambots.bot.services;
 
+import java.util.logging.Logger;
 import org.example.telegrambots.bot.sender.BotSender;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -10,7 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 public class TelegramService {
-  private static final Logger log = LoggerFactory.getLogger(TelegramService.class);
+  private static final Logger log = Logger.getLogger(TelegramService.class.getName());
   private final BotSender botSender;
 
   public TelegramService(BotSender botSender) {
@@ -53,7 +52,7 @@ public class TelegramService {
     try {
       botSender.execute(botApiMethod);
     } catch (Exception e) {
-      log.error("Exception: ", e);
+      log.warning("Exception: " + e);
     }
   }
 }
