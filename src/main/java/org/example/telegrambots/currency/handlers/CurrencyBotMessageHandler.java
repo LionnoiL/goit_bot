@@ -22,26 +22,46 @@ public class CurrencyBotMessageHandler {
       if (userMessage == null) {
         return;
       }
-      if (Commands.MAIN_GET_INFO.toString().equals(userMessage.getCallBack())) {
-        new GetInfoCommand().execute(userMessage);
-      } else if (Commands.MAIN_OPTIONS.toString()
-          .equals(userMessage.getCallBack())) {
-        new OptionsMenuCommand().execute(userMessage);
-      } else if (Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString()
-          .equals(userMessage.getCallBack())) {
-        new OptionsNumberSimbolsCommand().execute(userMessage);
-      } else if (Commands.OPTIONS_BANK.toString()
-              .equals(userMessage.getCallBack())) {
-        new OptionsBankCommand().execute(userMessage);
-      } else if (Commands.OPTIONS_CURRENCY.toString()
-              .equals(userMessage.getCallBack())) {
-        new OptionsCurrencyCommand().execute(userMessage);
-      } else if (Commands.OPTIONS_NOTIFICATIONS.toString()
-              .equals(userMessage.getCallBack())) {
-        new OptionsNotificationCommand().execute(userMessage);
-    } else {
-        new MainMenuCommand().execute(userMessage);
+      Commands userCallBack = Commands.valueOf(userMessage.getCallBack());
+
+      switch(userCallBack) {
+        case MAIN_OPTIONS:
+          new OptionsMenuCommand().execute(userMessage);
+        break;
+        case OPTIONS_NUMBER_SYMBOL_AFTER_COMMA:
+        case NUMBERS_2:
+        case NUMBERS_3:
+        case NUMBERS_4:
+          new OptionsNumberSimbolsCommand().execute(userMessage);
+        break;
+        case OPTIONS_BANK:
+        case BANK_PRIVATBANK:
+        case BANK_MONOBANK:
+        case BANK_NBU:
+          new OptionsBankCommand().execute(userMessage);
+        break;
+        case OPTIONS_CURRENCY:
+        case CURRENCY_EUR:
+        case CURRENCY_USD:
+          new OptionsCurrencyCommand().execute(userMessage);
+        break;
+        case OPTIONS_NOTIFICATIONS:
+        case ALERT_9:
+        case ALERT_10:
+        case ALERT_11:
+        case ALERT_12:
+        case ALERT_13:
+        case ALERT_14:
+        case ALERT_15:
+        case ALERT_16:
+        case ALERT_17:
+        case ALERT_18:
+          new OptionsNotificationCommand().execute(userMessage);
+          break;
+        default:
+          new GetInfoCommand().execute(userMessage);
+          break;
+        }
       }
     }
   }
-}
