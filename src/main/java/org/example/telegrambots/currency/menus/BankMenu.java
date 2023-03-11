@@ -29,19 +29,25 @@ public class BankMenu implements TelegramMenu {
         row2.add(buttonMonobank);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton buttonNbu = new InlineKeyboardButton((Bank.NBU.equals(bank) ?  markEmoji: "") + Commands.BANK_NBU.getButtonText());
-        buttonNbu.setCallbackData(Commands.BANK_NBU.toString());
-        row3.add(buttonNbu);
+        InlineKeyboardButton buttonOschad = new InlineKeyboardButton((Bank.OSCHADBANK.equals(bank) ?  markEmoji: "") + Commands.BANK_OSCHADBANK.getButtonText());
+        buttonOschad.setCallbackData(Commands.BANK_OSCHADBANK.toString());
+        row3.add(buttonOschad);
 
         List<InlineKeyboardButton> row4 = new ArrayList<>();
+        InlineKeyboardButton buttonNbu = new InlineKeyboardButton((Bank.NBU.equals(bank) ?  markEmoji: "") + Commands.BANK_NBU.getButtonText());
+        buttonNbu.setCallbackData(Commands.BANK_NBU.toString());
+        row4.add(buttonNbu);
+
+        List<InlineKeyboardButton> row5 = new ArrayList<>();
         InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
-        row4.add(buttonBack);
+        row5.add(buttonBack);
 
         rowList.add(row1);
         rowList.add(row2);
         rowList.add(row3);
         rowList.add(row4);
+        rowList.add(row5);
         inlineKeyboardMarkup.setKeyboard(rowList);
 
         return inlineKeyboardMarkup;

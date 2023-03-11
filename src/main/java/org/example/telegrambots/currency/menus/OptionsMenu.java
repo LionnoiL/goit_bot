@@ -30,14 +30,20 @@ public class OptionsMenu implements TelegramMenu {
     row3.add(optionsCurrencyButton);
 
     List<InlineKeyboardButton> row4 = new ArrayList<>();
+    InlineKeyboardButton optionsAlertButton = new InlineKeyboardButton(Commands.OPTIONS_NOTIFICATIONS.getButtonText());
+    optionsAlertButton.setCallbackData(Commands.OPTIONS_NOTIFICATIONS.toString());
+    row4.add(optionsAlertButton);
+
+    List<InlineKeyboardButton> row5 = new ArrayList<>();
     InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
     buttonBack.setCallbackData(Commands.MAIN_MENU.toString());
-    row4.add(buttonBack);
+    row5.add(buttonBack);
 
     rowList.add(row1);
     rowList.add(row2);
     rowList.add(row3);
     rowList.add(row4);
+    rowList.add(row5);
     inlineKeyboardMarkup.setKeyboard(rowList);
 
     return inlineKeyboardMarkup;
