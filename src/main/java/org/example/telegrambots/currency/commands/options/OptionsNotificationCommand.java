@@ -23,6 +23,7 @@ public class OptionsNotificationCommand extends BotCommand {
         Commands userCallBack = Commands.valueOf(userMessage.getCallBack());
 
         switch (userCallBack) {
+            case ALERT_9: userService.updateUser(user, 9); break;
             case ALERT_10: userService.updateUser(user, 10); break;
             case ALERT_11: userService.updateUser(user, 11); break;
             case ALERT_12: userService.updateUser(user, 12); break;
