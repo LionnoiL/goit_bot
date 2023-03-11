@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CurrencyMenu {
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
@@ -19,17 +20,17 @@ public class CurrencyMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((Currency.USD.equals(currency) ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("CURRENCY_USD"));
+        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((Currency.USD.equals(currency) ? markEmoji : "") + userMessage.getUser().getLanguage().get("CURRENCY_USD"));
         buttonUsd.setCallbackData(Commands.CURRENCY_USD.toString());
         row1.add(buttonUsd);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton buttonEur = new InlineKeyboardButton((Currency.EUR.equals(currency) ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("CURRENCY_EUR"));
+        InlineKeyboardButton buttonEur = new InlineKeyboardButton((Currency.EUR.equals(currency) ? markEmoji : "") + userMessage.getUser().getLanguage().get("CURRENCY_EUR"));
         buttonEur.setCallbackData(Commands.CURRENCY_EUR.toString());
         row2.add(buttonEur);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(LanguageSwitcher.currentLanguage.get("BACK"));
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row3.add(buttonBack);
 

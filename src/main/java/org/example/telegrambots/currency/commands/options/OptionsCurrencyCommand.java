@@ -29,7 +29,7 @@ public class OptionsCurrencyCommand extends BotCommand {
 
         InlineKeyboardMarkup menu = new CurrencyMenu().createMenu(userMessage);
 
-        getTelegramService().sendMessage(userMessage.getChatId(), Commands.HEADSIGN_CURRENCYMENU.getButtonText(),
+        getTelegramService().sendMessage(userMessage.getChatId(), userMessage.getUser().getLanguage().get("HEADSIGN_CURRENCYMENU"),
                 menu);
     }
 }

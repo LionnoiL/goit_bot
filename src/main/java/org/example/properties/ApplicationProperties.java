@@ -30,16 +30,10 @@ public class ApplicationProperties {
 
     @Setter
     private Map<Long, User> users;
-    @Setter
-    Map<String, String> commandsLanguageUa;
-    @Setter
-    Map<String, String> commandsLanguageEng;
 
     public ApplicationProperties() {
         loadFromFile();
         users = getUsersListFromFile();
-        commandsLanguageUa = createUaLanguageMap();
-        commandsLanguageEng = createEngLanguageMap();
     }
 
     public static void saveUsersListToFile() {
@@ -97,22 +91,5 @@ public class ApplicationProperties {
             //NOP
         }
         return savedUsers;
-    }
-
-    private static Map<String, String> createUaLanguageMap() {
-        Map<String, String> uaMap = new HashMap<>();
-
-        for (CommandsUa commandsUa : CommandsUa.values()) {
-            uaMap.put(commandsUa.toString(), commandsUa.getButtonText());
-        }
-        return uaMap;
-    }
-    private static Map<String, String> createEngLanguageMap() {
-        Map<String, String> engMap = new HashMap<>();
-
-        for (CommandsEng commandsEng : CommandsEng.values()) {
-            engMap.put(commandsEng.toString(), commandsEng.getButtonText());
-        }
-        return engMap;
     }
 }

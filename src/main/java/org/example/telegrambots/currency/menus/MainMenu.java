@@ -18,12 +18,12 @@ public class MainMenu implements TelegramMenu {
     List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
     List<InlineKeyboardButton> row1 = new ArrayList<>();
-    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(LanguageSwitcher.currentLanguage.get("MAIN_GET_INFO"));
+    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("MAIN_GET_INFO"));
     getInfoButton.setCallbackData(Commands.MAIN_GET_INFO.toString());
     row1.add(getInfoButton);
 
     List<InlineKeyboardButton> row2 = new ArrayList<>();
-    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(LanguageSwitcher.currentLanguage.get("MAIN_OPTIONS"));
+    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("MAIN_OPTIONS"));
     getOptionsButton.setCallbackData(Commands.MAIN_OPTIONS.toString());
     row2.add(getOptionsButton);
 

@@ -10,7 +10,7 @@ import org.example.properties.ApplicationProperties;
 
 public class UserService {
 
-    public User createUser(long userId, String firstName, String lastName, String language){
+    public User createUser(long userId, String firstName, String lastName, Map<String, String> language){
         User user = new User();
         user.setUserId(userId);
         user.setUserName(firstName);

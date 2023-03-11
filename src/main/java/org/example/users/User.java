@@ -1,10 +1,13 @@
 package org.example.users;
 
+import lombok.Setter;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -18,5 +21,5 @@ public class User {
     private Bank bank;
     private int userHours;
     private int alertTime;
-    private String language;
+    private Map<String, String> language;
 }

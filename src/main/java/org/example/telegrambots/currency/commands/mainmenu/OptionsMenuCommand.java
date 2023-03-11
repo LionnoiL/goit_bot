@@ -9,6 +9,8 @@ import org.example.telegrambots.currency.menus.OptionsMenu;
 import org.example.telegrambots.currency.sender.CurrencySender;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
+import java.util.Map;
+
 public class OptionsMenuCommand extends BotCommand {
 
   public OptionsMenuCommand() {super(new TelegramService(new CurrencySender()));
@@ -18,8 +20,7 @@ public class OptionsMenuCommand extends BotCommand {
   public void execute(UserMessage userMessage) {
 
     InlineKeyboardMarkup optionsMenu = new OptionsMenu().createMenu(userMessage);
-
-    getTelegramService().sendMessage(userMessage.getChatId(), LanguageSwitcher.currentLanguage.get("HEADSIGN_OPTIONS"),
+    getTelegramService().sendMessage(userMessage.getChatId(), userMessage.getUser().getLanguage().get("HEADSIGN_OPTIONS"),
         optionsMenu);
   }
 }

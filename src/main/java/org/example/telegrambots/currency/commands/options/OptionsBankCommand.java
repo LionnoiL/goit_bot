@@ -38,7 +38,7 @@ public class OptionsBankCommand extends BotCommand {
 
         InlineKeyboardMarkup menu = new BankMenu().createMenu(userMessage);
 
-        getTelegramService().sendMessage(userMessage.getChatId(), Commands.HEADSIGN_BANKSMENU.getButtonText(),
+        getTelegramService().sendMessage(userMessage.getChatId(), userMessage.getUser().getLanguage().get("HEADSIGN_BANKSMENU"),
                 menu);
     }
 }
