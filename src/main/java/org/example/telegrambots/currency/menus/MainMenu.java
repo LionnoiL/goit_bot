@@ -13,20 +13,17 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 public class MainMenu implements TelegramMenu {
 
-  Map<String, String> currentLanguage = LanguageSwitcher.currentLanguage;
   public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
     InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
     List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
     List<InlineKeyboardButton> row1 = new ArrayList<>();
-//    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(Commands.MAIN_GET_INFO.getButtonText());
-    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(currentLanguage.get("MAIN_GET_INFO").toString());
+    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(LanguageSwitcher.currentLanguage.get("MAIN_GET_INFO"));
     getInfoButton.setCallbackData(Commands.MAIN_GET_INFO.toString());
     row1.add(getInfoButton);
 
     List<InlineKeyboardButton> row2 = new ArrayList<>();
-//    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(Commands.MAIN_OPTIONS.getButtonText());
-    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(currentLanguage.get("MAIN_OPTIONS").toString());
+    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(LanguageSwitcher.currentLanguage.get("MAIN_OPTIONS"));
     getOptionsButton.setCallbackData(Commands.MAIN_OPTIONS.toString());
     row2.add(getOptionsButton);
 

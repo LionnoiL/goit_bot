@@ -1,5 +1,6 @@
 package org.example.telegrambots.currency.menus;
 
+import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.menus.TelegramMenu;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
@@ -18,48 +19,48 @@ public class NotificationMenu implements TelegramMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton alert9 = new InlineKeyboardButton((notificationTime == 9 ? markEmoji : "") + Commands.ALERT_9.getButtonText());
+        InlineKeyboardButton alert9 = new InlineKeyboardButton((notificationTime == 9 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_9"));
         alert9.setCallbackData(Commands.ALERT_9.toString());
-        InlineKeyboardButton alert10 = new InlineKeyboardButton((notificationTime == 10 ? markEmoji : "") + Commands.ALERT_10.getButtonText());
+        InlineKeyboardButton alert10 = new InlineKeyboardButton((notificationTime == 10 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_10"));
         alert10.setCallbackData(Commands.ALERT_10.toString());
-        InlineKeyboardButton alert11 = new InlineKeyboardButton((notificationTime == 11 ? markEmoji : "") + Commands.ALERT_11.getButtonText());
+        InlineKeyboardButton alert11 = new InlineKeyboardButton((notificationTime == 11 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_11"));
         alert11.setCallbackData(Commands.ALERT_11.toString());
         row1.add(alert9);
         row1.add(alert10);
         row1.add(alert11);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton alert12 = new InlineKeyboardButton((notificationTime == 12 ? markEmoji : "") + Commands.ALERT_12.getButtonText());
+        InlineKeyboardButton alert12 = new InlineKeyboardButton((notificationTime == 12 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_12"));
         alert12.setCallbackData(Commands.ALERT_12.toString());
-        InlineKeyboardButton alert13 = new InlineKeyboardButton((notificationTime == 13 ? markEmoji : "") + Commands.ALERT_13.getButtonText());
+        InlineKeyboardButton alert13 = new InlineKeyboardButton((notificationTime == 13 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_13"));
         alert13.setCallbackData(Commands.ALERT_13.toString());
-        InlineKeyboardButton alert14 = new InlineKeyboardButton((notificationTime == 14 ? markEmoji : "") + Commands.ALERT_14.getButtonText());
+        InlineKeyboardButton alert14 = new InlineKeyboardButton((notificationTime == 14 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_14"));
         alert14.setCallbackData(Commands.ALERT_14.toString());
         row2.add(alert12);
         row2.add(alert13);
         row2.add(alert14);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton alert15 = new InlineKeyboardButton((notificationTime == 15 ? markEmoji : "") + Commands.ALERT_15.getButtonText());
+        InlineKeyboardButton alert15 = new InlineKeyboardButton((notificationTime == 15 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_15"));
         alert15.setCallbackData(Commands.ALERT_15.toString());
-        InlineKeyboardButton alert16 = new InlineKeyboardButton((notificationTime == 16 ? markEmoji : "") + Commands.ALERT_16.getButtonText());
+        InlineKeyboardButton alert16 = new InlineKeyboardButton((notificationTime == 16 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_16"));
         alert16.setCallbackData(Commands.ALERT_16.toString());
-        InlineKeyboardButton alert17 = new InlineKeyboardButton((notificationTime == 17 ? markEmoji : "") + Commands.ALERT_17.getButtonText());
+        InlineKeyboardButton alert17 = new InlineKeyboardButton((notificationTime == 17 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_17"));
         alert17.setCallbackData(Commands.ALERT_17.toString());
         row3.add(alert15);
         row3.add(alert16);
         row3.add(alert17);
 
         List<InlineKeyboardButton> row4 = new ArrayList<>();
-        InlineKeyboardButton alert18 = new InlineKeyboardButton((notificationTime == 18 ? markEmoji : "") + Commands.ALERT_18.getButtonText());
+        InlineKeyboardButton alert18 = new InlineKeyboardButton((notificationTime == 18 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_18"));
         alert18.setCallbackData(Commands.ALERT_18.toString());
-        InlineKeyboardButton alertOff = new InlineKeyboardButton((notificationTime == 100 ? markEmoji : "") + Commands.ALERT_OFF.getButtonText());
+        InlineKeyboardButton alertOff = new InlineKeyboardButton((notificationTime == 100 ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("ALERT_OFF"));
         alertOff.setCallbackData(Commands.ALERT_OFF.toString());
         row4.add(alert18);
         row4.add(alertOff);
 
         List<InlineKeyboardButton> row5 = new ArrayList<>();
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(LanguageSwitcher.currentLanguage.get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row5.add(buttonBack);
 

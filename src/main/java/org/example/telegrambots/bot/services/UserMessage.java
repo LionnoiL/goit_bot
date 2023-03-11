@@ -47,7 +47,7 @@ public class UserMessage {
     User user = userService.getUserById(userId);
     if (user==null){
       user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(),
-              message.getFrom().getLanguageCode().toString().toLowerCase()); // TODO added message.getFrom().getLanguageCode().toString().toLowerCase()
+              message.getFrom().getLanguageCode().toLowerCase());
       userService.addUser(user);
     }
 
@@ -58,6 +58,7 @@ public class UserMessage {
             + userMessage.getTextFromUser() + ", callback[" + userMessage.getCallBack()
             + "]");
 
+    LanguageSwitcher.setLanguageMap(); // TODO here or not?
     return userMessage;
   }
 }

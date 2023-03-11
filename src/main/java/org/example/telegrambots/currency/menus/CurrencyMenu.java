@@ -1,6 +1,7 @@
 package org.example.telegrambots.currency.menus;
 
 import org.example.currency.currencies.Currency;
+import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -18,17 +19,17 @@ public class CurrencyMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((Currency.USD.equals(currency) ? markEmoji : "") + Commands.CURRENCY_USD.getButtonText());
+        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((Currency.USD.equals(currency) ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("CURRENCY_USD"));
         buttonUsd.setCallbackData(Commands.CURRENCY_USD.toString());
         row1.add(buttonUsd);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton buttonEur = new InlineKeyboardButton((Currency.EUR.equals(currency) ? markEmoji : "") + Commands.CURRENCY_EUR.getButtonText());
+        InlineKeyboardButton buttonEur = new InlineKeyboardButton((Currency.EUR.equals(currency) ? markEmoji : "") + LanguageSwitcher.currentLanguage.get("CURRENCY_EUR"));
         buttonEur.setCallbackData(Commands.CURRENCY_EUR.toString());
         row2.add(buttonEur);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(LanguageSwitcher.currentLanguage.get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row3.add(buttonBack);
 

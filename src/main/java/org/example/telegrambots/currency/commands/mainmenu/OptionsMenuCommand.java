@@ -1,5 +1,6 @@
 package org.example.telegrambots.currency.commands.mainmenu;
 
+import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.commands.BotCommand;
 import org.example.telegrambots.bot.services.TelegramService;
 import org.example.telegrambots.bot.services.UserMessage;
@@ -18,7 +19,7 @@ public class OptionsMenuCommand extends BotCommand {
 
     InlineKeyboardMarkup optionsMenu = new OptionsMenu().createMenu(userMessage);
 
-    getTelegramService().sendMessage(userMessage.getChatId(), Commands.HEADSIGN_OPTIONS.getButtonText(),
+    getTelegramService().sendMessage(userMessage.getChatId(), LanguageSwitcher.currentLanguage.get("HEADSIGN_OPTIONS"),
         optionsMenu);
   }
 }

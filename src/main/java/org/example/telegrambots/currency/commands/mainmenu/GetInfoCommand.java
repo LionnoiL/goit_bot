@@ -1,5 +1,6 @@
 package org.example.telegrambots.currency.commands.mainmenu;
 
+import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.commands.BotCommand;
 import org.example.telegrambots.bot.services.TelegramService;
 import org.example.telegrambots.bot.services.UserMessage;
@@ -19,7 +20,7 @@ public class GetInfoCommand extends BotCommand {
     getTelegramService().sendMessage(userMessage.getChatId(), MessageService.getInformationMessageByUserId(userMessage.getChatId()));
 
     InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
-    getTelegramService().sendMessage(userMessage.getChatId(), Commands.HEADSIGN_MAINMENU.getButtonText(),
+    getTelegramService().sendMessage(userMessage.getChatId(), LanguageSwitcher.currentLanguage.get("HEADSIGN_MAINMENU"),
         mainMenu);
   }
 }
