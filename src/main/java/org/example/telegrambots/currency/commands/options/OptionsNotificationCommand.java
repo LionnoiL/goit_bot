@@ -32,7 +32,7 @@ public class OptionsNotificationCommand extends BotCommand {
             case ALERT_16: userService.updateUser(user, 16); break;
             case ALERT_17: userService.updateUser(user, 17); break;
             case ALERT_18: userService.updateUser(user, 18); break;
-            case ALERT_OFF: userService.updateUser(user, 100);
+            case ALERT_OFF: userService.updateUser(user, 100); break;
             default: userService.updateUser(user, 9); break;
         }
         InlineKeyboardMarkup notificationMenu = new NotificationMenu().createMenu(userMessage);
