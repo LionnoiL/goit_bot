@@ -9,8 +9,6 @@ import org.example.users.UserService;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.Map;
-
 @Getter
 @Setter
 public class UserMessage {
@@ -48,7 +46,7 @@ public class UserMessage {
     Long userId = message.getChatId();
     User user = userService.getUserById(userId);
     if (user==null){
-      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(), LanguageSwitcher.setLanguageMap(message));
+      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(), message.getFrom().getLanguageCode().toLowerCase(), LanguageSwitcher.setLanguageMap(message));
       userService.addUser(user);
     }
 

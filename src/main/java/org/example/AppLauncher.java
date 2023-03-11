@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.language.LanguageSwitcher;
 import org.example.notifications.Scheduler;
 import org.example.properties.ApplicationProperties;
 import org.example.telegrambots.currency.CurrencyBot;

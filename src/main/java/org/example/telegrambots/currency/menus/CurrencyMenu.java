@@ -1,7 +1,6 @@
 package org.example.telegrambots.currency.menus;
 
 import org.example.currency.currencies.Currency;
-import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -9,7 +8,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CurrencyMenu {
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {

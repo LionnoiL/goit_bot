@@ -10,7 +10,7 @@ import org.example.properties.ApplicationProperties;
 
 public class UserService {
 
-    public User createUser(long userId, String firstName, String lastName, Map<String, String> language){
+    public User createUser(long userId, String firstName, String lastName, String langCode, Map<String, String> language){
         User user = new User();
         user.setUserId(userId);
         user.setUserName(firstName);
@@ -20,6 +20,7 @@ public class UserService {
         user.setSymbolsAfterComma(APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(APPLICATION_PROPERTIES.getBank());
         user.setCurrency(APPLICATION_PROPERTIES.getCurrency());
+        user.setLangCode(langCode);
         user.setLanguage(language);
         return user;
     }

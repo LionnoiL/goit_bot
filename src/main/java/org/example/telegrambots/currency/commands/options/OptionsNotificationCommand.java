@@ -1,6 +1,5 @@
 package org.example.telegrambots.currency.commands.options;
 
-import org.example.currency.bank.Bank;
 import org.example.telegrambots.bot.commands.BotCommand;
 import org.example.telegrambots.bot.services.TelegramService;
 import org.example.telegrambots.bot.services.UserMessage;
@@ -10,8 +9,6 @@ import org.example.telegrambots.currency.sender.CurrencySender;
 import org.example.users.User;
 import org.example.users.UserService;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-
-import static org.example.telegrambots.currency.commands.Commands.NUMBERS_2;
 
 public class OptionsNotificationCommand extends BotCommand {
     public OptionsNotificationCommand() {super (new TelegramService(new CurrencySender()));}

@@ -1,8 +1,6 @@
 package org.example.language;
 
-import org.example.users.User;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
 import java.util.Map;

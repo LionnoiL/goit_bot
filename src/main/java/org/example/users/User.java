@@ -1,6 +1,5 @@
 package org.example.users;
 
-import lombok.Setter;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 import lombok.AllArgsConstructor;
@@ -21,5 +20,6 @@ public class User {
     private Bank bank;
     private int userHours;
     private int alertTime;
+    private String langCode;
     private Map<String, String> language;
 }

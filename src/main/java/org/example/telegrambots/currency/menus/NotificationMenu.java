@@ -1,17 +1,13 @@
 package org.example.telegrambots.currency.menus;
 
-import org.apache.commons.lang3.concurrent.CallableBackgroundInitializer;
-import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.menus.TelegramMenu;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
-import org.telegram.telegrambots.meta.api.objects.polls.PollAnswer;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class NotificationMenu implements TelegramMenu {
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {

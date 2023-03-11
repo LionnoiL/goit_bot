@@ -9,8 +9,6 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.AppLauncher;
-import org.example.language.CommandsEng;
-import org.example.language.CommandsUa;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 import org.example.users.User;

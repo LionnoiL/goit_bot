@@ -2,9 +2,7 @@ package org.example.telegrambots.currency.menus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.menus.TelegramMenu;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
