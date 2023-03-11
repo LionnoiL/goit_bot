@@ -1,17 +1,14 @@
 package org.example.currency.services;
 
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 import org.example.currency.rates.CurrencyRate;
-import org.example.currency.rates.CurrencyRateMonoResponseDto;
+import org.example.currency.rates.CurrencyMonoDto;
 import org.example.utils.JsonConverter;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +30,8 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
     public List<CurrencyRate> getCurrencyRates() {
         try {
             String response = Jsoup.connect(URL).ignoreContentType(true).get().body().text();
-            List<CurrencyRateMonoResponseDto> currencyRateResponses =  JsonConverter.convertJsonStringToList(
-                    response, CurrencyRateMonoResponseDto.class);
+            List<CurrencyMonoDto> currencyRateResponses =  JsonConverter.convertJsonStringToList(
+                    response, CurrencyMonoDto.class);
             return currencyRateResponses.stream()
                     .filter(item -> codeCurr.containsKey(item.getCurrencyCodeA())
                             && codeCurr.containsKey(item.getCurrencyCodeB())
