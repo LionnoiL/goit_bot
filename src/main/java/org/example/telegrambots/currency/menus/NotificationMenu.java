@@ -53,18 +53,21 @@ public class NotificationMenu implements TelegramMenu {
         List<InlineKeyboardButton> row4 = new ArrayList<>();
         InlineKeyboardButton alert18 = new InlineKeyboardButton((notificationTime == 18 ? markEmoji : "") + Commands.ALERT_18.getButtonText());
         alert18.setCallbackData(Commands.ALERT_18.toString());
-        InlineKeyboardButton alertOff = new InlineKeyboardButton(Commands.ALERT_OFF.getButtonText());
+        InlineKeyboardButton alertOff = new InlineKeyboardButton((notificationTime == 100 ? markEmoji : "") + Commands.ALERT_OFF.getButtonText());
         alertOff.setCallbackData(Commands.ALERT_OFF.toString());
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
-        buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row4.add(alert18);
         row4.add(alertOff);
-        row4.add(buttonBack);
+
+        List<InlineKeyboardButton> row5 = new ArrayList<>();
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+        buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
+        row5.add(buttonBack);
 
         rowList.add(row1);
         rowList.add(row2);
         rowList.add(row3);
         rowList.add(row4);
+        rowList.add(row5);
         inlineKeyboardMarkup.setKeyboard(rowList);
 
         return inlineKeyboardMarkup;
