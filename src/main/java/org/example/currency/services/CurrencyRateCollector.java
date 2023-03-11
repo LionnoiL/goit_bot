@@ -7,8 +7,9 @@ import java.util.List;
 
 public class CurrencyRateCollector {
     private List<CurrencyRetrievalService> retrievalServices = List.of(
-            new CurrencyRetrievalOschadService()
-            // Сюди дописати усі сервіси для завантаження курсів з інших банків
+            new CurrencyRetrievalOschadService(),
+            new CurrencyRetrievalMonoService()
+            // TODO: Сюди дописати усі сервіси для завантаження курсів з інших банків
     );
 
     public void collectAllRates() {
