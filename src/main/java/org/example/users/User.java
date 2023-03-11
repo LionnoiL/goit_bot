@@ -5,6 +5,8 @@ import org.example.currency.currencies.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.language.Language;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +19,5 @@ public class User {
     private Bank bank;
     private int userHours;
     private int alertTime;
+    private Language language;
 }
