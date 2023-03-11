@@ -49,7 +49,7 @@ public class Scheduler {
         users.entrySet()
                 .stream()
                 .map(Map.Entry::getValue)
-                .filter(el -> el.getAlertTime() == currentHour)
+                .filter(el -> el.getUserHours() == currentHour)
                 .forEach(el -> telegramService.sendMessage(el.getUserId(), MessageService.getInformationMessageByUserId(el.getUserId())));
     }
 }
