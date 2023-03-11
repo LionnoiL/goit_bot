@@ -22,6 +22,11 @@ public class CurrencyBotMessageHandler {
       if (userMessage == null) {
         return;
       }
+      String callBack = userMessage.getCallBack();
+      if(callBack==null){
+        new MainMenuCommand().execute(userMessage);
+        return;
+      }
       Commands userCallBack = Commands.valueOf(userMessage.getCallBack());
 
       switch(userCallBack) {
