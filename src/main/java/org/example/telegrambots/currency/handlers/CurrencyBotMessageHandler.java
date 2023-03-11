@@ -7,6 +7,7 @@ import org.example.telegrambots.currency.commands.mainmenu.MainMenuCommand;
 import org.example.telegrambots.currency.commands.mainmenu.OptionsMenuCommand;
 import org.example.telegrambots.currency.commands.options.OptionsBankCommand;
 import org.example.telegrambots.currency.commands.options.OptionsCurrencyCommand;
+import org.example.telegrambots.currency.commands.options.OptionsNotificationCommand;
 import org.example.telegrambots.currency.commands.options.OptionsNumberSimbolsCommand;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -35,6 +36,9 @@ public class CurrencyBotMessageHandler {
       } else if (Commands.OPTIONS_CURRENCY.toString()
               .equals(userMessage.getCallBack())) {
         new OptionsCurrencyCommand().execute(userMessage);
+      } else if (Commands.OPTIONS_NOTIFICATIONS.toString()
+              .equals(userMessage.getCallBack())) {
+        new OptionsNotificationCommand().execute(userMessage);
     } else {
         new MainMenuCommand().execute(userMessage);
       }
