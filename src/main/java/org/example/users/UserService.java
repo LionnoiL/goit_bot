@@ -3,6 +3,9 @@ package org.example.users;
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
 import java.util.Map;
+
+import org.example.currency.bank.Bank;
+import org.example.currency.currencies.Currency;
 import org.example.properties.ApplicationProperties;
 
 public class UserService {
@@ -38,5 +41,23 @@ public class UserService {
     public User getUserById(long userId){
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
         return users.get(userId);
+    }
+    public void updateUser(User user, Bank bank){
+        user.setBank(bank);
+        addUser(user);
+    }
+
+    public void updateUser(User user, Currency currency){
+        user.setCurrency(currency);
+        addUser(user);
+    }
+
+    public void updateUser(User user, int value){
+        if (value<5) {
+            user.setSymbolsAfterComma(value); //символів після коми
+        } else {
+            user.setAlertTime(value); // час сповіщень
+        }
+            addUser(user);
     }
 }

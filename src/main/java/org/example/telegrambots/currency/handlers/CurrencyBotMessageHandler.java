@@ -8,6 +8,7 @@ import org.example.telegrambots.currency.commands.mainmenu.MainMenuCommand;
 import org.example.telegrambots.currency.commands.mainmenu.OptionsMenuCommand;
 import org.example.telegrambots.currency.commands.options.OptionsBankCommand;
 import org.example.telegrambots.currency.commands.options.OptionsCurrencyCommand;
+import org.example.telegrambots.currency.commands.options.OptionsNotificationCommand;
 import org.example.telegrambots.currency.commands.options.OptionsNumberSimbolsCommand;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -21,23 +22,53 @@ public class CurrencyBotMessageHandler {
       if (userMessage == null) {
         return;
       }
-      if (Commands.MAIN_GET_INFO.toString().equals(userMessage.getCallBack())) {
-        new GetInfoCommand().execute(userMessage);
-      } else if (Commands.MAIN_OPTIONS.toString()
-          .equals(userMessage.getCallBack())) {
-        new OptionsMenuCommand().execute(userMessage);
-      } else if (Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString()
-          .equals(userMessage.getCallBack())) {
-        new OptionsNumberSimbolsCommand().execute(userMessage);
-      } else if (Commands.OPTIONS_BANK.toString()
-              .equals(userMessage.getCallBack())) {
-        new OptionsBankCommand().execute(userMessage);
-      } else if (Commands.OPTIONS_CURRENCY.toString()
-              .equals(userMessage.getCallBack())) {
-        new OptionsCurrencyCommand().execute(userMessage);
-    } else {
+      String callBack = userMessage.getCallBack();
+      if(callBack==null){
         new MainMenuCommand().execute(userMessage);
+        return;
+      }
+      Commands userCallBack = Commands.valueOf(callBack);
+
+      switch(userCallBack) {
+        case MAIN_OPTIONS:
+          new OptionsMenuCommand().execute(userMessage);
+        break;
+        case OPTIONS_NUMBER_SYMBOL_AFTER_COMMA:
+        case NUMBERS_2:
+        case NUMBERS_3:
+        case NUMBERS_4:
+          new OptionsNumberSimbolsCommand().execute(userMessage);
+        break;
+        case OPTIONS_BANK:
+        case BANK_PRIVATBANK:
+        case BANK_MONOBANK:
+        case BANK_OSCHADBANK:
+        case BANK_NBU:
+          new OptionsBankCommand().execute(userMessage);
+        break;
+        case OPTIONS_CURRENCY:
+        case CURRENCY_EUR:
+        case CURRENCY_USD:
+          new OptionsCurrencyCommand().execute(userMessage);
+        break;
+        case OPTIONS_NOTIFICATIONS:
+        case ALERT_9:
+        case ALERT_10:
+        case ALERT_11:
+        case ALERT_12:
+        case ALERT_13:
+        case ALERT_14:
+        case ALERT_15:
+        case ALERT_16:
+        case ALERT_17:
+        case ALERT_18:
+        case ALERT_OFF:
+          new OptionsNotificationCommand().execute(userMessage);
+          break;
+        default:
+          new GetInfoCommand().execute(userMessage);
+          break;
+        }
       }
     }
   }
-}
