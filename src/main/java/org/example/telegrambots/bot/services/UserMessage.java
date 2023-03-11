@@ -2,6 +2,7 @@ package org.example.telegrambots.bot.services;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.currency.CurrencyBot;
 import org.example.users.User;
 import org.example.users.UserService;

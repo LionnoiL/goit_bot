@@ -19,15 +19,15 @@ public class LanguageSwitcher {
     private static void setLanguage(String lenguage){
 
         switch (lenguage) {
-            case "uk":
+            case "uk": {
                 currentLanguage = APPLICATION_PROPERTIES.getCommandsLanguageUa();
-                break;
-            case "en":
+            } break;
+            case "en": {
                 currentLanguage = APPLICATION_PROPERTIES.getCommandsLanguageEng();
-                break;
-            default:
+            } break;
+            default: {
                 currentLanguage = APPLICATION_PROPERTIES.getCommandsLanguageEng();
-                break;
+            }
         }
     }
 }

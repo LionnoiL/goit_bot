@@ -21,6 +21,5 @@ public class AppLauncher {
             e.printStackTrace();
         }
         Scheduler.setTimeReceived();
-        LanguageSwitcher.setLanguageMap();
     }
 }

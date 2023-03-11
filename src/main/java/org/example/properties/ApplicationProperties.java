@@ -38,8 +38,8 @@ public class ApplicationProperties {
     public ApplicationProperties() {
         loadFromFile();
         users = getUsersListFromFile();
-        commandsLanguageUa = createUaVocabularyMap();
-        commandsLanguageEng = createEngVocabularyMap();
+        commandsLanguageUa = createUaLanguageMap();
+        commandsLanguageEng = createEngLanguageMap();
     }
 
     public static void saveUsersListToFile() {
@@ -99,7 +99,7 @@ public class ApplicationProperties {
         return savedUsers;
     }
 
-    private static Map<String, String> createUaVocabularyMap() {
+    private static Map<String, String> createUaLanguageMap() {
         Map<String, String> uaMap = new HashMap<>();
 
         for (CommandsUa commandsUa : CommandsUa.values()) {
@@ -107,7 +107,7 @@ public class ApplicationProperties {
         }
         return uaMap;
     }
-    private static Map<String, String> createEngVocabularyMap() {
+    private static Map<String, String> createEngLanguageMap() {
         Map<String, String> engMap = new HashMap<>();
 
         for (CommandsEng commandsEng : CommandsEng.values()) {

@@ -1,5 +1,6 @@
 package org.example.telegrambots.currency.handlers;
 
+import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
 import org.example.telegrambots.currency.commands.mainmenu.GetInfoCommand;

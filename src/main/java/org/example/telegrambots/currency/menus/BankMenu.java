@@ -1,6 +1,7 @@
 package org.example.telegrambots.currency.menus;
 
 import org.example.currency.bank.Bank;
+import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.menus.TelegramMenu;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
@@ -9,8 +10,10 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class BankMenu implements TelegramMenu {
+
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
         Bank bank = userMessage.getUser().getBank();
         String markEmoji = "✔";
