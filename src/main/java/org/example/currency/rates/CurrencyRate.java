@@ -18,9 +18,6 @@ public class CurrencyRate {
     private Currency currency;
     private BigDecimal sellingRate;
     private BigDecimal buyingRate;
-
-
-
     @Override
     public String toString() {
 

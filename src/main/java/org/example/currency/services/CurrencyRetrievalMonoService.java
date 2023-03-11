@@ -7,6 +7,7 @@ import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 import org.example.currency.rates.CurrencyRate;
 import org.example.currency.rates.CurrencyRateMonoResponseDto;
+import org.example.utils.JsonConverter;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
@@ -28,13 +29,12 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
             840, USD,
             978, EUR
     );
-
-
     @Override
     public List<CurrencyRate> getCurrencyRates() {
         try {
             String response = Jsoup.connect(URL).ignoreContentType(true).get().body().text();
-            List<CurrencyRateMonoResponseDto> currencyRateResponses = convertResponseToList(response);
+            List<CurrencyRateMonoResponseDto> currencyRateResponses =  JsonConverter.convertJsonStringToList(
+                    response, CurrencyRateMonoResponseDto.class);
             return currencyRateResponses.stream()
                     .filter(item -> codeCurr.containsKey(item.getCurrencyCodeA())
                             && codeCurr.containsKey(item.getCurrencyCodeB())
@@ -54,11 +54,5 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private List<CurrencyRateMonoResponseDto> convertResponseToList(String response) {
-        Type type = TypeToken.getParameterized(List.class, CurrencyRateMonoResponseDto.class).getType();
-        Gson gson = new Gson();
-        return gson.fromJson(response, type);
     }
 }
