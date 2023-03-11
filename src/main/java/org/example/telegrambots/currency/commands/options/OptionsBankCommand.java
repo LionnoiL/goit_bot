@@ -30,6 +30,10 @@ public class OptionsBankCommand extends BotCommand {
                 User user = userMessage.getUser();
                 UserService userService = new UserService();
                 userService.updateUser(user, Bank.NBU);
+        } else if (BANK_OSCHADBANK.toString().equals(userMessage.getCallBack())) {
+            User user = userMessage.getUser();
+            UserService userService = new UserService();
+            userService.updateUser(user, Bank.OSCHADBANK);
         }
 
         InlineKeyboardMarkup menu = new BankMenu().createMenu(userMessage);

@@ -26,6 +26,7 @@ public enum Commands {
   BANK_NBU("НБУ","NBU"),
   BANK_PRIVATBANK("ПриватБанк","Privatbank"),
   BANK_MONOBANK("Монобанк","Monobank"),
+  BANK_OSCHADBANK("Ощадбанк","Oschadbank"),
   ALERT_9("9:00","9:00"),
   ALERT_10("10:00","10:00"),
   ALERT_11("11:00","11:00"),

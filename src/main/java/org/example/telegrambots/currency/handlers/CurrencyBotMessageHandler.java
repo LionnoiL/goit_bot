@@ -27,7 +27,7 @@ public class CurrencyBotMessageHandler {
         new MainMenuCommand().execute(userMessage);
         return;
       }
-      Commands userCallBack = Commands.valueOf(userMessage.getCallBack());
+      Commands userCallBack = Commands.valueOf(callBack);
 
       switch(userCallBack) {
         case MAIN_OPTIONS:
@@ -42,6 +42,7 @@ public class CurrencyBotMessageHandler {
         case OPTIONS_BANK:
         case BANK_PRIVATBANK:
         case BANK_MONOBANK:
+        case BANK_OSCHADBANK:
         case BANK_NBU:
           new OptionsBankCommand().execute(userMessage);
         break;
@@ -61,6 +62,7 @@ public class CurrencyBotMessageHandler {
         case ALERT_16:
         case ALERT_17:
         case ALERT_18:
+        case ALERT_OFF:
           new OptionsNotificationCommand().execute(userMessage);
           break;
         default:
