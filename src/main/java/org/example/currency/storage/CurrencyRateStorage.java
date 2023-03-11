@@ -36,7 +36,7 @@ public class CurrencyRateStorage {
 
     public static String getFormattedRateBotMessage(int decimalPrecision, Bank bank, List<Currency> currencies) {
         String rateFormat = "%." + decimalPrecision + "f";
-        String res = "Курс в " + bank.getNameUKR() + ":";
+        String res = "Курс в " + bank.getUaBankName() + ":";
         String ratesJson = getCacheRatesJson(bank);
         if (ratesJson.isEmpty()) {
             return "Інформація про курси валют по банку " + bank + " відсутня!";

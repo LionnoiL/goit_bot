@@ -1,15 +1,18 @@
 package org.example.currency.bank;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public enum Bank {
-  NBU("Національний банк України", "National Bank of Ukraine"),
-  PRIVATBANK("Приватбанк", "PrivatBank"),
-  MONOBANK("Монобанк", "Monobank");
+  NBU("НБУ"),
+  PRIVATBANK("Приватбанк"),
+  MONOBANK("Монобанк"),
 
-  private final String nameUKR;
-  private final String nameENG;
+  OSCHADBANK("Ощадбанк");
+
+  private final String uaBankName;
+  Bank (String uaBankName){
+    this.uaBankName = uaBankName;
+  }
+
+  public String getUaBankName() {
+    return uaBankName;
+  }
 }
