@@ -35,8 +35,7 @@ public enum CommandsUa {
   ALERT_16("16:00"),
   ALERT_17("17:00"),
   ALERT_18("18:00"),
-  ALERT_OFF("Вимкнути")
-  ;
+  ALERT_OFF("Вимкнути");
 
   private final String buttonText;
 
