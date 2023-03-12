@@ -14,15 +14,15 @@ public class FilesUtils {
     }
 
     public static void saveTextFile(String filePath, String text) {
+        checkFileDirAndCreateDir(filePath);
         try (FileWriter file = new FileWriter(filePath)) {
-            checkFileDirAndCreateDir(filePath);
             file.write(text);
         } catch (IOException e) {
             LOG.warn("Error save file! " + filePath);
         }
     }
 
-    public static void checkFileDirAndCreateDir(String filePath) throws IOException {
+    public static void checkFileDirAndCreateDir(String filePath) {
         File dir = new File(new File(filePath).getParent());
         if (!dir.exists() && !dir.mkdirs()) {
             LOG.warn("Error create dir! " + dir.getAbsolutePath());
