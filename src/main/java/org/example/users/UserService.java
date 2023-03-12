@@ -2,6 +2,7 @@ package org.example.users;
 
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class UserService {
         user.setAlertTime(100);
         user.setSymbolsAfterComma(APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(APPLICATION_PROPERTIES.getBank());
-//        user.setCurrency(APPLICATION_PROPERTIES.getCurrency());
+        user.setCurrencies(Collections.singletonList(APPLICATION_PROPERTIES.getCurrency()));
         return user;
     }
 

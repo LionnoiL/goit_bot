@@ -60,7 +60,7 @@ public class ApplicationProperties {
                 bank = Bank.valueOf(bankString);
             }
         } finally {
-            bank = Bank.PRIVATBANK;
+            bank = Bank.NBU;
         }
 
         try {
