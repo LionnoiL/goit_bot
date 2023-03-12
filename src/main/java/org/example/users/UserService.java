@@ -2,6 +2,7 @@ package org.example.users;
 
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
+import java.util.List;
 import java.util.Map;
 
 import org.example.currency.bank.Bank;
@@ -19,7 +20,7 @@ public class UserService {
         user.setAlertTime(100);
         user.setSymbolsAfterComma(APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(APPLICATION_PROPERTIES.getBank());
-        user.setCurrency(APPLICATION_PROPERTIES.getCurrency());
+//        user.setCurrency(APPLICATION_PROPERTIES.getCurrency());
         return user;
     }
 
@@ -47,7 +48,13 @@ public class UserService {
     }
 
     public void updateUser(User user, Currency currency){
-        user.setCurrency(currency);
+        List<Currency> userCurrencyList = user.getCurrencies();
+        if( userCurrencyList.contains(currency)){
+            userCurrencyList.remove(currency);
+        } else {
+            userCurrencyList.add(currency);
+        }
+        user.setCurrencies(userCurrencyList);
         addUser(user);
     }
 

@@ -23,7 +23,7 @@ public class MessageService {
         if (user != null) {
             decimalPrecision = user.getSymbolsAfterComma();
             bank = user.getBank();
-            currencyList = List.of(user.getCurrency());
+            currencyList = user.getCurrencies();
         }
 
         return CurrencyRateStorage.getFormattedRateBotMessage(decimalPrecision, bank, currencyList);
