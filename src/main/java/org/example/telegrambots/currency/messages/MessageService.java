@@ -36,7 +36,7 @@ public class MessageService {
 
         String rateFormat = "%." + decimalPrecision + "f";
         String messageHeader = String.format("Курс в %s:", bank.getUaBankName());
-        String messageBodyRow = "\n%s/UAN:\nКупівля\t%s\nПродаж\t%s";
+        String messageBodyRow = "\nUAH/%s:\nКупівля\t%s\nПродаж\t%s";
 
         //TODO: налаштувати messageHeader та messageBodyRow в залежності від мови
 
