@@ -34,8 +34,8 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
             List<CurrencyMonoDto> currencyRateResponses = JsonConverter.convertJsonStringToList(
                 response, CurrencyMonoDto.class);
             return currencyRateResponses.stream()
-                .filter(item -> codeCurr.containsKey(item.getCurrencyCodeA())
-                    && codeCurr.containsKey(item.getCurrencyCodeB())
+                .filter(item -> (codeCurr.containsKey(item.getCurrencyCodeA())
+                    || codeCurr.containsKey(item.getCurrencyCodeB()))
                     && item.getCurrencyCodeB().equals(UAN.getId()))
                 .map(item -> new CurrencyRate(
                     Bank.MONOBANK,
