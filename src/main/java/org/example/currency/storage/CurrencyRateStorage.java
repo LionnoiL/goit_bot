@@ -16,13 +16,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CurrencyRateStorage {
-    public static void saveRateToCache(Bank bank, List<CurrencyRate> currencyRates) {
-        String filePath = ApplicationProperties.CACHE_PATH + bank + "Rate.json";
-        FilesUtils.saveTextFile(filePath, new Gson().toJson(currencyRates));
+    public static void saveRateToCache(List<CurrencyRate> currencyRates) {
+        if (!currencyRates.isEmpty()) {
+            Bank bank = currencyRates.get(0).getBank();
+            String filePath = ApplicationProperties.CACHE_PATH + bank + ".cache";
+            FilesUtils.saveTextFile(filePath, new Gson().toJson(currencyRates));
+        }
     }
+
     public static String getCacheRatesJson(Bank bank) {
         String res = "";
-        Path filePath = Path.of(ApplicationProperties.CACHE_PATH + bank + "_Rate.json");
+        Path filePath = Path.of(ApplicationProperties.CACHE_PATH + bank + ".cache");
         if (!Files.exists(filePath, LinkOption.NOFOLLOW_LINKS)) {
             return res;
         }
