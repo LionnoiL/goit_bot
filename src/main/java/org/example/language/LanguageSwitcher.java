@@ -6,11 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LanguageSwitcher {
-    public static Map<String, String> setLanguageMap(Message message) {
+    public static Map<String, String> setLanguageMap(String langCode) {
 
-        String langCode = message.getFrom().getLanguageCode().toLowerCase();
-
-        switch (langCode) {
+        switch (langCode.toLowerCase()) {
             case "uk":
                 return createUaLanguageMap();
             case "en":

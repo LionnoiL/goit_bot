@@ -50,7 +50,8 @@ public class UserMessage {
       langCode = "en";
     }
     if (user==null){
-      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(), langCode.toLowerCase(), LanguageSwitcher.setLanguageMap(message));
+      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(),
+              langCode.toLowerCase(), LanguageSwitcher.setLanguageMap(langCode));
       userService.addUser(user);
     }
 
