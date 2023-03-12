@@ -1,14 +1,17 @@
 package org.example.telegrambots.currency.messages;
 
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
+import static org.example.currency.storage.CurrencyRateStorage.getCacheRatesJson;
 
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
-import org.example.currency.storage.CurrencyRateStorage;
+import org.example.currency.rates.CurrencyRate;
 import org.example.users.User;
 import org.example.users.UserService;
+import org.example.utils.JsonConverter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MessageService {
     public static String getInformationMessageByUserId(long userId) {
@@ -23,9 +26,37 @@ public class MessageService {
         if (user != null) {
             decimalPrecision = user.getSymbolsAfterComma();
             bank = user.getBank();
-            currencyList = List.of(user.getCurrency());
+            currencyList = user.getCurrencies();
         }
 
-        return CurrencyRateStorage.getFormattedRateBotMessage(decimalPrecision, bank, currencyList);
+        return getFormattedRateBotMessage(decimalPrecision, bank, currencyList);
+    }
+
+    public static String getFormattedRateBotMessage(int decimalPrecision, Bank bank, List<Currency> currencies) {
+
+        String rateFormat = "%." + decimalPrecision + "f";
+        String messageHeader = String.format("Курс в %s:", bank.getUaBankName());
+        String messageBodyRow = "\n%s/UAN:\nКупівля\t%s\nПродаж\t%s";
+
+        //TODO: налаштувати messageHeader та messageBodyRow в залежності від мови
+
+        String ratesJson = getCacheRatesJson(bank);
+
+        if (ratesJson.isEmpty()) {
+            return "Інформація про курси валют по банку " + bank + " відсутня!";
+        //TODO: налаштувати повідомлення в зележності від мови
+        }
+
+        List<CurrencyRate> rates = JsonConverter.convertJsonStringToList(ratesJson, CurrencyRate.class);
+        String messageBody = rates.stream()
+                .filter(rate -> currencies.contains(rate.getCurrency()))
+                .map(rate -> String.format(messageBodyRow,
+                        rate.getCurrency(),
+                        String.format(rateFormat, rate.getBuyingRate()),
+                        String.format(rateFormat, rate.getSellingRate())))
+                .collect(Collectors.toList())
+                .toString().replaceAll("(\\[)|(\\])", "");
+
+        return messageHeader + messageBody;
     }
 }
