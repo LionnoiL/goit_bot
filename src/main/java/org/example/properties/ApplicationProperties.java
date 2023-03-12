@@ -20,11 +20,10 @@ public class ApplicationProperties {
     static final String RESOURCES_PATH = "src/main/resources/";
     static final String APPLICATION_PROPERTIES_FILE_NAME = "application.properties";
     static final String JSON_USERS_FILE_NAME = "users.json";
-    public static final String CACHE_PATH = "src\\main\\resources\\cache\\";
+    public static final String CACHE_PATH = RESOURCES_PATH + "cache/";
     private int decimalPrecision;
     private Bank bank;
     private Currency currency;
-    private String cachePath;
 
     @Setter
     private Map<Long, User> users;

@@ -11,19 +11,19 @@ import java.util.List;
 
 public class CurrencyMenu {
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        Currency currency = userMessage.getUser().getCurrency();
+        List<Currency> currencies = userMessage.getUser().getCurrencies();
         String markEmoji = "✔";
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((Currency.USD.equals(currency) ? markEmoji : "") + userMessage.getUser().getLanguage().get("CURRENCY_USD"));
+        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((currencies.contains(Currency.USD) ? markEmoji : "") + userMessage.getUser().getLanguage().get("CURRENCY_USD"));
         buttonUsd.setCallbackData(Commands.CURRENCY_USD.toString());
         row1.add(buttonUsd);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton buttonEur = new InlineKeyboardButton((Currency.EUR.equals(currency) ? markEmoji : "") + userMessage.getUser().getLanguage().get("CURRENCY_EUR"));
+        InlineKeyboardButton buttonEur = new InlineKeyboardButton((currencies.contains(Currency.EUR) ? markEmoji : "") + userMessage.getUser().getLanguage().get("CURRENCY_EUR"));
         buttonEur.setCallbackData(Commands.CURRENCY_EUR.toString());
         row2.add(buttonEur);
 
