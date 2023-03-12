@@ -19,6 +19,7 @@ public class MessageService {
         int decimalPrecision = APPLICATION_PROPERTIES.getDecimalPrecision();
         Bank bank = APPLICATION_PROPERTIES.getBank();
         List<Currency> currencyList = List.of(APPLICATION_PROPERTIES.getCurrency());
+        //TODO: пропоную в APPLICATION_PROPERTIES переписати сurrency на List
 
         UserService userService = new UserService();
         User user = userService.getUserById(userId);
@@ -28,27 +29,20 @@ public class MessageService {
             bank = user.getBank();
             currencyList = user.getCurrencies();
         }
-
-        return getFormattedRateBotMessage(decimalPrecision, bank, currencyList, user);
+        return getFormattedRateBotMessage(decimalPrecision, bank, currencyList);
     }
 
-    public static String getFormattedRateBotMessage(int decimalPrecision, Bank bank, List<Currency> currencies, User user) {
-
+    public static String getFormattedRateBotMessage(int decimalPrecision, Bank bank, List<Currency> currencies) {
+        String messageBankRatesNotFound = "На даний момент інформація про курси валют \"%s\" відсутня. Будь ласка, оберіть  в налаштуваннях інший банк.";
+        String messageCurrencyNotSelected = "Щоб отримати інформацію про курс валют, будь ласка, оберіть в налаштуваннях валюту, що вас цікавить.";
+        String messageHeader = String.format("Курс в %s:", bank.getUaBankName());
+        String messageBodyRow = "\n\n%s/UAN:\nКупівля\t%s\nПродаж\t%s";
+        //TODO: налаштувати messageBankRatesNotFound, messageCurrencyNotSelected,  messageHeader, messageBodyRow в залежності від мови
         String rateFormat = "%." + decimalPrecision + "f";
-        String messageHeader = String.format(user.getLanguage().get("CURRENCY_TXT"),
-                user.getLanguage().get(bank.toString()));
-        String messageBodyRow = "\n%s/UAN:\n" + user.getLanguage().get("BUY") +
-                "\t%s\n" + user.getLanguage().get("SELL") + "\t%s";
-
-        //TODO: налаштувати messageHeader та messageBodyRow в залежності від мови
-
         String ratesJson = getCacheRatesJson(bank);
-
         if (ratesJson.isEmpty()) {
-            return user.getLanguage().get("ALLERT_FIRST_PART") + bank + user.getLanguage().get("ALLERT_SECOND_PART");
-        //TODO: налаштувати повідомлення в зележності від мови
+            return String.format(messageBankRatesNotFound, bank.getUaBankName());
         }
-
         List<CurrencyRate> rates = JsonConverter.convertJsonStringToList(ratesJson, CurrencyRate.class);
         String messageBody = rates.stream()
                 .filter(rate -> currencies.contains(rate.getCurrency()))
@@ -57,8 +51,7 @@ public class MessageService {
                         String.format(rateFormat, rate.getBuyingRate()),
                         String.format(rateFormat, rate.getSellingRate())))
                 .collect(Collectors.toList())
-                .toString().replaceAll("(\\[)|(\\])", "");
-
-        return messageHeader + messageBody;
+                .toString().replaceAll("(\\[)|(\\])|(,\\D)", "");
+        return messageBody.isEmpty() ? messageCurrencyNotSelected : messageHeader + messageBody;
     }
 }
