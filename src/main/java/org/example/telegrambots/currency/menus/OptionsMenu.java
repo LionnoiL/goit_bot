@@ -25,26 +25,30 @@ public class OptionsMenu implements TelegramMenu {
     optionsBankButton.setCallbackData(Commands.OPTIONS_BANK.toString());
     row2.add(optionsBankButton);
 
-    List<InlineKeyboardButton> row3 = new ArrayList<>();
     InlineKeyboardButton optionsCurrencyButton = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("OPTIONS_CURRENCY"));
     optionsCurrencyButton.setCallbackData(Commands.OPTIONS_CURRENCY.toString());
-    row3.add(optionsCurrencyButton);
+    row2.add(optionsCurrencyButton);
 
     List<InlineKeyboardButton> row4 = new ArrayList<>();
     InlineKeyboardButton optionsAlertButton = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("OPTIONS_NOTIFICATIONS"));
     optionsAlertButton.setCallbackData(Commands.OPTIONS_NOTIFICATIONS.toString());
     row4.add(optionsAlertButton);
 
-    List<InlineKeyboardButton> row5 = new ArrayList<>();
+    InlineKeyboardButton optionsLanguageButton = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("OPTIONS_LANGUAGE"));
+    optionsLanguageButton.setCallbackData(Commands.OPTIONS_LANGUAGE.toString());
+    row4.add(optionsLanguageButton);
+
+    List<InlineKeyboardButton> row6 = new ArrayList<>();
     InlineKeyboardButton buttonBack = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("BACK"));
     buttonBack.setCallbackData(Commands.MAIN_MENU.toString());
-    row5.add(buttonBack);
+    row6.add(buttonBack);
 
     rowList.add(row1);
     rowList.add(row2);
-    rowList.add(row3);
+    //rowList.add(row3);
     rowList.add(row4);
-    rowList.add(row5);
+//    rowList.add(row5);
+    rowList.add(row6);
     inlineKeyboardMarkup.setKeyboard(rowList);
 
     return inlineKeyboardMarkup;

@@ -54,7 +54,7 @@ public class Scheduler {
 
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
         TelegramService telegramService = new TelegramService(new CurrencySender());
-        InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(new UserMessage());
+
         UserService userService =  new UserService();
 
 
@@ -64,7 +64,11 @@ public class Scheduler {
                 .filter(el -> el.getAlertTime() == currentHour)
                 .forEach(el -> {
                     telegramService.sendMessage(el.getUserId(), MessageService.getInformationMessageByUserId(el.getUserId()));
+
                     User user = userService.getUserById(el.getUserId());
+                    UserMessage userMessage =  new UserMessage();
+                    userMessage.setUser(user);
+                    InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
                     telegramService.sendMessage(el.getUserId(), user.getLanguage().get("HEADSIGN_MAINMENU"),
                         mainMenu);
                 });

@@ -7,6 +7,7 @@ import org.example.telegrambots.currency.commands.mainmenu.MainMenuCommand;
 import org.example.telegrambots.currency.commands.mainmenu.OptionsMenuCommand;
 import org.example.telegrambots.currency.commands.options.OptionsBankCommand;
 import org.example.telegrambots.currency.commands.options.OptionsCurrencyCommand;
+import org.example.telegrambots.currency.commands.options.OptionsLanguageCommand;
 import org.example.telegrambots.currency.commands.options.OptionsNotificationCommand;
 import org.example.telegrambots.currency.commands.options.OptionsNumberSimbolsCommand;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -63,6 +64,11 @@ public class CurrencyBotMessageHandler {
         case ALERT_18:
         case ALERT_OFF:
           new OptionsNotificationCommand().execute(userMessage);
+          break;
+        case OPTIONS_LANGUAGE:
+        case EN_BUTTON:
+        case UA_BUTTON:
+          new OptionsLanguageCommand().execute(userMessage);
           break;
         default:
           new GetInfoCommand().execute(userMessage);

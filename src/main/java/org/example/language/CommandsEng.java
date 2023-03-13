@@ -40,7 +40,10 @@ public enum CommandsEng {
   ALERT_16("16:00"),
   ALERT_17("17:00"),
   ALERT_18("18:00"),
-  ALERT_OFF("Switch Off");
+  ALERT_OFF("Switch Off"),
+  OPTIONS_LANGUAGE("Language"),
+  UA_BUTTON("Українська"),
+  EN_BUTTON("English");
 
   private final String text;
 
