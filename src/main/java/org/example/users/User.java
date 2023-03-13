@@ -7,8 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -24,4 +24,6 @@ public class User {
     private Bank bank;
     private int userHours;
     private int alertTime;
+    private String langCode;
+    private Map<String, String> language;
 }

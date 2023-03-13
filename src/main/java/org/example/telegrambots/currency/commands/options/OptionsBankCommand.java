@@ -4,7 +4,6 @@ import org.example.currency.bank.Bank;
 import org.example.telegrambots.bot.commands.BotCommand;
 import org.example.telegrambots.bot.services.TelegramService;
 import org.example.telegrambots.bot.services.UserMessage;
-import org.example.telegrambots.currency.commands.Commands;
 import org.example.telegrambots.currency.menus.BankMenu;
 import org.example.telegrambots.currency.sender.CurrencySender;
 import org.example.users.User;
@@ -38,7 +37,7 @@ public class OptionsBankCommand extends BotCommand {
 
         InlineKeyboardMarkup menu = new BankMenu().createMenu(userMessage);
 
-        getTelegramService().sendMessage(userMessage.getChatId(), Commands.HEADSIGN_BANKSMENU.getButtonText(),
+        getTelegramService().sendMessage(userMessage.getChatId(), userMessage.getUser().getLanguage().get("HEADSIGN_BANKSMENU"),
                 menu);
     }
 }

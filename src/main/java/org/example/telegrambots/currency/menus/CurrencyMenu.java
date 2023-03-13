@@ -18,17 +18,17 @@ public class CurrencyMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((currencies.contains(Currency.USD) ? markEmoji : "") + Commands.CURRENCY_USD.getButtonText());
+        InlineKeyboardButton buttonUsd = new InlineKeyboardButton((currencies.contains(Currency.USD) ? markEmoji : "") + userMessage.getUser().getLanguage().get("CURRENCY_USD"));
         buttonUsd.setCallbackData(Commands.CURRENCY_USD.toString());
         row1.add(buttonUsd);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton buttonEur = new InlineKeyboardButton((currencies.contains(Currency.EUR) ? markEmoji : "") + Commands.CURRENCY_EUR.getButtonText());
+        InlineKeyboardButton buttonEur = new InlineKeyboardButton((currencies.contains(Currency.EUR) ? markEmoji : "") + userMessage.getUser().getLanguage().get("CURRENCY_EUR"));
         buttonEur.setCallbackData(Commands.CURRENCY_EUR.toString());
         row2.add(buttonEur);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row3.add(buttonBack);
 

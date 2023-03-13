@@ -3,6 +3,7 @@ package org.example.users;
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.currency.bank.Bank;
@@ -13,7 +14,7 @@ public class UserService {
 
     private static final Logger LOG = LogManager.getLogger(UserService.class);
 
-    public User createUser(long userId, String firstName, String lastName) {
+    public User createUser(long userId, String firstName, String lastName, String langCode, Map<String, String> language) {
         LOG.info("Add new user with id " + userId + " " + firstName + " " + lastName);
         User user = new User();
         user.setUserId(userId);
@@ -24,9 +25,10 @@ public class UserService {
         user.setSymbolsAfterComma(APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(APPLICATION_PROPERTIES.getBank());
         user.getCurrencies().add(APPLICATION_PROPERTIES.getCurrency());
+        user.setLangCode(langCode);
+        user.setLanguage(language);
         return user;
     }
-
     public void addUser(User user) {
         APPLICATION_PROPERTIES.getUsers().put(user.getUserId(), user);
         ApplicationProperties.saveUsersListToFile();
@@ -65,3 +67,5 @@ public class UserService {
         addUser(user);
     }
 }
+
+

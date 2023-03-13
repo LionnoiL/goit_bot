@@ -2,6 +2,7 @@ package org.example.telegrambots.bot.services;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.currency.CurrencyBot;
 import org.example.users.User;
 import org.example.users.UserService;
@@ -44,8 +45,13 @@ public class UserMessage {
 
     Long userId = message.getChatId();
     User user = userService.getUserById(userId);
+    String langCode = message.getFrom().getLanguageCode();
+    if (langCode == null) {
+      langCode = "en";
+    }
     if (user==null){
-      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName());
+      user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(),
+              langCode.toLowerCase(), LanguageSwitcher.setLanguageMap(langCode));
       userService.addUser(user);
     }
 
@@ -55,6 +61,7 @@ public class UserMessage {
         "[" + userMessage.getChatId() + ", " + userMessage.getUserFirstName() + "] : "
             + userMessage.getTextFromUser() + ", callback[" + userMessage.getCallBack()
             + "]");
+
 
     return userMessage;
   }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankMenu implements TelegramMenu {
+
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
         Bank bank = userMessage.getUser().getBank();
         String markEmoji = "✔";
@@ -19,27 +20,27 @@ public class BankMenu implements TelegramMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton buttonPrivatbank = new InlineKeyboardButton((Bank.PRIVATBANK.equals(bank) ?  markEmoji: "") + Commands.BANK_PRIVATBANK.getButtonText());
+        InlineKeyboardButton buttonPrivatbank = new InlineKeyboardButton((Bank.PRIVATBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("PRIVATBANK"));
         buttonPrivatbank.setCallbackData(Commands.BANK_PRIVATBANK.toString());
         row1.add(buttonPrivatbank);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton buttonMonobank = new InlineKeyboardButton((Bank.MONOBANK.equals(bank) ?  markEmoji: "") + Commands.BANK_MONOBANK.getButtonText());
+        InlineKeyboardButton buttonMonobank = new InlineKeyboardButton((Bank.MONOBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("MONOBANK"));
         buttonMonobank.setCallbackData(Commands.BANK_MONOBANK.toString());
         row2.add(buttonMonobank);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton buttonOschad = new InlineKeyboardButton((Bank.OSCHADBANK.equals(bank) ?  markEmoji: "") + Commands.BANK_OSCHADBANK.getButtonText());
+        InlineKeyboardButton buttonOschad = new InlineKeyboardButton((Bank.OSCHADBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("OSCHADBANK"));
         buttonOschad.setCallbackData(Commands.BANK_OSCHADBANK.toString());
         row3.add(buttonOschad);
 
         List<InlineKeyboardButton> row4 = new ArrayList<>();
-        InlineKeyboardButton buttonNbu = new InlineKeyboardButton((Bank.NBU.equals(bank) ?  markEmoji: "") + Commands.BANK_NBU.getButtonText());
+        InlineKeyboardButton buttonNbu = new InlineKeyboardButton((Bank.NBU.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("NBU"));
         buttonNbu.setCallbackData(Commands.BANK_NBU.toString());
         row4.add(buttonNbu);
 
         List<InlineKeyboardButton> row5 = new ArrayList<>();
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(Commands.BACK.getButtonText());
+        InlineKeyboardButton buttonBack = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
         row5.add(buttonBack);
 
