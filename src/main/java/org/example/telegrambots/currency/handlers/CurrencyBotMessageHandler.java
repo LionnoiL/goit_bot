@@ -68,6 +68,7 @@ public class CurrencyBotMessageHandler {
         case OPTIONS_LANGUAGE:
         case EN_BUTTON:
         case UA_BUTTON:
+        case PL_BUTTON:
           new OptionsLanguageCommand().execute(userMessage);
           break;
         default:

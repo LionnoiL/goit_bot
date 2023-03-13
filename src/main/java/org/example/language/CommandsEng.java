@@ -41,7 +41,9 @@ public enum CommandsEng {
   ALERT_OFF("Switch Off"),
   OPTIONS_LANGUAGE("Language"),
   UA_BUTTON("Українська"),
-  EN_BUTTON("English");
+  EN_BUTTON("English"),
+  PL_BUTTON("Polski");
+
   private final String text;
 
   CommandsEng(String text) {
