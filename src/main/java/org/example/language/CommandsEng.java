@@ -1,6 +1,7 @@
 package org.example.language;
 
 public enum CommandsEng {
+  START_MESSAGE("Congratulations! We are very glad that you have joined our service. This bot will help you track current exchange rates from different banks. The bot can provide information both on request and automatically according to the specified schedule. To configure the bot's convenient operating mode, use the \"Settings\" menu section."),
   HEADSIGN_MAINMENU("How can I help you? ⤵"),
   HEADSIGN_OPTIONS("Settings"),
   HEADSIGN_INFO("Your settings:"),

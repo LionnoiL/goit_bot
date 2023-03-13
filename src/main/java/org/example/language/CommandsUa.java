@@ -1,6 +1,7 @@
 package org.example.language;
 
 public enum CommandsUa {
+    START_MESSAGE("Вітаємо! Дуже раді, що Ви приєдналися до нашого сервісу. Цей бот допоможе Вам відслідковувати актульні курси валют з різних банків. Бот може надавати інформацію, як по запиту, так і автоматично за вказаним розкладом. Щоб налаштувати зручний режим роботи бота, скористайтеся розділом меню \"Налаштування\"."),
     HEADSIGN_MAINMENU("Чим Вам допомогти? ⤵"),
     HEADSIGN_OPTIONS("Налаштування"),
     HEADSIGN_INFO("Ваші налаштування:"),
@@ -41,7 +42,7 @@ public enum CommandsUa {
     ALERT_OFF("Вимкнути"),
     OPTIONS_LANGUAGE("Мова"),
     UA_BUTTON("Українська"),
-    EN_BUTTON("English");
+    EN_BUTTON("English"),
     PL_BUTTON("Polski");
     private final String text;
 

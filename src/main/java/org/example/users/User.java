@@ -27,4 +27,5 @@ public class User implements Serializable {
     private int alertTime;
     private String langCode;
     private transient Map<String, String> language;
+    private boolean newUser = false;
 }
