@@ -40,6 +40,7 @@ public enum Commands {
   ALERT_OFF,
   OPTIONS_LANGUAGE,
   UA_BUTTON,
-  EN_BUTTON;
+  EN_BUTTON,
+  PL_BUTTON;
 
 }
