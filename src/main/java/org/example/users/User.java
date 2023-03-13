@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class User {
+public class User implements Serializable {
     private long userId;
     private String userName;
     private String lastName;
@@ -25,5 +26,5 @@ public class User {
     private int userHours;
     private int alertTime;
     private String langCode;
-    private Map<String, String> language;
+    private transient Map<String, String> language;
 }
