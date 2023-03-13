@@ -11,11 +11,10 @@ import org.example.telegrambots.currency.commands.options.OptionsNotificationCom
 import org.example.telegrambots.currency.commands.options.OptionsNumberSimbolsCommand;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-public class CurrencyBotMessageHandler {
 
+public class CurrencyBotMessageHandler {
   private CurrencyBotMessageHandler() {
   }
-
   public static void resolveMessage(Update update) {
     if (update.hasMessage() || update.hasCallbackQuery()) {
       UserMessage userMessage = UserMessage.fromTelegramUpdate(update);

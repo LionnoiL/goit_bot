@@ -2,6 +2,7 @@ package org.example.telegrambots.currency.menus;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.example.telegrambots.bot.menus.TelegramMenu;
 import org.example.telegrambots.bot.services.UserMessage;
 import org.example.telegrambots.currency.commands.Commands;
@@ -15,12 +16,12 @@ public class MainMenu implements TelegramMenu {
     List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
     List<InlineKeyboardButton> row1 = new ArrayList<>();
-    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(Commands.MAIN_GET_INFO.getButtonText());
+    InlineKeyboardButton getInfoButton = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("MAIN_GET_INFO"));
     getInfoButton.setCallbackData(Commands.MAIN_GET_INFO.toString());
     row1.add(getInfoButton);
 
     List<InlineKeyboardButton> row2 = new ArrayList<>();
-    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(Commands.MAIN_OPTIONS.getButtonText());
+    InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("MAIN_OPTIONS"));
     getOptionsButton.setCallbackData(Commands.MAIN_OPTIONS.toString());
     row2.add(getOptionsButton);
 
