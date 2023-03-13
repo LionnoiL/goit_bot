@@ -29,21 +29,23 @@ public class MessageService {
             currencyList = user.getCurrencies();
         }
 
-        return getFormattedRateBotMessage(decimalPrecision, bank, currencyList);
+        return getFormattedRateBotMessage(decimalPrecision, bank, currencyList, user);
     }
 
-    public static String getFormattedRateBotMessage(int decimalPrecision, Bank bank, List<Currency> currencies) {
+    public static String getFormattedRateBotMessage(int decimalPrecision, Bank bank, List<Currency> currencies, User user) {
 
         String rateFormat = "%." + decimalPrecision + "f";
-        String messageHeader = String.format("Курс в %s:", bank.getUaBankName());
-        String messageBodyRow = "\n%s/UAN:\nКупівля\t%s\nПродаж\t%s";
+        String messageHeader = String.format(user.getLanguage().get("CURRENCY_TXT"),
+                user.getLanguage().get(bank.toString()));
+        String messageBodyRow = "\n%s/UAN:\n" + user.getLanguage().get("BUY") +
+                "\t%s\n" + user.getLanguage().get("SELL") + "\t%s";
 
         //TODO: налаштувати messageHeader та messageBodyRow в залежності від мови
 
         String ratesJson = getCacheRatesJson(bank);
 
         if (ratesJson.isEmpty()) {
-            return "Інформація про курси валют по банку " + bank + " відсутня!";
+            return user.getLanguage().get("ALLERT_FIRST_PART") + bank + user.getLanguage().get("ALLERT_SECOND_PART");
         //TODO: налаштувати повідомлення в зележності від мови
         }
 
