@@ -21,8 +21,7 @@ public class OptionsMenu implements TelegramMenu {
 
         InlineKeyboardButton optionsNumberSimbolsButton = new InlineKeyboardButton(
             userMessage.getUser().getLanguage().get("OPTIONS_NUMBER_SYMBOL_AFTER_COMMA"));
-        optionsNumberSimbolsButton.setCallbackData(
-            Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString());
+        optionsNumberSimbolsButton.setCallbackData(Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString());
 
         InlineKeyboardButton optionsBankButton = new InlineKeyboardButton(
             userMessage.getUser().getLanguage().get("OPTIONS_BANK"));
