@@ -10,7 +10,7 @@ public enum CommandsUa {
   HEADSIGN_NOTIFICATIONTIME("Коли сповістити?"),
   BACK("⬅ Назад"),
   MAIN_MENU("Головне меню"),
-  MAIN_GET_INFO("Курс"),
+  MAIN_GET_INFO("Курс валют"),
   MAIN_OPTIONS("Налаштування"),
   OPTIONS_NUMBER_SYMBOL_AFTER_COMMA("Точність"),
   OPTIONS_BANK("Банк"),
@@ -42,13 +42,13 @@ public enum CommandsUa {
   ALERT_18("18:00"),
   ALERT_OFF("Вимкнути");
 
-  private final String buttonText;
+  private final String text;
 
-  CommandsUa(String buttonText) {
-    this.buttonText = buttonText;
+  CommandsUa(String text) {
+    this.text = text;
   }
 
-  public String getButtonText() {
-    return buttonText;
+  public String getText() {
+    return text;
   }
 }

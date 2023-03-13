@@ -20,22 +20,22 @@ public class BankMenu implements TelegramMenu {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
-        InlineKeyboardButton buttonPrivatbank = new InlineKeyboardButton((Bank.PRIVATBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("BANK_PRIVATBANK"));
+        InlineKeyboardButton buttonPrivatbank = new InlineKeyboardButton((Bank.PRIVATBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("PRIVATBANK"));
         buttonPrivatbank.setCallbackData(Commands.BANK_PRIVATBANK.toString());
         row1.add(buttonPrivatbank);
 
         List<InlineKeyboardButton> row2 = new ArrayList<>();
-        InlineKeyboardButton buttonMonobank = new InlineKeyboardButton((Bank.MONOBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("BANK_MONOBANK"));
+        InlineKeyboardButton buttonMonobank = new InlineKeyboardButton((Bank.MONOBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("MONOBANK"));
         buttonMonobank.setCallbackData(Commands.BANK_MONOBANK.toString());
         row2.add(buttonMonobank);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
-        InlineKeyboardButton buttonOschad = new InlineKeyboardButton((Bank.OSCHADBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("BANK_OSCHADBANK"));
+        InlineKeyboardButton buttonOschad = new InlineKeyboardButton((Bank.OSCHADBANK.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("OSCHADBANK"));
         buttonOschad.setCallbackData(Commands.BANK_OSCHADBANK.toString());
         row3.add(buttonOschad);
 
         List<InlineKeyboardButton> row4 = new ArrayList<>();
-        InlineKeyboardButton buttonNbu = new InlineKeyboardButton((Bank.NBU.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("BANK_NBU"));
+        InlineKeyboardButton buttonNbu = new InlineKeyboardButton((Bank.NBU.equals(bank) ?  markEmoji: "") + userMessage.getUser().getLanguage().get("NBU"));
         buttonNbu.setCallbackData(Commands.BANK_NBU.toString());
         row4.add(buttonNbu);
 

@@ -1,7 +1,5 @@
 package org.example.language;
 
-import org.telegram.telegrambots.meta.api.objects.Message;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,8 +9,6 @@ public class LanguageSwitcher {
         switch (langCode.toLowerCase()) {
             case "uk":
                 return createUaLanguageMap();
-            case "en":
-                return createEngLanguageMap();
             default:
                 return createEngLanguageMap();
         }
@@ -22,7 +18,7 @@ public class LanguageSwitcher {
         Map<String, String> uaMap = new HashMap<>();
 
         for (CommandsUa commandsUa : CommandsUa.values()) {
-            uaMap.put(commandsUa.toString(), commandsUa.getButtonText());
+            uaMap.put(commandsUa.toString(), commandsUa.getText());
         }
         return uaMap;
     }
@@ -30,7 +26,7 @@ public class LanguageSwitcher {
         Map<String, String> engMap = new HashMap<>();
 
         for (CommandsEng commandsEng : CommandsEng.values()) {
-            engMap.put(commandsEng.toString(), commandsEng.getButtonText());
+            engMap.put(commandsEng.toString(), commandsEng.getText());
         }
         return engMap;
     }
