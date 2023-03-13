@@ -18,7 +18,7 @@ public class PropertiesService {
 
     public static String getApplicationProperties(String fileName, String propertyName) {
         String propertyValue = "";
-        File file = new File(RESOURCES_PATH + fileName);
+        File file = new File(fileName);
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
             Properties properties = new Properties();
             properties.load(fileInputStream);

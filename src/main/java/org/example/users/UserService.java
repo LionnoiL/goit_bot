@@ -2,9 +2,7 @@ package org.example.users;
 
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.currency.bank.Bank;
@@ -25,27 +23,22 @@ public class UserService {
         user.setAlertTime(100);
         user.setSymbolsAfterComma(APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(APPLICATION_PROPERTIES.getBank());
-        user.setCurrencies(Collections.singletonList(APPLICATION_PROPERTIES.getCurrency()));
+        user.getCurrencies().add(APPLICATION_PROPERTIES.getCurrency());
         return user;
     }
 
     public void addUser(User user) {
-        Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
-        users.put(user.getUserId(), user);
-        APPLICATION_PROPERTIES.setUsers(users);
+        APPLICATION_PROPERTIES.getUsers().put(user.getUserId(), user);
         ApplicationProperties.saveUsersListToFile();
     }
 
     public void deleteUser(User user) {
-        Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
-        users.remove(user.getUserId());
-        APPLICATION_PROPERTIES.setUsers(users);
+        APPLICATION_PROPERTIES.getUsers().remove(user.getUserId());
         ApplicationProperties.saveUsersListToFile();
     }
 
     public User getUserById(long userId) {
-        Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
-        return users.get(userId);
+        return APPLICATION_PROPERTIES.getUsers().get(userId);
     }
 
     public void updateUser(User user, Bank bank) {
@@ -60,7 +53,6 @@ public class UserService {
         } else {
             userCurrencyList.add(currency);
         }
-        user.setCurrencies(userCurrencyList);
         addUser(user);
     }
 
