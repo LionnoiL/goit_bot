@@ -37,6 +37,9 @@ public enum Commands {
   ALERT_16,
   ALERT_17,
   ALERT_18,
-  ALERT_OFF;
+  ALERT_OFF,
+  OPTIONS_LANGUAGE,
+  UA_BUTTON,
+  EN_BUTTON;
 
 }
