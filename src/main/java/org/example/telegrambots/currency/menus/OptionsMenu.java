@@ -36,15 +36,21 @@ public class OptionsMenu implements TelegramMenu {
     row4.add(optionsAlertButton);
 
     List<InlineKeyboardButton> row5 = new ArrayList<>();
+    InlineKeyboardButton optionsLanguageButton = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("OPTIONS_LANGUAGE"));
+    optionsLanguageButton.setCallbackData(Commands.OPTIONS_LANGUAGE.toString());
+    row5.add(optionsLanguageButton);
+
+    List<InlineKeyboardButton> row6 = new ArrayList<>();
     InlineKeyboardButton buttonBack = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("BACK"));
     buttonBack.setCallbackData(Commands.MAIN_MENU.toString());
-    row5.add(buttonBack);
+    row6.add(buttonBack);
 
     rowList.add(row1);
     rowList.add(row2);
     rowList.add(row3);
     rowList.add(row4);
     rowList.add(row5);
+    rowList.add(row6);
     inlineKeyboardMarkup.setKeyboard(rowList);
 
     return inlineKeyboardMarkup;
