@@ -36,7 +36,7 @@ public class LanguageMenu implements TelegramMenu {
         InlineKeyboardButton plButton = new InlineKeyboardButton(
             ("pl".equals(langCode) ? markEmoji : "") +
                 userMessage.getUser().getLanguage().get("PL_BUTTON"));
-        enButton.setCallbackData(Commands.PL_BUTTON.toString());
+        plButton.setCallbackData(Commands.PL_BUTTON.toString());
         row3.add(plButton);
 
         List<InlineKeyboardButton> row4 = new ArrayList<>();
