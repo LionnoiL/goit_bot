@@ -13,7 +13,7 @@ public class LanguageMenu implements TelegramMenu {
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
 
         String langCode = userMessage.getUser().getLangCode();
-        String markEmoji = "?";
+        String markEmoji = "✔";
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
