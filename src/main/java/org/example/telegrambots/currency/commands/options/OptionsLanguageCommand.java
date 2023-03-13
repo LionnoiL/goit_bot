@@ -1,8 +1,5 @@
 package org.example.telegrambots.currency.commands.options;
 
-import static org.example.telegrambots.currency.commands.Commands.EN_BUTTON;
-import static org.example.telegrambots.currency.commands.Commands.UA_BUTTON;
-
 import org.example.language.LanguageSwitcher;
 import org.example.telegrambots.bot.commands.BotCommand;
 import org.example.telegrambots.bot.services.TelegramService;
@@ -12,6 +9,8 @@ import org.example.telegrambots.currency.sender.CurrencySender;
 import org.example.users.User;
 import org.example.users.UserService;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+
+import static org.example.telegrambots.currency.commands.Commands.*;
 
 public class OptionsLanguageCommand extends BotCommand {
 
@@ -36,6 +35,14 @@ public class OptionsLanguageCommand extends BotCommand {
             User user = userMessage.getUser();
             user.setLangCode("en");
             user.setLanguage(LanguageSwitcher.setLanguageMap("en"));
+            userService.addUser(user);
+            userMessage.setUser(user);
+        }
+
+        if (PL_BUTTON.toString().equals(userMessage.getCallBack())) {
+            User user = userMessage.getUser();
+            user.setLangCode("pl");
+            user.setLanguage(LanguageSwitcher.setLanguageMap("pl"));
             userService.addUser(user);
             userMessage.setUser(user);
         }

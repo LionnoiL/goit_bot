@@ -33,13 +33,21 @@ public class LanguageMenu implements TelegramMenu {
         row2.add(enButton);
 
         List<InlineKeyboardButton> row3 = new ArrayList<>();
+        InlineKeyboardButton plButton = new InlineKeyboardButton(
+            ("pl".equals(langCode) ? markEmoji : "") +
+                userMessage.getUser().getLanguage().get("PL_BUTTON"));
+        enButton.setCallbackData(Commands.PL_BUTTON.toString());
+        row3.add(plButton);
+
+        List<InlineKeyboardButton> row4 = new ArrayList<>();
         InlineKeyboardButton buttonBack = new InlineKeyboardButton(userMessage.getUser().getLanguage().get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
-        row3.add(buttonBack);
+        row4.add(buttonBack);
 
         rowList.add(row1);
         rowList.add(row2);
         rowList.add(row3);
+        rowList.add(row4);
 
         inlineKeyboardMarkup.setKeyboard(rowList);
 
