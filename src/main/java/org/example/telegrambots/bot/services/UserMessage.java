@@ -27,7 +27,7 @@ public class UserMessage {
     } else if (update.hasCallbackQuery()) {
       message = update.getCallbackQuery().getMessage();
     } else {
-      CurrencyBot.LOG.warning("Unexpected update from user");
+      CurrencyBot.LOG.info("Unexpected update from user");
       return null;
     }
 

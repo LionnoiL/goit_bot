@@ -4,14 +4,18 @@ import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
 import java.util.List;
 import java.util.Map;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 import org.example.properties.ApplicationProperties;
 
 public class UserService {
 
-    public User createUser(long userId, String firstName, String lastName, String langCode, Map<String, String> language){
+    private static final Logger LOG = LogManager.getLogger(UserService.class);
+
+    public User createUser(long userId, String firstName, String lastName, String langCode, Map<String, String> language) {
+        LOG.info("Add new user with id " + userId + " " + firstName + " " + lastName);
         User user = new User();
         user.setUserId(userId);
         user.setUserName(firstName);
@@ -20,51 +24,48 @@ public class UserService {
         user.setAlertTime(100);
         user.setSymbolsAfterComma(APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(APPLICATION_PROPERTIES.getBank());
+        user.getCurrencies().add(APPLICATION_PROPERTIES.getCurrency());
         user.setLangCode(langCode);
         user.setLanguage(language);
         return user;
     }
-
     public void addUser(User user) {
-        Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
-        users.put(user.getUserId(), user);
-        APPLICATION_PROPERTIES.setUsers(users);
+        APPLICATION_PROPERTIES.getUsers().put(user.getUserId(), user);
         ApplicationProperties.saveUsersListToFile();
     }
 
     public void deleteUser(User user) {
-        Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
-        users.remove(user.getUserId());
-        APPLICATION_PROPERTIES.setUsers(users);
+        APPLICATION_PROPERTIES.getUsers().remove(user.getUserId());
         ApplicationProperties.saveUsersListToFile();
     }
 
-    public User getUserById(long userId){
-        Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
-        return users.get(userId);
+    public User getUserById(long userId) {
+        return APPLICATION_PROPERTIES.getUsers().get(userId);
     }
-    public void updateUser(User user, Bank bank){
+
+    public void updateUser(User user, Bank bank) {
         user.setBank(bank);
         addUser(user);
     }
 
-    public void updateUser(User user, Currency currency){
+    public void updateUser(User user, Currency currency) {
         List<Currency> userCurrencyList = user.getCurrencies();
-        if( userCurrencyList.contains(currency)){
+        if (userCurrencyList.contains(currency)) {
             userCurrencyList.remove(currency);
         } else {
             userCurrencyList.add(currency);
         }
-        user.setCurrencies(userCurrencyList);
         addUser(user);
     }
 
-    public void updateUser(User user, int value){
-        if (value<5) {
+    public void updateUser(User user, int value) {
+        if (value < 5) {
             user.setSymbolsAfterComma(value); //символів після коми
         } else {
             user.setAlertTime(value); // час сповіщень
         }
-            addUser(user);
+        addUser(user);
     }
 }
+
+

@@ -12,7 +12,7 @@ public class BotProperties {
   private String name;
 
   public BotProperties() {
-    token = PropertiesService.getApplicationProperties("weather-bot.properties", "bot_token");
-    name = PropertiesService.getApplicationProperties("weather-bot.properties", "bot_name");
+    token = PropertiesService.getApplicationProperties("config/weather-bot.properties", "bot_token");
+    name = PropertiesService.getApplicationProperties("config/weather-bot.properties", "bot_name");
   }
 }

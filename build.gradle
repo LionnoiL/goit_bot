@@ -28,8 +28,32 @@ dependencies {
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation 'org.jsoup:jsoup:1.15.4'
 
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0'
+
 }
 
 test {
     useJUnitPlatform()
 }
+
+jar {
+    duplicatesStrategy = 'include'
+    manifest {
+        attributes 'Main-Class': 'org.example.AppLauncher'
+    }
+    from configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+

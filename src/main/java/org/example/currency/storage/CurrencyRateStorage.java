@@ -1,18 +1,22 @@
 package org.example.currency.storage;
 
 import com.google.gson.Gson;
-import org.example.currency.bank.Bank;
-import org.example.currency.rates.CurrencyRate;
-import org.example.properties.ApplicationProperties;
-import org.example.utils.FilesUtils;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.example.currency.bank.Bank;
+import org.example.currency.rates.CurrencyRate;
+import org.example.properties.ApplicationProperties;
+import org.example.utils.FilesUtils;
 
 public class CurrencyRateStorage {
+
+    private static final Logger LOG = LogManager.getLogger(CurrencyRateStorage.class);
+
     public static void saveRateToCache(List<CurrencyRate> currencyRates) {
         if (!currencyRates.isEmpty()) {
             Bank bank = currencyRates.get(0).getBank();
@@ -30,7 +34,7 @@ public class CurrencyRateStorage {
         try {
             res = Files.readString(filePath);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.warn("Error read cache file " + ApplicationProperties.CACHE_PATH + bank + ".cache");
         }
         return res;
     }
