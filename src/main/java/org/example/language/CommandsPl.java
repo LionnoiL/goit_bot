@@ -1,6 +1,7 @@
 package org.example.language;
 
 public enum CommandsPl {
+  START_MESSAGE("Gratulacje! Bardzo się cieszymy, że dołączyłeś do naszego serwisu. Ten bot pomoże Ci śledzić aktualne kursy walut z różnych banków. Bot może przekazywać informacje zarówno na żądanie, jak i automatycznie według określonego harmonogramu. Aby skonfigurować wygodny tryb pracy bota, skorzystaj z sekcji menu „Ustawienia”."),
   HEADSIGN_MAINMENU("Jak mogę ci pomóc? ⤵"),
   HEADSIGN_OPTIONS("Ustawienia"),
   HEADSIGN_INFO("Wasze ustawienia"),
@@ -21,11 +22,9 @@ public enum CommandsPl {
   NUMBERS_4("4"),
   CURRENCY_USD("USD"),
   CURRENCY_EUR("EUR"),
-  CURRENCY_TXT("Waluta od %s:"),
-  BUY("Kupić"),
-  SELL("Sprzedać"),
-  ALLERT_FIRST_PART("Informacje o kursach walut dla banku "),
-  ALLERT_SECOND_PART(" nieobecny!"),
+  MESSAGE_SERVICE_HEADER("Waluta od %s:"),
+  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAN:\nKupić\t%s\nSprzedać\t%s"),
+  MESSAGE_SERVICE_BANK_RATES_NOT_FOUND("Informacje o kursach walut dla banku \"%s\" nieobecny! Proszę wybrać inny bank w ustawieniach."),
   NBU("NBU"),
   PRIVATBANK("Privatbank"),
   MONOBANK("Monobank"),

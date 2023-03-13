@@ -1,6 +1,7 @@
 package org.example.language;
 
 public enum CommandsEng {
+  START_MESSAGE("Congratulations! We are very glad that you have joined our service. This bot will help you track current exchange rates from different banks. The bot can provide information both on request and automatically according to the specified schedule. To configure the bot's convenient operating mode, use the \"Settings\" menu section."),
   HEADSIGN_MAINMENU("How can I help you? ⤵"),
   HEADSIGN_OPTIONS("Settings"),
   HEADSIGN_INFO("Your settings:"),
@@ -21,11 +22,9 @@ public enum CommandsEng {
   NUMBERS_4("4"),
   CURRENCY_USD("USD"),
   CURRENCY_EUR("EUR"),
-  CURRENCY_TXT("Currency from %s:"),
-  BUY("Buy"),
-  SELL("Sell"),
-  ALLERT_FIRST_PART("Information about exchange rates for the bank "),
-  ALLERT_SECOND_PART(" absent!"),
+  MESSAGE_SERVICE_HEADER("Currency from %s:"),
+  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAN:\nBuy\t%s\nSell\t%s"),
+  MESSAGE_SERVICE_BANK_RATES_NOT_FOUND("At the moment, there is no information about the exchange rates of \"%s\". Please select another bank in the settings."),
   NBU("NBU"),
   PRIVATBANK("Privatbank"),
   MONOBANK("Monobank"),
