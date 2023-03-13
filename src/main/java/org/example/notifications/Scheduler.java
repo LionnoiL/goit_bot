@@ -3,7 +3,6 @@ package org.example.notifications;
 import org.example.currency.services.CurrencyRateCollector;
 import org.example.telegrambots.bot.services.TelegramService;
 import org.example.telegrambots.bot.services.UserMessage;
-import org.example.telegrambots.currency.commands.Commands;
 import org.example.telegrambots.currency.menus.MainMenu;
 import org.example.telegrambots.currency.messages.MessageService;
 import org.example.telegrambots.currency.sender.CurrencySender;
