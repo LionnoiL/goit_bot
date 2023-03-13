@@ -9,8 +9,8 @@ public class CurrencyRateCollector {
     private List<CurrencyRetrievalService> retrievalServices = List.of(
             new CurrencyRetrievalOschadService(),
             new CurrencyRetrievalMonoService(),
-            new CurrencyRetrievalNbuService()
-            // TODO: Сюди дописати усі сервіси для завантаження курсів з інших банків
+            new CurrencyRetrievalNbuService(),
+            new CurrencyRetrievalPrivatService()
     );
 
     public void collectAllRates() {
