@@ -20,7 +20,7 @@ public class UserService {
         user.setAlertTime(100);
         user.setSymbolsAfterComma(APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(APPLICATION_PROPERTIES.getBank());
-//      user.setCurrency(APPLICATION_PROPERTIES.getCurrency());        user.setLangCode(langCode);
+        user.setLangCode(langCode);
         user.setLanguage(language);
         return user;
     }

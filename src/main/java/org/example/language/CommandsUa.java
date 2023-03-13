@@ -10,7 +10,7 @@ public enum CommandsUa {
   HEADSIGN_NOTIFICATIONTIME("Коли сповістити?"),
   BACK("⬅ Назад"),
   MAIN_MENU("Головне меню"),
-  MAIN_GET_INFO("Інформація"),
+  MAIN_GET_INFO("Курс"),
   MAIN_OPTIONS("Налаштування"),
   OPTIONS_NUMBER_SYMBOL_AFTER_COMMA("Точність"),
   OPTIONS_BANK("Банк"),
