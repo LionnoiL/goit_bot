@@ -16,6 +16,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
 public class Scheduler {
+    private Scheduler() {
+        throw new IllegalStateException("Scheduler is utility class");
+    }
     public static void setTimeReceived() {
 
         CurrencyRateCollector currencyRateCollector = new CurrencyRateCollector();

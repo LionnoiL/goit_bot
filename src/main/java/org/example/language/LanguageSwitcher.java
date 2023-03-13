@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LanguageSwitcher {
     private LanguageSwitcher() {
-        throw new IllegalStateException("Utility class");
+        throw new IllegalStateException("LanguageSwitcher is utility class");
     }
     public static Map<String, String> setLanguageMap(String langCode) {
 
