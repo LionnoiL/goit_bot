@@ -43,7 +43,8 @@ public enum CommandsUa {
   ALERT_OFF("Вимкнути"),
   OPTIONS_LANGUAGE("Мова"),
   UA_BUTTON("Українська"),
-  EN_BUTTON("English");
+  EN_BUTTON("English"),
+  PL_BUTTON("Polski");
 
   private final String text;
 

@@ -20,27 +20,27 @@ public class OptionsMenu implements TelegramMenu {
         List<InlineKeyboardButton> row4 = new ArrayList<>();
 
         InlineKeyboardButton optionsNumberSimbolsButton = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("OPTIONS_NUMBER_SYMBOL_AFTER_COMMA"));
+                userMessage.getUser().getLanguage().get("OPTIONS_NUMBER_SYMBOL_AFTER_COMMA"));
         optionsNumberSimbolsButton.setCallbackData(Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString());
 
         InlineKeyboardButton optionsBankButton = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("OPTIONS_BANK"));
+                userMessage.getUser().getLanguage().get("OPTIONS_BANK"));
         optionsBankButton.setCallbackData(Commands.OPTIONS_BANK.toString());
 
         InlineKeyboardButton optionsCurrencyButton = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("OPTIONS_CURRENCY"));
+                userMessage.getUser().getLanguage().get("OPTIONS_CURRENCY"));
         optionsCurrencyButton.setCallbackData(Commands.OPTIONS_CURRENCY.toString());
 
         InlineKeyboardButton optionsAlertButton = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("OPTIONS_NOTIFICATIONS"));
+                userMessage.getUser().getLanguage().get("OPTIONS_NOTIFICATIONS"));
         optionsAlertButton.setCallbackData(Commands.OPTIONS_NOTIFICATIONS.toString());
 
         InlineKeyboardButton optionsLanguageButton = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("OPTIONS_LANGUAGE"));
+                userMessage.getUser().getLanguage().get("OPTIONS_LANGUAGE"));
         optionsLanguageButton.setCallbackData(Commands.OPTIONS_LANGUAGE.toString());
 
         InlineKeyboardButton buttonBack = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("BACK"));
+                userMessage.getUser().getLanguage().get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_MENU.toString());
 
         row1.add(optionsCurrencyButton);

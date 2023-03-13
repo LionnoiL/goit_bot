@@ -3,7 +3,6 @@ package org.example.notifications;
 import org.example.currency.services.CurrencyRateCollector;
 import org.example.telegrambots.bot.services.TelegramService;
 import org.example.telegrambots.bot.services.UserMessage;
-import org.example.telegrambots.currency.commands.Commands;
 import org.example.telegrambots.currency.menus.MainMenu;
 import org.example.telegrambots.currency.messages.MessageService;
 import org.example.telegrambots.currency.sender.CurrencySender;
@@ -17,6 +16,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
 public class Scheduler {
+    private Scheduler() {
+        throw new IllegalStateException("Scheduler is utility class");
+    }
     public static void setTimeReceived() {
 
         CurrencyRateCollector currencyRateCollector = new CurrencyRateCollector();
