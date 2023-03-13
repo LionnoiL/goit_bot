@@ -15,33 +15,28 @@ import java.util.stream.Collectors;
 
 public class MessageService {
     public static String getInformationMessageByUserId(long userId) {
-
         int decimalPrecision = APPLICATION_PROPERTIES.getDecimalPrecision();
         Bank bank = APPLICATION_PROPERTIES.getBank();
         List<Currency> currencyList = List.of(APPLICATION_PROPERTIES.getCurrency());
-        //TODO: пропоную в APPLICATION_PROPERTIES переписати сurrency на List
-
         UserService userService = new UserService();
         User user = userService.getUserById(userId);
-
         if (user != null) {
             decimalPrecision = user.getSymbolsAfterComma();
             bank = user.getBank();
             currencyList = user.getCurrencies();
         }
-        return getFormattedRateBotMessage(decimalPrecision, bank, currencyList);
+        return getFormattedRateBotMessage(decimalPrecision, bank, currencyList, user);
     }
 
-    public static String getFormattedRateBotMessage(int decimalPrecision, Bank bank, List<Currency> currencies) {
-        String messageBankRatesNotFound = "На даний момент інформація про курси валют \"%s\" відсутня. Будь ласка, оберіть  в налаштуваннях інший банк.";
+    public static String getFormattedRateBotMessage(int decimalPrecision, Bank bank, List<Currency> currencies, User user) {
+        String messageBankRatesNotFound = user.getLanguage().get("MESSAGE_SERVICE_BANK_RATES_NOT_FOUND");
         String messageCurrencyNotSelected = "Щоб отримати інформацію про курс валют, будь ласка, оберіть в налаштуваннях валюту, що вас цікавить.";
-        String messageHeader = String.format("Курс в %s:", bank.getUaBankName());
-        String messageBodyRow = "\n\n%s/UAN:\nКупівля\t%s\nПродаж\t%s";
-        //TODO: налаштувати messageBankRatesNotFound, messageCurrencyNotSelected,  messageHeader, messageBodyRow в залежності від мови
+        String messageHeader = String.format(user.getLanguage().get("MESSAGE_SERVICE_HEADER"), user.getLanguage().get(bank.toString()));
+        String messageBodyRow = user.getLanguage().get("MESSAGE_SERVICE_BODY_ROW");
         String rateFormat = "%." + decimalPrecision + "f";
         String ratesJson = getCacheRatesJson(bank);
         if (ratesJson.isEmpty()) {
-            return String.format(messageBankRatesNotFound, bank.getUaBankName());
+            return String.format(messageBankRatesNotFound, bank);
         }
         List<CurrencyRate> rates = JsonConverter.convertJsonStringToList(ratesJson, CurrencyRate.class);
         String messageBody = rates.stream()

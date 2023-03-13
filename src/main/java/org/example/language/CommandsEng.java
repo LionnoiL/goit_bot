@@ -21,11 +21,9 @@ public enum CommandsEng {
   NUMBERS_4("4"),
   CURRENCY_USD("USD"),
   CURRENCY_EUR("EUR"),
-  CURRENCY_TXT("Currency from %s:"),
-  BUY("Buy"),
-  SELL("Sell"),
-  ALLERT_FIRST_PART("Information about exchange rates for the bank "),
-  ALLERT_SECOND_PART(" absent!"),
+  MESSAGE_SERVICE_HEADER("Currency from %s:"),
+  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAN:\nBuy\t%s\nSell\t%s"),
+  MESSAGE_SERVICE_BANK_RATES_NOT_FOUND("At the moment, there is no information about the exchange rates of \"%s\". Please select another bank in the settings."),
   NBU("NBU"),
   PRIVATBANK("Privatbank"),
   MONOBANK("Monobank"),
@@ -44,7 +42,6 @@ public enum CommandsEng {
   OPTIONS_LANGUAGE("Language"),
   UA_BUTTON("Українська"),
   EN_BUTTON("English");
-
   private final String text;
 
   CommandsEng(String text) {
