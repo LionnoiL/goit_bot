@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.AppLauncher;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
@@ -17,10 +19,11 @@ import org.example.utils.FilesUtils;
 @Getter
 public class ApplicationProperties {
 
-    static final String RESOURCES_PATH = "src/main/resources/";
-    static final String APPLICATION_PROPERTIES_FILE_NAME = "application.properties";
-    static final String JSON_USERS_FILE_NAME = "users.json";
-    public static final String CACHE_PATH = RESOURCES_PATH + "cache/";
+    public static final String CACHE_PATH = "cache/";
+    static final String RESOURCES_PATH = "";
+    static final String APPLICATION_PROPERTIES_FILE_NAME = "config/application.properties";
+    static final String JSON_USERS_FILE_NAME = "db/users.json";
+    private static final Logger LOG = LogManager.getLogger(ApplicationProperties.class);
     private int decimalPrecision;
     private Bank bank;
     private Currency currency;
@@ -70,7 +73,6 @@ public class ApplicationProperties {
         } finally {
             currency = Currency.USD;
         }
-
     }
 
     public Map<Long, User> getUsersListFromFile() {
@@ -85,7 +87,7 @@ public class ApplicationProperties {
             savedUsers = new Gson().fromJson(fileReader, new TypeToken<Map<Long, User>>() {
             }.getType());
         } catch (Exception e) {
-            //NOP
+            LOG.warn("Error read users file from " + JSON_USERS_FILE_NAME);
         }
         return savedUsers;
     }

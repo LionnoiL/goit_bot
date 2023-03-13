@@ -5,14 +5,18 @@ import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.currency.bank.Bank;
 import org.example.currency.currencies.Currency;
 import org.example.properties.ApplicationProperties;
 
 public class UserService {
 
-    public User createUser(long userId, String firstName, String lastName){
+    private static final Logger LOG = LogManager.getLogger(UserService.class);
+
+    public User createUser(long userId, String firstName, String lastName) {
+        LOG.info("Add new user with id " + userId + " " + firstName + " " + lastName);
         User user = new User();
         user.setUserId(userId);
         user.setUserName(firstName);
@@ -39,18 +43,19 @@ public class UserService {
         ApplicationProperties.saveUsersListToFile();
     }
 
-    public User getUserById(long userId){
+    public User getUserById(long userId) {
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
         return users.get(userId);
     }
-    public void updateUser(User user, Bank bank){
+
+    public void updateUser(User user, Bank bank) {
         user.setBank(bank);
         addUser(user);
     }
 
-    public void updateUser(User user, Currency currency){
+    public void updateUser(User user, Currency currency) {
         List<Currency> userCurrencyList = user.getCurrencies();
-        if( userCurrencyList.contains(currency)){
+        if (userCurrencyList.contains(currency)) {
             userCurrencyList.remove(currency);
         } else {
             userCurrencyList.add(currency);
@@ -59,12 +64,12 @@ public class UserService {
         addUser(user);
     }
 
-    public void updateUser(User user, int value){
-        if (value<5) {
+    public void updateUser(User user, int value) {
+        if (value < 5) {
             user.setSymbolsAfterComma(value); //символів після коми
         } else {
             user.setAlertTime(value); // час сповіщень
         }
-            addUser(user);
+        addUser(user);
     }
 }

@@ -12,7 +12,7 @@ public class BotProperties {
   private String name;
 
   public BotProperties() {
-    token = PropertiesService.getApplicationProperties("currency-bot.properties", "bot_token");
-    name = PropertiesService.getApplicationProperties("currency-bot.properties", "bot_name");
+    token = PropertiesService.getApplicationProperties("config/currency-bot.properties", "bot_token");
+    name = PropertiesService.getApplicationProperties("config/currency-bot.properties", "bot_name");
   }
 }
