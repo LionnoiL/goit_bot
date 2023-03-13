@@ -2,12 +2,17 @@ package org.example.notifications;
 
 import org.example.currency.services.CurrencyRateCollector;
 import org.example.telegrambots.bot.services.TelegramService;
+import org.example.telegrambots.bot.services.UserMessage;
+import org.example.telegrambots.currency.commands.Commands;
+import org.example.telegrambots.currency.menus.MainMenu;
 import org.example.telegrambots.currency.messages.MessageService;
 import org.example.telegrambots.currency.sender.CurrencySender;
 import org.example.users.User;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import org.example.users.UserService;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 import static org.example.AppLauncher.APPLICATION_PROPERTIES;
 
@@ -50,11 +55,19 @@ public class Scheduler {
 
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
         TelegramService telegramService = new TelegramService(new CurrencySender());
+        InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(new UserMessage());
+        UserService userService =  new UserService();
+
 
         users.entrySet()
                 .stream()
                 .map(Map.Entry::getValue)
                 .filter(el -> el.getAlertTime() == currentHour)
-                .forEach(el -> telegramService.sendMessage(el.getUserId(), MessageService.getInformationMessageByUserId(el.getUserId())));
+                .forEach(el -> {
+                    telegramService.sendMessage(el.getUserId(), MessageService.getInformationMessageByUserId(el.getUserId()));
+                    User user = userService.getUserById(el.getUserId());
+                    telegramService.sendMessage(el.getUserId(), user.getLanguage().get("HEADSIGN_MAINMENU"),
+                        mainMenu);
+                });
     }
 }
