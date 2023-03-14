@@ -22,7 +22,6 @@ public class ApplicationProperties {
     public static final String CACHE_PATH = "cache/";
     public static final String CONFIG_PATH = "config/";
     public static final String BASE_PATH = "db/";
-    public static final String RESOURCES_PATH = "";
     public static final String APPLICATION_PROPERTIES_FILE_NAME =
         CONFIG_PATH + "application.properties";
     public static final String JSON_USERS_FILE_NAME = BASE_PATH + "users.json";
@@ -41,7 +40,7 @@ public class ApplicationProperties {
     }
 
     public static void saveUsersListToFile() {
-        FilesUtils.saveTextFile(RESOURCES_PATH + JSON_USERS_FILE_NAME,
+        FilesUtils.saveTextFile(JSON_USERS_FILE_NAME,
             new Gson().toJson(AppLauncher.APPLICATION_PROPERTIES.getUsers()));
     }
 
@@ -75,7 +74,7 @@ public class ApplicationProperties {
 
     public Map<Long, User> getUsersListFromFile() {
         Map<Long, User> savedUsers = new HashMap<>();
-        String jsonFileName = RESOURCES_PATH + JSON_USERS_FILE_NAME;
+        String jsonFileName = JSON_USERS_FILE_NAME;
         File file = new File(jsonFileName);
         if (!file.exists()) {
             FilesUtils.saveTextFile(jsonFileName, "{}");
