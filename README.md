@@ -19,7 +19,7 @@ The <b>currency-bot.properties</b> file stores bot settings (name and token).
 
 # Bot created using
 * Gradle
-* Java 11
+* Java 17 LTS
 
 # Adding new bots.
 Adding new bots. New bot classes are added to the telegrambots package.
