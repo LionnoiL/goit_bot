@@ -29,6 +29,7 @@ public class UserMessage {
       CurrencyBot.LOG.info("Unexpected update from user");
       return null;
     }
+
     UserMessage userMessage = new UserMessage();
     userMessage.setChatId(message.getChatId());
     userMessage.setUserFirstName(message.getFrom().getFirstName());
@@ -38,6 +39,7 @@ public class UserMessage {
     if (update.hasCallbackQuery()) {
       userMessage.setCallBack(update.getCallbackQuery().getData());
     }
+
     Long userId = message.getChatId();
     User user = userService.getUserById(userId);
     String langCode = message.getFrom().getLanguageCode();
@@ -47,9 +49,12 @@ public class UserMessage {
     if (user == null) {
       user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(),
               langCode.toLowerCase(), LanguageSwitcher.setLanguageMap(langCode));
-      userService.addUser(user);
       user.setNewUser(true);
+    }else{
+      user.setLanguage(LanguageSwitcher.setLanguageMap(user.getLangCode()));
     }
+
+    userService.addUser(user);
     userMessage.setUser(user);
     CurrencyBot.LOG.info(
             "[" + userMessage.getChatId() + ", " + userMessage.getUserFirstName() + "] : "
