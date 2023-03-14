@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'ua.dpw'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -46,7 +46,7 @@ test {
 jar {
     duplicatesStrategy = 'include'
     manifest {
-        attributes 'Main-Class': 'org.example.AppLauncher'
+        attributes 'Main-Class': 'ua.dpw.AppLauncher'
     }
     from configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
 }
