@@ -23,7 +23,7 @@ public class User implements Serializable {
     private int symbolsAfterComma;
     private List<Currency> currencies = new ArrayList<>();
     private Bank bank;
-    private int userHours;
+    private int deltaHours;
     private int alertTime;
     private String langCode;
     private transient Map<String, String> language;

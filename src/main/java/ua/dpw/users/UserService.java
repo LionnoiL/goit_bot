@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import ua.dpw.AppLauncher;
 import ua.dpw.currency.bank.Bank;
 import ua.dpw.currency.currencies.Currency;
+import ua.dpw.notifications.Scheduler;
 import ua.dpw.properties.ApplicationProperties;
 
 public class UserService {
@@ -20,7 +21,7 @@ public class UserService {
         user.setUserId(userId);
         user.setUserName(firstName);
         user.setLastName(lastName);
-        user.setUserHours(0);
+        user.setDeltaHours(0);
         user.setAlertTime(100);
         user.setSymbolsAfterComma(AppLauncher.APPLICATION_PROPERTIES.getDecimalPrecision());
         user.setBank(AppLauncher.APPLICATION_PROPERTIES.getBank());
@@ -55,7 +56,7 @@ public class UserService {
     }
 
     public void updateUserTimeCommand (User user, int value) {
-            user.setUserHours(value);
+            user.setDeltaHours(value - Scheduler.getCurrentHour());
             addUser(user);
     }
     public void updateUserSymbolsAfterComma (User user, int value) {
