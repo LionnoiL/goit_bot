@@ -2,7 +2,7 @@
 <Configuration status="WARN">
   <Appenders>
     <Console name="LogToConsole" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{ISO8601}[%-5p][%-16.16t][%32.32c] - %m%n"/>
+      <PatternLayout pattern="%d{ISO8601}[%-16.16t][%32.32c] - %m%n"/>
     </Console>
     <File name="LogToFile" fileName="logs/app.log">
       <PatternLayout pattern="%d{YYYY-MM-DD HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
@@ -10,7 +10,7 @@
   </Appenders>
 
   <Loggers>
-    <Logger name="org.example" level="info" additivity="false">
+    <Logger name="ua.dpw" level="info" additivity="false">
       <AppenderRef ref="LogToConsole"/>
     </Logger>
     <Root level="error" additivity="false">
