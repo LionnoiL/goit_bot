@@ -16,6 +16,7 @@ import org.example.users.User;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class CurrencyBotMessageHandler {
+
     private CurrencyBotMessageHandler() {
     }
 
@@ -25,18 +26,24 @@ public class CurrencyBotMessageHandler {
             if (userMessage == null) {
                 return;
             }
+
+            User user = userMessage.getUser();
+            if (user.isNewUser()) {
+                user.setNewUser(false);
+                TelegramService telegramService = new TelegramService(new CurrencySender());
+                telegramService.sendMessage(user.getUserId(),
+                    user.getLanguage().get("START_MESSAGE"));
+                new MainMenuCommand().execute(userMessage);
+                return;
+            }
+
             String callBack = userMessage.getCallBack();
             if (callBack == null) {
                 new MainMenuCommand().execute(userMessage);
                 return;
             }
+
             Commands userCallBack = Commands.valueOf(callBack);
-            User user = userMessage.getUser();
-            if (user.isNewUser()) {
-                user.setNewUser(false);
-                TelegramService telegramService = new TelegramService(new CurrencySender());
-                telegramService.sendMessage(user.getUserId(), user.getLanguage().get("START_MESSAGE"));
-            }
             switch (userCallBack) {
                 case MAIN_OPTIONS:
                     new OptionsMenuCommand().execute(userMessage);
