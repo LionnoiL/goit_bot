@@ -2,6 +2,7 @@ package ua.dpw.telegrambots.currencybot.menus;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import ua.dpw.notifications.Scheduler;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
 
@@ -12,7 +13,7 @@ import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
 
 public class UserTimeMenu {
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        int userTime = userMessage.getUser().getUserHours();
+        int userTime = Scheduler.getCurrentHour() + userMessage.getUser().getDeltaHours();
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
