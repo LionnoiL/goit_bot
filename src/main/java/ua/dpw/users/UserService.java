@@ -54,12 +54,17 @@ public class UserService {
         addUser(user);
     }
 
-    public void updateUser(User user, int value) {
-        if (value < 5) {
-            user.setSymbolsAfterComma(value);
-        } else {
-            user.setAlertTime(value);
-        }
+    public void updateUserTimeCommand (User user, int value) {
+            user.setUserHours(value);
+            addUser(user);
+    }
+    public void updateUserSymbolsAfterComma (User user, int value) {
+        user.setSymbolsAfterComma(value);
+        addUser(user);
+    }
+
+    public void updateUserAlertTime (User user, int value) {
+        user.setAlertTime(value);
         addUser(user);
     }
 }
