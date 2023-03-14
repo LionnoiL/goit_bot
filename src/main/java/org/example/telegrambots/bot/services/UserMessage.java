@@ -12,14 +12,13 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Getter
 @Setter
 public class UserMessage {
-
   private Long chatId;
   private String userFirstName;
   private String textFromUser;
   private String callBack;
   private User user;
 
-  public static UserMessage fromTelegramUpdate(Update update){
+  public static UserMessage fromTelegramUpdate(Update update) {
     UserService userService = new UserService();
     Message message;
     if (update.hasMessage()) {
@@ -30,39 +29,32 @@ public class UserMessage {
       CurrencyBot.LOG.info("Unexpected update from user");
       return null;
     }
-
-    UserMessage userMessage =  new UserMessage();
+    UserMessage userMessage = new UserMessage();
     userMessage.setChatId(message.getChatId());
     userMessage.setUserFirstName(message.getFrom().getFirstName());
-
     if (message.hasText()) {
       userMessage.setTextFromUser(message.getText());
     }
-
     if (update.hasCallbackQuery()) {
       userMessage.setCallBack(update.getCallbackQuery().getData());
     }
-
     Long userId = message.getChatId();
     User user = userService.getUserById(userId);
     String langCode = message.getFrom().getLanguageCode();
     if (langCode == null) {
       langCode = "en";
     }
-    if (user==null){
+    if (user == null) {
       user = userService.createUser(userId, message.getChat().getFirstName(), message.getChat().getLastName(),
               langCode.toLowerCase(), LanguageSwitcher.setLanguageMap(langCode));
       userService.addUser(user);
+      user.setNewUser(true);
     }
-
     userMessage.setUser(user);
-
     CurrencyBot.LOG.info(
-        "[" + userMessage.getChatId() + ", " + userMessage.getUserFirstName() + "] : "
-            + userMessage.getTextFromUser() + ", callback[" + userMessage.getCallBack()
-            + "]");
-
-
+            "[" + userMessage.getChatId() + ", " + userMessage.getUserFirstName() + "] : "
+                    + userMessage.getTextFromUser() + ", callback[" + userMessage.getCallBack()
+                    + "]");
     return userMessage;
   }
 }

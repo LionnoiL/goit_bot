@@ -10,6 +10,7 @@ import org.example.users.User;
 
 import java.time.LocalDateTime;
 import java.util.*;
+
 import org.example.users.UserService;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
@@ -19,13 +20,11 @@ public class Scheduler {
     private Scheduler() {
         throw new IllegalStateException("Scheduler is utility class");
     }
-    public static void setTimeReceived() {
 
+    public static void setTimeReceived() {
         CurrencyRateCollector currencyRateCollector = new CurrencyRateCollector();
         currencyRateCollector.collectAllRates();
-
         int initialHour = getCurrentHour() + 1;
-
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, initialHour);
         calendar.set(Calendar.MINUTE, 0);
@@ -49,18 +48,13 @@ public class Scheduler {
     }
 
     private static int getCurrentHour() {
-
         return LocalDateTime.now().getHour();
     }
 
     private static void sendUsersNotifications(int currentHour) {
-
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
         TelegramService telegramService = new TelegramService(new CurrencySender());
-
-        UserService userService =  new UserService();
-
-
+        UserService userService = new UserService();
         users.entrySet()
                 .stream()
                 .map(Map.Entry::getValue)
@@ -69,11 +63,11 @@ public class Scheduler {
                     telegramService.sendMessage(el.getUserId(), MessageService.getInformationMessageByUserId(el.getUserId()));
 
                     User user = userService.getUserById(el.getUserId());
-                    UserMessage userMessage =  new UserMessage();
+                    UserMessage userMessage = new UserMessage();
                     userMessage.setUser(user);
                     InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
                     telegramService.sendMessage(el.getUserId(), user.getLanguage().get("HEADSIGN_MAINMENU"),
-                        mainMenu);
+                            mainMenu);
                 });
     }
 }
