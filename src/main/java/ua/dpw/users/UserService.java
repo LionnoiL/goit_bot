@@ -55,7 +55,9 @@ public class UserService {
     }
 
     public void updateUser(User user, int value) {
-        if (value < 5) {
+        if (value >=200) {
+            user.setUserHours(value-200);
+        } else if (value < 5) {
             user.setSymbolsAfterComma(value);
         } else {
             user.setAlertTime(value);

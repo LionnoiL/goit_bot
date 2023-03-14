@@ -23,6 +23,11 @@ public class NotificationMenu implements TelegramMenu {
         List<InlineKeyboardButton> row3 = new ArrayList<>();
         List<InlineKeyboardButton> row4 = new ArrayList<>();
         List<InlineKeyboardButton> row5 = new ArrayList<>();
+        List<InlineKeyboardButton> row6 = new ArrayList<>();
+
+        InlineKeyboardButton userTimeButton = new InlineKeyboardButton(
+                userMessage.getUser().getLanguage().get("OPTIONS_USERTIME"));
+        userTimeButton.setCallbackData(Commands.OPTIONS_USERTIME.toString());
 
         InlineKeyboardButton alert9 = new InlineKeyboardButton(
             (notificationTime == 9 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
@@ -76,27 +81,30 @@ public class NotificationMenu implements TelegramMenu {
             userMessage.getUser().getLanguage().get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
 
-        row1.add(alert9);
-        row1.add(alert10);
-        row1.add(alert11);
+        row1.add(userTimeButton);
 
-        row2.add(alert12);
-        row2.add(alert13);
-        row2.add(alert14);
+        row2.add(alert9);
+        row2.add(alert10);
+        row2.add(alert11);
 
-        row3.add(alert15);
-        row3.add(alert16);
-        row3.add(alert17);
+        row3.add(alert12);
+        row3.add(alert13);
+        row3.add(alert14);
 
-        row4.add(alert18);
-        row4.add(alertOff);
-        row5.add(buttonBack);
+        row4.add(alert15);
+        row4.add(alert16);
+        row4.add(alert17);
+
+        row5.add(alert18);
+        row5.add(alertOff);
+        row6.add(buttonBack);
 
         rowList.add(row1);
         rowList.add(row2);
         rowList.add(row3);
         rowList.add(row4);
         rowList.add(row5);
+        rowList.add(row6);
         inlineKeyboardMarkup.setKeyboard(rowList);
 
         return inlineKeyboardMarkup;
