@@ -24,37 +24,37 @@ public class OptionsNotificationCommand extends BotCommand {
 
         switch (userCallBack) {
             case ALERT_9:
-                userService.updateUser(user, 9);
+                userService.updateUserAlertTime(user, 9);
                 break;
             case ALERT_10:
-                userService.updateUser(user, 10);
+                userService.updateUserAlertTime(user, 10);
                 break;
             case ALERT_11:
-                userService.updateUser(user, 11);
+                userService.updateUserAlertTime(user, 11);
                 break;
             case ALERT_12:
-                userService.updateUser(user, 12);
+                userService.updateUserAlertTime(user, 12);
                 break;
             case ALERT_13:
-                userService.updateUser(user, 13);
+                userService.updateUserAlertTime(user, 13);
                 break;
             case ALERT_14:
-                userService.updateUser(user, 14);
+                userService.updateUserAlertTime(user, 14);
                 break;
             case ALERT_15:
-                userService.updateUser(user, 15);
+                userService.updateUserAlertTime(user, 15);
                 break;
             case ALERT_16:
-                userService.updateUser(user, 16);
+                userService.updateUserAlertTime(user, 16);
                 break;
             case ALERT_17:
-                userService.updateUser(user, 17);
+                userService.updateUserAlertTime(user, 17);
                 break;
             case ALERT_18:
-                userService.updateUser(user, 18);
+                userService.updateUserAlertTime(user, 18);
                 break;
             case ALERT_OFF:
-                userService.updateUser(user, 100);
+                userService.updateUserAlertTime(user, 100);
                 break;
             default:
                 break;

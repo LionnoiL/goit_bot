@@ -22,11 +22,11 @@ public class OptionsNumberSimbolsCommand extends BotCommand {
         User user = userMessage.getUser();
 
         if (Commands.NUMBERS_2.toString().equals(userMessage.getCallBack())) {
-            userService.updateUser(user, 2);
+            userService.updateUserSymbolsAfterComma(user, 2);
         } else if (Commands.NUMBERS_3.toString().equals(userMessage.getCallBack())) {
-            userService.updateUser(user, 3);
+            userService.updateUserSymbolsAfterComma(user, 3);
         } else if (Commands.NUMBERS_4.toString().equals(userMessage.getCallBack())) {
-            userService.updateUser(user, 4);
+            userService.updateUserSymbolsAfterComma(user, 4);
         }
 
         InlineKeyboardMarkup menu = new ChoiceNumberSymbolMenu().createMenu(userMessage);

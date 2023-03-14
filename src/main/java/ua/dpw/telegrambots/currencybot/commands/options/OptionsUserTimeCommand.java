@@ -23,76 +23,76 @@ public class OptionsUserTimeCommand extends BotCommand {
 
         switch (userCallBack) {
             case TIME_0:
-                userService.updateUser(user, 200);
+                userService.updateUserTimeCommand(user, 0);
                 break;
             case TIME_1:
-                userService.updateUser(user, 201);
+                userService.updateUserTimeCommand(user, 1);
                 break;
             case TIME_2:
-                userService.updateUser(user, 202);
+                userService.updateUserTimeCommand(user, 2);
                 break;
             case TIME_3:
-                userService.updateUser(user,203);
+                userService.updateUserTimeCommand(user,3);
                 break;
             case TIME_4:
-                userService.updateUser(user, 204);
+                userService.updateUserTimeCommand(user, 4);
                 break;
             case TIME_5:
-                userService.updateUser(user, 205);
+                userService.updateUserTimeCommand(user, 5);
                 break;
             case TIME_6:
-                userService.updateUser(user, 206);
+                userService.updateUserTimeCommand(user, 6);
                 break;
             case TIME_7:
-                userService.updateUser(user, 207);
+                userService.updateUserTimeCommand(user, 7);
                 break;
             case TIME_8:
-                userService.updateUser(user, 208);
+                userService.updateUserTimeCommand(user, 8);
                 break;
             case TIME_9:
-                userService.updateUser(user, 209);
+                userService.updateUserTimeCommand(user, 9);
                 break;
             case TIME_10:
-                userService.updateUser(user, 210);
+                userService.updateUserTimeCommand(user, 10);
                 break;
             case TIME_11:
-                userService.updateUser(user, 211);
+                userService.updateUserTimeCommand(user, 11);
                 break;
             case TIME_12:
-                userService.updateUser(user, 212);
+                userService.updateUserTimeCommand(user, 12);
                 break;
             case TIME_13:
-                userService.updateUser(user, 213);
+                userService.updateUserTimeCommand(user, 13);
                 break;
             case TIME_14:
-                userService.updateUser(user, 214);
+                userService.updateUserTimeCommand(user, 14);
                 break;
             case TIME_15:
-                userService.updateUser(user, 215);
+                userService.updateUserTimeCommand(user, 15);
                 break;
             case TIME_16:
-                userService.updateUser(user, 216);
+                userService.updateUserTimeCommand(user, 16);
                 break;
             case TIME_17:
-                userService.updateUser(user, 217);
+                userService.updateUserTimeCommand(user, 17);
                 break;
             case TIME_18:
-                userService.updateUser(user, 218);
+                userService.updateUserTimeCommand(user, 18);
                 break;
             case TIME_19:
-                userService.updateUser(user, 219);
+                userService.updateUserTimeCommand(user, 19);
                 break;
             case TIME_20:
-                userService.updateUser(user, 220);
+                userService.updateUserTimeCommand(user, 20);
                 break;
             case TIME_21:
-                userService.updateUser(user, 221);
+                userService.updateUserTimeCommand(user, 21);
                 break;
             case TIME_22:
-                userService.updateUser(user, 222);
+                userService.updateUserTimeCommand(user, 22);
                 break;
             case TIME_23:
-                userService.updateUser(user, 223);
+                userService.updateUserTimeCommand(user, 23);
                 break;
             default:
                 break;
