@@ -33,6 +33,9 @@ public class OptionsNumberSimbolsCommand extends BotCommand {
         UserService userService = new UserService();
         User user = userMessage.getUser();
         switch (Commands.valueOf(userMessage.getCallBack())) {
+            case NUMBERS_2:
+                userService.updateUserSymbolsAfterComma(user, 2);
+                break;
             case NUMBERS_3:
                 userService.updateUserSymbolsAfterComma(user, 3);
                 break;
@@ -40,7 +43,6 @@ public class OptionsNumberSimbolsCommand extends BotCommand {
                 userService.updateUserSymbolsAfterComma(user, 4);
                 break;
             default:
-                userService.updateUserSymbolsAfterComma(user, 2);
         }
     }
 }

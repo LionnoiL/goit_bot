@@ -37,11 +37,13 @@ public class OptionsLanguageCommand extends BotCommand {
             case UA_BUTTON:
                 user.setLangCode("uk");
                 break;
+            case EN_BUTTON:
+                user.setLangCode("en");
+                break;
             case PL_BUTTON:
                 user.setLangCode("pl");
                 break;
             default:
-                user.setLangCode("en");
         }
         userService.addUser(user);
         userMessage.setUser(user);
