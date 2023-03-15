@@ -2,18 +2,20 @@ package ua.dpw.telegrambots.currencybot.menus;
 
 import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ua.dpw.currency.bank.Bank;
+import ua.dpw.currency.services.CurrencyRateCryptoService;
 import ua.dpw.telegrambots.bot.menus.TelegramMenu;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
 
 public class BankMenu implements TelegramMenu {
 
-    public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
+    public InlineKeyboardMarkup createMenu(UserMessage userMessage) throws IOException {
         Bank bank = userMessage.getUser().getBank();
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
@@ -24,6 +26,7 @@ public class BankMenu implements TelegramMenu {
         List<InlineKeyboardButton> row3 = new ArrayList<>();
         List<InlineKeyboardButton> row4 = new ArrayList<>();
         List<InlineKeyboardButton> row5 = new ArrayList<>();
+        List<InlineKeyboardButton> row6 = new ArrayList<>();
 
         InlineKeyboardButton buttonPrivatbank = new InlineKeyboardButton(
             (Bank.PRIVATBANK.equals(bank) ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
@@ -45,6 +48,10 @@ public class BankMenu implements TelegramMenu {
                 .get("NBU"));
         buttonNbu.setCallbackData(Commands.BANK_NBU.toString());
 
+        InlineKeyboardButton buttonCrypto = new InlineKeyboardButton(
+                userMessage.getUser().getLanguage().get("CRYPTOCURRENCY"));
+        buttonCrypto.setCallbackData(new CurrencyRateCryptoService().cryptoInfo());
+
         InlineKeyboardButton buttonBack = new InlineKeyboardButton(
             userMessage.getUser().getLanguage().get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
@@ -54,12 +61,14 @@ public class BankMenu implements TelegramMenu {
         row3.add(buttonOschad);
         row4.add(buttonNbu);
         row5.add(buttonBack);
+        row6.add(buttonCrypto);
 
         rowList.add(row1);
         rowList.add(row2);
         rowList.add(row3);
         rowList.add(row4);
         rowList.add(row5);
+        rowList.add(row6);
         inlineKeyboardMarkup.setKeyboard(rowList);
 
         return inlineKeyboardMarkup;
