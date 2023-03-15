@@ -1,6 +1,7 @@
 package ua.dpw.telegrambots.currencybot.handlers;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ua.dpw.currency.services.CurrencyRateCryptoService;
 import ua.dpw.telegrambots.bot.services.TelegramService;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
@@ -50,6 +51,8 @@ public class CurrencyBotMessageHandler {
                 case NUMBERS_4:
                     new OptionsNumberSimbolsCommand().execute(userMessage);
                     break;
+                case CURRYNCY_CRYPTO:
+                    new CurrencyRateCryptoService().cryptoInfo();
                 case OPTIONS_BANK:
                 case BANK_PRIVATBANK:
                 case BANK_MONOBANK:

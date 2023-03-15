@@ -15,7 +15,7 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 
 public class BankMenu implements TelegramMenu {
 
-    public InlineKeyboardMarkup createMenu(UserMessage userMessage) throws IOException {
+    public InlineKeyboardMarkup createMenu(UserMessage userMessage){
         Bank bank = userMessage.getUser().getBank();
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
@@ -48,10 +48,6 @@ public class BankMenu implements TelegramMenu {
                 .get("NBU"));
         buttonNbu.setCallbackData(Commands.BANK_NBU.toString());
 
-        InlineKeyboardButton buttonCrypto = new InlineKeyboardButton(
-                userMessage.getUser().getLanguage().get("CRYPTOCURRENCY"));
-        buttonCrypto.setCallbackData(new CurrencyRateCryptoService().cryptoInfo());
-
         InlineKeyboardButton buttonBack = new InlineKeyboardButton(
             userMessage.getUser().getLanguage().get("BACK"));
         buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
@@ -61,7 +57,6 @@ public class BankMenu implements TelegramMenu {
         row3.add(buttonOschad);
         row4.add(buttonNbu);
         row5.add(buttonBack);
-        row6.add(buttonCrypto);
 
         rowList.add(row1);
         rowList.add(row2);
