@@ -15,11 +15,11 @@ public class CurrencyNbuDto {
     private Currency currency;
 
     public Currency getCurrency() {
-        Currency cur = Currency.EUR;
+        Currency currency = Currency.EUR;
         if (r030 == 840) {
-            cur = Currency.USD;
+            currency = Currency.USD;
         }
-        return cur;
+        return currency;
     }
 
     public BigDecimal getRate() {

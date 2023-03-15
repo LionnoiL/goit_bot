@@ -1,7 +1,10 @@
 package ua.dpw.telegrambots.currencybot.messages;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import ua.dpw.AppLauncher;
 import ua.dpw.currency.bank.Bank;
 import ua.dpw.currency.currencies.Currency;
@@ -11,6 +14,7 @@ import ua.dpw.users.User;
 import ua.dpw.users.UserService;
 import ua.dpw.utils.JsonConverter;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MessageService {
 
     public static String getInformationMessageByUserId(long userId) {
@@ -23,6 +27,8 @@ public class MessageService {
             decimalPrecision = user.getSymbolsAfterComma();
             bank = user.getBank();
             currencyList = user.getCurrencies();
+        } else {
+            return "";
         }
         return getFormattedRateBotMessage(decimalPrecision, bank, currencyList, user);
     }
@@ -42,14 +48,18 @@ public class MessageService {
         }
         List<CurrencyRate> rates = JsonConverter.convertJsonStringToList(ratesJson,
             CurrencyRate.class);
+        Comparator<CurrencyRate> currencyRateComparator = Comparator.comparing(
+                CurrencyRate::getBank).thenComparing(CurrencyRate::getCurrency)
+            .thenComparing(CurrencyRate::getCurrency);
         String messageBody = rates.stream()
             .filter(rate -> currencies.contains(rate.getCurrency()))
+            .sorted(currencyRateComparator)
             .map(rate -> String.format(messageBodyRow,
                 rate.getCurrency(),
                 String.format(rateFormat, rate.getBuyingRate()),
                 String.format(rateFormat, rate.getSellingRate())))
             .collect(Collectors.toList())
-            .toString().replaceAll("(\\[)|(\\])|(,\\D)", "");
+            .toString().replaceAll("(\\[)|(])|(,\\D)", "");
         return messageBody.isEmpty() ? messageCurrencyNotSelected : messageHeader + messageBody;
     }
 }

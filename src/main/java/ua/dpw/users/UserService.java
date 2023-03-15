@@ -16,7 +16,7 @@ public class UserService {
 
     public User createUser(long userId, String firstName, String lastName, String langCode,
         Map<String, String> language) {
-        LOG.info("Add new user with id " + userId + " " + firstName + " " + lastName);
+        LOG.info("Add new user with id {} {} {}", userId, firstName, lastName);
         User user = new User();
         user.setUserId(userId);
         user.setUserName(firstName);

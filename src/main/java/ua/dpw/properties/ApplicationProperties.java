@@ -30,7 +30,6 @@ public class ApplicationProperties {
     private int decimalPrecision;
     private Bank bank;
     private Currency currency;
-
     @Setter
     private Map<Long, User> users;
 
@@ -45,26 +44,35 @@ public class ApplicationProperties {
     }
 
     private void loadFromFile() {
+        setDecimalPrecision();
+        setBank();
+        setCurrency();
+    }
+
+    private void setDecimalPrecision() {
         String decimalPrecisionString = PropertiesService.getApplicationProperties(
             APPLICATION_PROPERTIES_FILE_NAME,
             "decimalPrecision");
-        String bankString = PropertiesService.getApplicationProperties(
-            APPLICATION_PROPERTIES_FILE_NAME, "bank");
-        String currencyString = PropertiesService.getApplicationProperties(
-            APPLICATION_PROPERTIES_FILE_NAME, "currency");
-
         if (!decimalPrecisionString.isBlank()) {
             decimalPrecision = Integer.parseInt(decimalPrecisionString);
         } else {
             decimalPrecision = 2;
         }
+    }
 
+    private void setBank() {
+        String bankString = PropertiesService.getApplicationProperties(
+            APPLICATION_PROPERTIES_FILE_NAME, "bank");
         if (!bankString.isBlank()) {
             bank = Bank.valueOf(bankString);
         } else {
             bank = Bank.NBU;
         }
+    }
 
+    private void setCurrency() {
+        String currencyString = PropertiesService.getApplicationProperties(
+            APPLICATION_PROPERTIES_FILE_NAME, "currency");
         if (!currencyString.isBlank()) {
             currency = Currency.valueOf(currencyString);
         } else {
@@ -84,7 +92,7 @@ public class ApplicationProperties {
             savedUsers = new Gson().fromJson(fileReader, new TypeToken<Map<Long, User>>() {
             }.getType());
         } catch (Exception e) {
-            LOG.warn("Error read users file from " + JSON_USERS_FILE_NAME);
+            LOG.warn("Error read users file from {}", JSON_USERS_FILE_NAME);
         }
         return savedUsers;
     }

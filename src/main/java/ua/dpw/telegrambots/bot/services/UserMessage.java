@@ -19,6 +19,10 @@ public class UserMessage {
     private String callBack;
     private User user;
 
+    public static boolean isBlankCallback(UserMessage userMessage) {
+        return (userMessage == null || userMessage.getCallBack().isBlank());
+    }
+
     public static UserMessage fromTelegramUpdate(Update update) {
         UserService userService = new UserService();
         Message message;

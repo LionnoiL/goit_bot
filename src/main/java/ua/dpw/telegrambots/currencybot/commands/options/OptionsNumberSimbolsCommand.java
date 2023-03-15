@@ -18,20 +18,29 @@ public class OptionsNumberSimbolsCommand extends BotCommand {
 
     @Override
     public void execute(UserMessage userMessage) {
-        UserService userService = new UserService();
-        User user = userMessage.getUser();
-
-        if (Commands.NUMBERS_2.toString().equals(userMessage.getCallBack())) {
-            userService.updateUserSymbolsAfterComma(user, 2);
-        } else if (Commands.NUMBERS_3.toString().equals(userMessage.getCallBack())) {
-            userService.updateUserSymbolsAfterComma(user, 3);
-        } else if (Commands.NUMBERS_4.toString().equals(userMessage.getCallBack())) {
-            userService.updateUserSymbolsAfterComma(user, 4);
-        }
+        updateUserSymbolsAfterComma(userMessage);
 
         InlineKeyboardMarkup menu = new ChoiceNumberSymbolMenu().createMenu(userMessage);
         getTelegramService().sendMessage(userMessage.getChatId(),
             userMessage.getUser().getLanguage().get("HEADSIGN_COMMASYMBOLS"),
             menu);
+    }
+
+    private void updateUserSymbolsAfterComma(UserMessage userMessage) {
+        if (UserMessage.isBlankCallback(userMessage)) {
+            return;
+        }
+        UserService userService = new UserService();
+        User user = userMessage.getUser();
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case NUMBERS_3:
+                userService.updateUserSymbolsAfterComma(user, 3);
+                break;
+            case NUMBERS_4:
+                userService.updateUserSymbolsAfterComma(user, 4);
+                break;
+            default:
+                userService.updateUserSymbolsAfterComma(user, 2);
+        }
     }
 }

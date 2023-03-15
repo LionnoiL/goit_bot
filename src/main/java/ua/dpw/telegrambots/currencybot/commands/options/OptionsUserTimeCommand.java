@@ -12,16 +12,28 @@ import ua.dpw.users.UserService;
 
 public class OptionsUserTimeCommand extends BotCommand {
 
-    public OptionsUserTimeCommand() {super (new TelegramService(new CurrencySender()));
+    public OptionsUserTimeCommand() {
+        super(new TelegramService(new CurrencySender()));
     }
 
     @Override
     public void execute(UserMessage userMessage) {
-        User user = userMessage.getUser();
-        UserService userService = new UserService();
-        Commands userCallBack = Commands.valueOf(userMessage.getCallBack());
+        updateUserDeltaTime(userMessage);
 
-        switch (userCallBack) {
+        InlineKeyboardMarkup notificationMenu = new UserTimeMenu().createMenu(userMessage);
+        getTelegramService().sendMessage(userMessage.getChatId(),
+            userMessage.getUser().getLanguage().get("HEADSIGN_USERTIME"),
+            notificationMenu);
+    }
+
+    private void updateUserDeltaTime(UserMessage userMessage) {
+        if (UserMessage.isBlankCallback(userMessage)) {
+            return;
+        }
+        UserService userService = new UserService();
+        User user = userMessage.getUser();
+
+        switch (Commands.valueOf(userMessage.getCallBack())) {
             case TIME_0:
                 userService.updateUserTimeCommand(user, 0);
                 break;
@@ -32,7 +44,7 @@ public class OptionsUserTimeCommand extends BotCommand {
                 userService.updateUserTimeCommand(user, 2);
                 break;
             case TIME_3:
-                userService.updateUserTimeCommand(user,3);
+                userService.updateUserTimeCommand(user, 3);
                 break;
             case TIME_4:
                 userService.updateUserTimeCommand(user, 4);
@@ -97,9 +109,5 @@ public class OptionsUserTimeCommand extends BotCommand {
             default:
                 break;
         }
-        InlineKeyboardMarkup notificationMenu = new UserTimeMenu().createMenu(userMessage);
-        getTelegramService().sendMessage(userMessage.getChatId(),
-                userMessage.getUser().getLanguage().get("HEADSIGN_USERTIME"),
-                notificationMenu);
     }
 }
