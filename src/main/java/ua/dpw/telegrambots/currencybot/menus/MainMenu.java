@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import ua.dpw.telegrambots.bot.menus.MenuUtils;
 import ua.dpw.telegrambots.bot.menus.TelegramMenu;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
@@ -14,24 +15,24 @@ public class MainMenu implements TelegramMenu {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
-        List<InlineKeyboardButton> row1 = new ArrayList<>();
-        List<InlineKeyboardButton> row2 = new ArrayList<>();
+        addRow1(rowList, userMessage);
+        addRow2(rowList, userMessage);
 
-        InlineKeyboardButton getInfoButton = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("MAIN_GET_INFO"));
-        getInfoButton.setCallbackData(Commands.MAIN_GET_INFO.toString());
-
-        InlineKeyboardButton getOptionsButton = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("MAIN_OPTIONS"));
-        getOptionsButton.setCallbackData(Commands.MAIN_OPTIONS.toString());
-
-        row1.add(getInfoButton);
-        row2.add(getOptionsButton);
-
-        rowList.add(row1);
-        rowList.add(row2);
         inlineKeyboardMarkup.setKeyboard(rowList);
-
         return inlineKeyboardMarkup;
+    }
+
+    private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        String buttonText = userMessage.getUser().getLanguage().get("MAIN_GET_INFO");
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+            Commands.MAIN_GET_INFO.toString());
+        rowList.add(menuRow);
+    }
+
+    private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        String buttonText = userMessage.getUser().getLanguage().get("MAIN_OPTIONS");
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+            Commands.MAIN_OPTIONS.toString());
+        rowList.add(menuRow);
     }
 }
