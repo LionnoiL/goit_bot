@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import ua.dpw.currency.services.CurrencyRateCollector;
 import ua.dpw.telegrambots.bot.services.TelegramService;
@@ -43,9 +44,9 @@ public class Scheduler {
 
         Timer timer = new Timer();
         timer.schedule(
-            timerTask,
-            calendar.getTime(),
-            3600000
+                timerTask,
+                calendar.getTime(),
+                3600000
         );
     }
 
@@ -58,20 +59,20 @@ public class Scheduler {
         TelegramService telegramService = new TelegramService(new CurrencySender());
         UserService userService = new UserService();
         users.entrySet()
-            .stream()
-            .map(Map.Entry::getValue)
-            .filter(el -> el.getAlertTime() == currentHour + el.getDeltaHours())
-            .forEach(el -> {
-                telegramService.sendMessage(el.getUserId(),
-                    MessageService.getInformationMessageByUserId(el.getUserId()));
+                .stream()
+                .map(Map.Entry::getValue)
+                .filter(el -> el.getAlertTime() == currentHour + el.getDeltaHours())
+                .forEach(el -> {
+                    telegramService.sendMessage(el.getUserId(),
+                            MessageService.getInformationMessageByUser(el));
 
-                User user = userService.getUserById(el.getUserId());
-                UserMessage userMessage = new UserMessage();
-                userMessage.setUser(user);
-                InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
-                telegramService.sendMessage(el.getUserId(),
-                    user.getLanguage().get("HEADSIGN_MAINMENU"),
-                    mainMenu);
-            });
+                    User user = userService.getUserById(el.getUserId());
+                    UserMessage userMessage = new UserMessage();
+                    userMessage.setUser(user);
+                    InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
+                    telegramService.sendMessage(el.getUserId(),
+                            user.getLanguage().get("HEADSIGN_MAINMENU"),
+                            mainMenu);
+                });
     }
 }
