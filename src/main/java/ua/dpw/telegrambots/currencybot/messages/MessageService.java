@@ -1,5 +1,6 @@
 package ua.dpw.telegrambots.currencybot.messages;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +23,12 @@ public class MessageService {
         if (rates.isEmpty()) {
             return messageBankRatesNotFound;
         }
+        Comparator<CurrencyRate> currencyRateComparator = Comparator.comparing(
+                        CurrencyRate::getBank).thenComparing(CurrencyRate::getCurrency)
+                .thenComparing(CurrencyRate::getCurrency);
         String messageBody = rates.stream()
                 .filter(rate -> user.getCurrencies().contains(rate.getCurrency()))
+                .sorted(currencyRateComparator)
                 .map(rate -> formatRatesRow(user, rate))
                 .collect(Collectors.toList())
                 .toString()
