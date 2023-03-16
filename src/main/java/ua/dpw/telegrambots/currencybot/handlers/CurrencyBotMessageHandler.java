@@ -52,7 +52,8 @@ public class CurrencyBotMessageHandler {
                     new OptionsNumberSimbolsCommand().execute(userMessage);
                     break;
                 case CURRYNCY_CRYPTO:
-                    new CurrencyRateCryptoService().cryptoInfo();
+                    new GetInfoCommand().execute(userMessage);;
+                    break;
                 case OPTIONS_BANK:
                 case BANK_PRIVATBANK:
                 case BANK_MONOBANK:
