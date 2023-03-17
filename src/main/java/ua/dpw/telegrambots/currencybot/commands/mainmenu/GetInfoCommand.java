@@ -1,7 +1,6 @@
 package ua.dpw.telegrambots.currencybot.commands.mainmenu;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import ua.dpw.currency.services.CurrencyRateCryptoService;
 import ua.dpw.telegrambots.bot.commands.BotCommand;
 import ua.dpw.telegrambots.bot.services.TelegramService;
 import ua.dpw.telegrambots.bot.services.UserMessage;
@@ -19,7 +18,7 @@ public class GetInfoCommand extends BotCommand {
     @Override
     public void execute(UserMessage userMessage) {
         getTelegramService().sendMessage(userMessage.getChatId(),
-                MessageService.getInformationMessageByUserId(userMessage.getChatId()));
+            MessageService.getInformationMessageByUserId(userMessage.getChatId()));
 
         InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
         getTelegramService().sendMessage(userMessage.getChatId(),
