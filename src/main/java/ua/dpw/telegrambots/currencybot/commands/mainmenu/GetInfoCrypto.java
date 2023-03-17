@@ -9,21 +9,20 @@ import ua.dpw.telegrambots.currencybot.menus.MainMenu;
 import ua.dpw.telegrambots.currencybot.messages.MessageService;
 import ua.dpw.telegrambots.currencybot.sender.CurrencySender;
 
+public class GetInfoCrypto extends BotCommand {
 
-public class GetInfoCommand extends BotCommand {
-
-    public GetInfoCommand() {
+    public GetInfoCrypto() {
         super(new TelegramService(new CurrencySender()));
     }
 
     @Override
     public void execute(UserMessage userMessage) {
         getTelegramService().sendMessage(userMessage.getChatId(),
-                MessageService.getInformationMessageByUserId(userMessage.getChatId()));
+                new CurrencyRateCryptoService().cryptoInfo());
 
         InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
         getTelegramService().sendMessage(userMessage.getChatId(),
-            userMessage.getUser().getLanguage().get("HEADSIGN_MAINMENU"),
-            mainMenu);
+                userMessage.getUser().getLanguage().get("HEADSIGN_MAINMENU"),
+                mainMenu);
     }
 }

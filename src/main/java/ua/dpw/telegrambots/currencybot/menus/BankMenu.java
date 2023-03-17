@@ -63,7 +63,7 @@ public class BankMenu implements TelegramMenu {
         rowList.add(row3);
         rowList.add(row4);
         rowList.add(row5);
-        rowList.add(row6);
+
         inlineKeyboardMarkup.setKeyboard(rowList);
 
         return inlineKeyboardMarkup;

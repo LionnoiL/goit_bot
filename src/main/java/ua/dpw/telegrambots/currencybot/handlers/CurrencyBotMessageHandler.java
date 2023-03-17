@@ -6,6 +6,7 @@ import ua.dpw.telegrambots.bot.services.TelegramService;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.GetInfoCommand;
+import ua.dpw.telegrambots.currencybot.commands.mainmenu.GetInfoCrypto;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.MainMenuCommand;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.OptionsMenuCommand;
 import ua.dpw.telegrambots.currencybot.commands.options.*;
@@ -52,7 +53,7 @@ public class CurrencyBotMessageHandler {
                     new OptionsNumberSimbolsCommand().execute(userMessage);
                     break;
                 case CURRYNCY_CRYPTO:
-                    new GetInfoCommand().execute(userMessage);;
+                    new GetInfoCrypto().execute(userMessage);;
                     break;
                 case OPTIONS_BANK:
                 case BANK_PRIVATBANK:

@@ -18,7 +18,7 @@ public class CurrencyRateCryptoService {
             Document documentBIT = Jsoup.connect(URL_BTC)
                     .get();
             Element elementBTC = documentBIT.selectFirst("span.text-2xl");
-            result.append("Bitcoin " + elementBTC.text() + " USD\n");
+            result.append("Bitcoin       " + elementBTC.text() + " USD\n");
 
             Document documentETH = Jsoup.connect(URL_ETH)
                     .get();

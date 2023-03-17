@@ -7,5 +7,5 @@ import java.io.IOException;
 
 public interface TelegramMenu {
 
-    ReplyKeyboard createMenu(UserMessage userMessage) throws IOException;
+    ReplyKeyboard createMenu(UserMessage userMessage);
 }
