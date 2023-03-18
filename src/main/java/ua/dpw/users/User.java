@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ua.dpw.currency.bank.Bank;
 import ua.dpw.currency.currencies.Currency;
+import ua.dpw.language.LanguageSwitcher;
 
 @Data
 @AllArgsConstructor
@@ -27,5 +28,10 @@ public class User implements Serializable {
     private int alertTime;
     private String langCode;
     private transient Map<String, String> language;
-    private boolean newUser = false;
+    private boolean newUser;
+
+    public void setLangCode(String langCode) {
+        this.langCode = langCode;
+        setLanguage(LanguageSwitcher.setLanguageMap(langCode));
+    }
 }

@@ -18,11 +18,22 @@ public class OptionsNotificationCommand extends BotCommand {
 
     @Override
     public void execute(UserMessage userMessage) {
-        User user = userMessage.getUser();
-        UserService userService = new UserService();
-        Commands userCallBack = Commands.valueOf(userMessage.getCallBack());
+        updateUserNotificationsTime(userMessage);
 
-        switch (userCallBack) {
+        InlineKeyboardMarkup notificationMenu = new NotificationMenu().createMenu(userMessage);
+        getTelegramService().sendMessage(userMessage.getChatId(),
+            userMessage.getUser().getLanguage().get("HEADSIGN_NOTIFICATIONTIME"),
+            notificationMenu);
+    }
+
+    private void updateUserNotificationsTime(UserMessage userMessage) {
+        if (UserMessage.isBlankCallback(userMessage)) {
+            return;
+        }
+        UserService userService = new UserService();
+        User user = userMessage.getUser();
+
+        switch (Commands.valueOf(userMessage.getCallBack())) {
             case ALERT_9:
                 userService.updateUserAlertTime(user, 9);
                 break;
@@ -59,9 +70,5 @@ public class OptionsNotificationCommand extends BotCommand {
             default:
                 break;
         }
-        InlineKeyboardMarkup notificationMenu = new NotificationMenu().createMenu(userMessage);
-        getTelegramService().sendMessage(userMessage.getChatId(),
-            userMessage.getUser().getLanguage().get("HEADSIGN_NOTIFICATIONTIME"),
-            notificationMenu);
     }
 }

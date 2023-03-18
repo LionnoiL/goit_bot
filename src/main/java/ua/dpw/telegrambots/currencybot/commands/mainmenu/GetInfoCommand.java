@@ -18,7 +18,7 @@ public class GetInfoCommand extends BotCommand {
     @Override
     public void execute(UserMessage userMessage) {
         getTelegramService().sendMessage(userMessage.getChatId(),
-            MessageService.getInformationMessageByUserId(userMessage.getChatId()));
+            MessageService.getInformationMessageByUser(userMessage.getUser()));
 
         InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
         getTelegramService().sendMessage(userMessage.getChatId(),

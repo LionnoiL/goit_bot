@@ -1,174 +1,92 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import ua.dpw.notifications.Scheduler;
-import ua.dpw.telegrambots.bot.services.UserMessage;
-import ua.dpw.telegrambots.currencybot.commands.Commands;
+import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import ua.dpw.notifications.Scheduler;
+import ua.dpw.telegrambots.bot.menus.MenuUtils;
+import ua.dpw.telegrambots.bot.services.UserMessage;
+import ua.dpw.telegrambots.currencybot.commands.Commands;
 
 public class UserTimeMenu {
-    public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        int userTime = Scheduler.getCurrentHour() + userMessage.getUser().getDeltaHours();
 
+    public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
-        List<InlineKeyboardButton> row1 = new ArrayList<>();
-        List<InlineKeyboardButton> row2 = new ArrayList<>();
-        List<InlineKeyboardButton> row3 = new ArrayList<>();
-        List<InlineKeyboardButton> row4 = new ArrayList<>();
-        List<InlineKeyboardButton> row5 = new ArrayList<>();
-        List<InlineKeyboardButton> row6 = new ArrayList<>();
+        addRow1(rowList, userMessage);
+        addRow2(rowList, userMessage);
+        addRow3(rowList, userMessage);
+        addRow4(rowList, userMessage);
+        addRow5(rowList, userMessage);
+        addRow6(rowList, userMessage);
 
-        InlineKeyboardButton userTime0 = new InlineKeyboardButton(
-                (userTime == 0 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_0"));
-        userTime0.setCallbackData(Commands.TIME_0.toString());
-        InlineKeyboardButton userTime1 = new InlineKeyboardButton(
-                (userTime == 1 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_1"));
-        userTime1.setCallbackData(Commands.TIME_1.toString());
-        InlineKeyboardButton userTime2 = new InlineKeyboardButton(
-                (userTime == 2 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_2"));
-        userTime2.setCallbackData(Commands.TIME_2.toString());
-        InlineKeyboardButton userTime3 = new InlineKeyboardButton(
-                (userTime == 3 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_3"));
-        userTime3.setCallbackData(Commands.TIME_3.toString());
-        InlineKeyboardButton userTime4 = new InlineKeyboardButton(
-                (userTime == 4 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_4"));
-        userTime4.setCallbackData(Commands.TIME_4.toString());
-
-        InlineKeyboardButton userTime5 = new InlineKeyboardButton(
-                (userTime == 5 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_5"));
-        userTime5.setCallbackData(Commands.TIME_5.toString());
-        InlineKeyboardButton userTime6 = new InlineKeyboardButton(
-                (userTime == 6 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_6"));
-        userTime6.setCallbackData(Commands.TIME_6.toString());
-        InlineKeyboardButton userTime7 = new InlineKeyboardButton(
-                (userTime == 7 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_7"));
-        userTime7.setCallbackData(Commands.TIME_7.toString());
-        InlineKeyboardButton userTime8 = new InlineKeyboardButton(
-                (userTime == 8 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_8"));
-        userTime8.setCallbackData(Commands.TIME_8.toString());
-        InlineKeyboardButton userTime9 = new InlineKeyboardButton(
-                (userTime == 9 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_9"));
-        userTime9.setCallbackData(Commands.TIME_9.toString());
-
-        InlineKeyboardButton userTime10 = new InlineKeyboardButton(
-                (userTime == 10 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_10"));
-        userTime10.setCallbackData(Commands.TIME_10.toString());
-        InlineKeyboardButton userTime11 = new InlineKeyboardButton(
-                (userTime == 11 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_11"));
-        userTime11.setCallbackData(Commands.TIME_11.toString());
-        InlineKeyboardButton userTime12 = new InlineKeyboardButton(
-                (userTime == 12 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_12"));
-        userTime12.setCallbackData(Commands.TIME_12.toString());
-        InlineKeyboardButton userTime13 = new InlineKeyboardButton(
-                (userTime == 13 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_13"));
-        userTime13.setCallbackData(Commands.TIME_13.toString());
-        InlineKeyboardButton userTime14 = new InlineKeyboardButton(
-                (userTime == 14 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_14"));
-        userTime14.setCallbackData(Commands.TIME_14.toString());
-
-        InlineKeyboardButton userTime15 = new InlineKeyboardButton(
-                (userTime == 15 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_15"));
-        userTime15.setCallbackData(Commands.TIME_15.toString());
-        InlineKeyboardButton userTime16 = new InlineKeyboardButton(
-                (userTime == 16 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_16"));
-        userTime16.setCallbackData(Commands.TIME_16.toString());
-        InlineKeyboardButton userTime17 = new InlineKeyboardButton(
-                (userTime == 17 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_17"));
-        userTime17.setCallbackData(Commands.TIME_17.toString());
-        InlineKeyboardButton userTime18 = new InlineKeyboardButton(
-                (userTime == 18 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_18"));
-        userTime18.setCallbackData(Commands.TIME_18.toString());
-        InlineKeyboardButton userTime19 = new InlineKeyboardButton(
-                (userTime == 19 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_19"));
-        userTime19.setCallbackData(Commands.TIME_19.toString());
-
-        InlineKeyboardButton userTime20 = new InlineKeyboardButton(
-                (userTime == 20 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_20"));
-        userTime20.setCallbackData(Commands.TIME_20.toString());
-        InlineKeyboardButton userTime21 = new InlineKeyboardButton(
-                (userTime == 21 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_21"));
-        userTime21.setCallbackData(Commands.TIME_21.toString());
-        InlineKeyboardButton userTime22 = new InlineKeyboardButton(
-                (userTime == 22 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_22"));
-        userTime22.setCallbackData(Commands.TIME_22.toString());
-        InlineKeyboardButton userTime23 = new InlineKeyboardButton(
-                (userTime == 23 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                        .get("TIME_23"));
-        userTime23.setCallbackData(Commands.TIME_23.toString());
-
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(
-                userMessage.getUser().getLanguage().get("BACK"));
-        buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
-
-        row1.add(userTime0);
-        row1.add(userTime1);
-        row1.add(userTime2);
-        row1.add(userTime3);
-        row1.add(userTime4);
-
-        row2.add(userTime5);
-        row2.add(userTime6);
-        row2.add(userTime7);
-        row2.add(userTime8);
-        row2.add(userTime9);
-
-        row3.add(userTime10);
-        row3.add(userTime11);
-        row3.add(userTime12);
-        row3.add(userTime13);
-        row3.add(userTime14);
-
-        row4.add(userTime15);
-        row4.add(userTime16);
-        row4.add(userTime17);
-        row4.add(userTime18);
-        row4.add(userTime19);
-
-        row5.add(userTime20);
-        row5.add(userTime21);
-        row5.add(userTime22);
-        row5.add(userTime23);
-
-        row6.add(buttonBack);
-
-        rowList.add(row1);
-        rowList.add(row2);
-        rowList.add(row3);
-        rowList.add(row4);
-        rowList.add(row5);
-        rowList.add(row6);
         inlineKeyboardMarkup.setKeyboard(rowList);
-
         return inlineKeyboardMarkup;
+    }
+
+    private InlineKeyboardButton createButton(UserMessage userMessage, int hour,
+        String langButtonText, String callBack) {
+        int userTime = Scheduler.getCurrentHour() + userMessage.getUser().getDeltaHours();
+        String emoji = hour == userTime ? MARK_EMOJI : "";
+        String buttonText = emoji + userMessage.getUser().getLanguage().get(langButtonText);
+        return MenuUtils.createButton(buttonText, callBack);
+    }
+
+    private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 0, "TIME_0", Commands.TIME_0.toString()));
+        row.add(createButton(userMessage, 1, "TIME_1", Commands.TIME_1.toString()));
+        row.add(createButton(userMessage, 2, "TIME_2", Commands.TIME_2.toString()));
+        row.add(createButton(userMessage, 3, "TIME_3", Commands.TIME_3.toString()));
+        row.add(createButton(userMessage, 4, "TIME_4", Commands.TIME_4.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 5, "TIME_5", Commands.TIME_5.toString()));
+        row.add(createButton(userMessage, 6, "TIME_6", Commands.TIME_6.toString()));
+        row.add(createButton(userMessage, 7, "TIME_7", Commands.TIME_7.toString()));
+        row.add(createButton(userMessage, 8, "TIME_8", Commands.TIME_8.toString()));
+        row.add(createButton(userMessage, 9, "TIME_9", Commands.TIME_9.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 10, "TIME_10", Commands.TIME_10.toString()));
+        row.add(createButton(userMessage, 11, "TIME_11", Commands.TIME_11.toString()));
+        row.add(createButton(userMessage, 12, "TIME_12", Commands.TIME_12.toString()));
+        row.add(createButton(userMessage, 13, "TIME_13", Commands.TIME_13.toString()));
+        row.add(createButton(userMessage, 14, "TIME_14", Commands.TIME_14.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 15, "TIME_15", Commands.TIME_15.toString()));
+        row.add(createButton(userMessage, 16, "TIME_16", Commands.TIME_16.toString()));
+        row.add(createButton(userMessage, 17, "TIME_17", Commands.TIME_17.toString()));
+        row.add(createButton(userMessage, 18, "TIME_18", Commands.TIME_18.toString()));
+        row.add(createButton(userMessage, 19, "TIME_19", Commands.TIME_19.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow5(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 20, "TIME_20", Commands.TIME_20.toString()));
+        row.add(createButton(userMessage, 21, "TIME_21", Commands.TIME_21.toString()));
+        row.add(createButton(userMessage, 22, "TIME_22", Commands.TIME_22.toString()));
+        row.add(createButton(userMessage, 23, "TIME_23", Commands.TIME_23.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow6(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        String buttonText = userMessage.getUser().getLanguage().get("BACK");
+        rowList.add(MenuUtils.createMenuRow(buttonText, Commands.OPTIONS_NOTIFICATIONS.toString()));
     }
 }

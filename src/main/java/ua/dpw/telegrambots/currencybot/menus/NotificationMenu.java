@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import ua.dpw.telegrambots.bot.menus.MenuUtils;
 import ua.dpw.telegrambots.bot.menus.TelegramMenu;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
@@ -13,100 +14,66 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 public class NotificationMenu implements TelegramMenu {
 
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        int notificationTime = userMessage.getUser().getAlertTime();
-
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
-        List<InlineKeyboardButton> row1 = new ArrayList<>();
-        List<InlineKeyboardButton> row2 = new ArrayList<>();
-        List<InlineKeyboardButton> row3 = new ArrayList<>();
-        List<InlineKeyboardButton> row4 = new ArrayList<>();
-        List<InlineKeyboardButton> row5 = new ArrayList<>();
-        List<InlineKeyboardButton> row6 = new ArrayList<>();
+        addRow1(rowList, userMessage);
+        addRow2(rowList, userMessage);
+        addRow3(rowList, userMessage);
+        addRow4(rowList, userMessage);
+        addRow5(rowList, userMessage);
+        addRow6(rowList, userMessage);
 
-        InlineKeyboardButton userTimeButton = new InlineKeyboardButton(
-                userMessage.getUser().getLanguage().get("OPTIONS_USERTIME"));
-        userTimeButton.setCallbackData(Commands.OPTIONS_USERTIME.toString());
-
-        InlineKeyboardButton alert9 = new InlineKeyboardButton(
-            (notificationTime == 9 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_9"));
-        alert9.setCallbackData(Commands.ALERT_9.toString());
-        InlineKeyboardButton alert10 = new InlineKeyboardButton(
-            (notificationTime == 10 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_10"));
-        alert10.setCallbackData(Commands.ALERT_10.toString());
-        InlineKeyboardButton alert11 = new InlineKeyboardButton(
-            (notificationTime == 11 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_11"));
-        alert11.setCallbackData(Commands.ALERT_11.toString());
-
-        InlineKeyboardButton alert12 = new InlineKeyboardButton(
-            (notificationTime == 12 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_12"));
-        alert12.setCallbackData(Commands.ALERT_12.toString());
-        InlineKeyboardButton alert13 = new InlineKeyboardButton(
-            (notificationTime == 13 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_13"));
-        alert13.setCallbackData(Commands.ALERT_13.toString());
-        InlineKeyboardButton alert14 = new InlineKeyboardButton(
-            (notificationTime == 14 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_14"));
-        alert14.setCallbackData(Commands.ALERT_14.toString());
-
-        InlineKeyboardButton alert15 = new InlineKeyboardButton(
-            (notificationTime == 15 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_15"));
-        alert15.setCallbackData(Commands.ALERT_15.toString());
-        InlineKeyboardButton alert16 = new InlineKeyboardButton(
-            (notificationTime == 16 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_16"));
-        alert16.setCallbackData(Commands.ALERT_16.toString());
-        InlineKeyboardButton alert17 = new InlineKeyboardButton(
-            (notificationTime == 17 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_17"));
-        alert17.setCallbackData(Commands.ALERT_17.toString());
-
-        InlineKeyboardButton alert18 = new InlineKeyboardButton(
-            (notificationTime == 18 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_18"));
-        alert18.setCallbackData(Commands.ALERT_18.toString());
-        InlineKeyboardButton alertOff = new InlineKeyboardButton(
-            (notificationTime == 100 ? MARK_EMOJI : "") + userMessage.getUser().getLanguage()
-                .get("ALERT_OFF"));
-        alertOff.setCallbackData(Commands.ALERT_OFF.toString());
-
-        InlineKeyboardButton buttonBack = new InlineKeyboardButton(
-            userMessage.getUser().getLanguage().get("BACK"));
-        buttonBack.setCallbackData(Commands.MAIN_OPTIONS.toString());
-
-        row1.add(userTimeButton);
-
-        row2.add(alert9);
-        row2.add(alert10);
-        row2.add(alert11);
-
-        row3.add(alert12);
-        row3.add(alert13);
-        row3.add(alert14);
-
-        row4.add(alert15);
-        row4.add(alert16);
-        row4.add(alert17);
-
-        row5.add(alert18);
-        row5.add(alertOff);
-        row6.add(buttonBack);
-
-        rowList.add(row1);
-        rowList.add(row2);
-        rowList.add(row3);
-        rowList.add(row4);
-        rowList.add(row5);
-        rowList.add(row6);
         inlineKeyboardMarkup.setKeyboard(rowList);
-
         return inlineKeyboardMarkup;
+    }
+
+    private InlineKeyboardButton createButton(UserMessage userMessage, int hour,
+        String langButtonText, String callBack) {
+        int notificationTime = userMessage.getUser().getAlertTime();
+        String emoji = notificationTime == hour ? MARK_EMOJI : "";
+        String buttonText = emoji + userMessage.getUser().getLanguage().get(langButtonText);
+        return MenuUtils.createButton(buttonText, callBack);
+    }
+
+    private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        String buttonText = userMessage.getUser().getLanguage().get("OPTIONS_USERTIME");
+        rowList.add(MenuUtils.createMenuRow(buttonText, Commands.OPTIONS_USERTIME.toString()));
+    }
+
+    private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 9, "ALERT_9", Commands.ALERT_9.toString()));
+        row.add(createButton(userMessage, 10, "ALERT_10", Commands.ALERT_10.toString()));
+        row.add(createButton(userMessage, 11, "ALERT_11", Commands.ALERT_11.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 12, "ALERT_12", Commands.ALERT_12.toString()));
+        row.add(createButton(userMessage, 13, "ALERT_13", Commands.ALERT_13.toString()));
+        row.add(createButton(userMessage, 14, "ALERT_14", Commands.ALERT_14.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 15, "ALERT_15", Commands.ALERT_15.toString()));
+        row.add(createButton(userMessage, 16, "ALERT_16", Commands.ALERT_16.toString()));
+        row.add(createButton(userMessage, 17, "ALERT_17", Commands.ALERT_17.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow5(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        row.add(createButton(userMessage, 18, "ALERT_18", Commands.ALERT_18.toString()));
+        row.add(createButton(userMessage, 100, "ALERT_OFF", Commands.ALERT_OFF.toString()));
+        rowList.add(row);
+    }
+
+    private void addRow6(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        String buttonText = userMessage.getUser().getLanguage().get("BACK");
+        rowList.add(MenuUtils.createMenuRow(buttonText, Commands.MAIN_OPTIONS.toString()));
     }
 }
