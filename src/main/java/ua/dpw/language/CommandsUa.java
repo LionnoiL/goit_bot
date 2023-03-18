@@ -28,6 +28,7 @@ public enum CommandsUa {
     MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAN:\nКупівля\t%s\nПродаж\t%s"),
     MESSAGE_SERVICE_BANK_RATES_NOT_FOUND("На даний момент інформація про курси валют \"%s\" відсутня. Будь ласка, оберіть  в налаштуваннях інший банк."),
     MESSAGE_CURRENCY_NOT_SELECTED("Щоб отримати інформацію про курс валют, будь ласка, оберіть в налаштуваннях валюту, що вас цікавить."),
+    CRYPTOCURRENCY("Кріптовалюта"),
     NBU("НБУ"),
     PRIVATBANK("ПриватБанк"),
     MONOBANK("Монобанк"),

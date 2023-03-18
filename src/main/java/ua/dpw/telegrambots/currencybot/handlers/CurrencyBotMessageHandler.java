@@ -1,25 +1,21 @@
 package ua.dpw.telegrambots.currencybot.handlers;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ua.dpw.telegrambots.bot.services.TelegramService;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.GetInfoCommand;
+import ua.dpw.telegrambots.currencybot.commands.mainmenu.GetInfoCrypto;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.MainMenuCommand;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.OptionsMenuCommand;
-import ua.dpw.telegrambots.currencybot.commands.options.OptionsBankCommand;
-import ua.dpw.telegrambots.currencybot.commands.options.OptionsCurrencyCommand;
-import ua.dpw.telegrambots.currencybot.commands.options.OptionsLanguageCommand;
-import ua.dpw.telegrambots.currencybot.commands.options.OptionsNotificationCommand;
-import ua.dpw.telegrambots.currencybot.commands.options.OptionsNumberSimbolsCommand;
-import ua.dpw.telegrambots.currencybot.commands.options.OptionsUserTimeCommand;
+import ua.dpw.telegrambots.currencybot.commands.options.*;
 import ua.dpw.telegrambots.currencybot.sender.CurrencySender;
 import ua.dpw.users.User;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CurrencyBotMessageHandler {
+
+    private CurrencyBotMessageHandler() {
+    }
 
     public static void resolveMessage(Update update) {
         if (update.hasMessage() || update.hasCallbackQuery()) {
@@ -50,6 +46,9 @@ public class CurrencyBotMessageHandler {
             case NUMBERS_3:
             case NUMBERS_4:
                 new OptionsNumberSimbolsCommand().execute(userMessage);
+                break;
+            case CURRYNCY_CRYPTO:
+                new GetInfoCrypto().execute(userMessage);;
                 break;
             case OPTIONS_BANK:
             case BANK_PRIVATBANK:
