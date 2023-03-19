@@ -27,38 +27,39 @@ public class CurrencyMenu {
         return inlineKeyboardMarkup;
     }
 
-    private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+    private String getButtonText(Currency userCurrency, UserMessage userMessage, String languageText){
         List<Currency> currencies = userMessage.getUser().getCurrencies();
-        String emoji = currencies.contains(Currency.USD) ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("CURRENCY_USD");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
-            Commands.CURRENCY_USD.toString());
+        String emoji = currencies.contains(userCurrency) ? MARK_EMOJI : "";
+        return emoji + userMessage.getUser().getLanguage().get(languageText);
+    }
+
+    private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(Currency.USD, userMessage, "CURRENCY_USD"),
+            Commands.CURRENCY_USD.toString()
+        );
         rowList.add(menuRow);
     }
 
     private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        List<Currency> currencies = userMessage.getUser().getCurrencies();
-        String emoji = currencies.contains(Currency.EUR) ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("CURRENCY_EUR");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
-            Commands.CURRENCY_EUR.toString());
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(Currency.EUR, userMessage, "CURRENCY_EUR"),
+            Commands.CURRENCY_EUR.toString()
+        );
         rowList.add(menuRow);
     }
 
     private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        List<Currency> currencies = userMessage.getUser().getCurrencies();
-        String emoji = currencies.contains(Currency.BITCOIN) ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("BITCOIN");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
-            Commands.CURRENCY_BITCOIN.toString());
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(Currency.BITCOIN, userMessage, "BITCOIN"),
+            Commands.CURRENCY_BITCOIN.toString()
+        );
         rowList.add(menuRow);
     }
 
     private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        List<Currency> currencies = userMessage.getUser().getCurrencies();
-        String emoji = currencies.contains(Currency.ETHEREUM) ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("ETHEREUM");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(Currency.ETHEREUM, userMessage, "ETHEREUM"),
             Commands.CURRENCY_ETHEREUM.toString());
         rowList.add(menuRow);
     }
