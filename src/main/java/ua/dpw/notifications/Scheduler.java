@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import ua.dpw.currency.services.CurrencyRateCollector;
 import ua.dpw.telegrambots.bot.services.TelegramService;
@@ -18,11 +20,8 @@ import ua.dpw.telegrambots.currencybot.sender.CurrencySender;
 import ua.dpw.users.User;
 import ua.dpw.users.UserService;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Scheduler {
-
-    private Scheduler() {
-        throw new IllegalStateException("Scheduler is utility class");
-    }
 
     public static void setTimeReceived() {
         CurrencyRateCollector currencyRateCollector = new CurrencyRateCollector();

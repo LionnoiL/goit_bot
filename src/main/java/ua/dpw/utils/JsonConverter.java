@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JsonConverter {
+    private static final Gson GSON = new Gson();
 
     public static <T> List<T> convertJsonStringToList(String response,
         Class<T> typeListElementClass) {
         Type type = TypeToken.getParameterized(List.class, typeListElementClass).getType();
-        Gson gson = new Gson();
-        return gson.fromJson(response, type);
+        return GSON.fromJson(response, type);
     }
 }

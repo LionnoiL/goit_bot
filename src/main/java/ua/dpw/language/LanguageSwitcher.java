@@ -2,12 +2,11 @@ package ua.dpw.language;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LanguageSwitcher {
-
-    private LanguageSwitcher() {
-        throw new IllegalStateException("LanguageSwitcher is utility class");
-    }
 
     public static Map<String, String> setLanguageMap(String langCode) {
         switch (langCode.toLowerCase()) {
