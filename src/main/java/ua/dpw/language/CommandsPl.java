@@ -71,7 +71,9 @@ public enum CommandsPl {
   OPTIONS_LANGUAGE("Język"),
   UA_BUTTON("Українська"),
   EN_BUTTON("English"),
-  PL_BUTTON("Polski");
+  PL_BUTTON("Polski"),
+  BITCOIN("Bitcoin"),
+  ETHEREUM("Ethereum");
 
   private final String text;
 

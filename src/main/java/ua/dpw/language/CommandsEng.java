@@ -71,7 +71,9 @@ public enum CommandsEng {
   TIME_20("20"),
   TIME_21("21"),
   TIME_22("22"),
-  TIME_23("23");
+  TIME_23("23"),
+  BITCOIN("Bitcoin"),
+  ETHEREUM("Ethereum");
 
   private final String text;
 

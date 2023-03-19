@@ -17,7 +17,6 @@ public class MainMenu implements TelegramMenu {
 
         addRow1(rowList, userMessage);
         addRow2(rowList, userMessage);
-        addRow3(rowList, userMessage);
 
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
@@ -30,14 +29,7 @@ public class MainMenu implements TelegramMenu {
         rowList.add(menuRow);
     }
 
-    private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        String buttonText = userMessage.getUser().getLanguage().get("CRYPTOCURRENCY");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
-            Commands.CURRYNCY_CRYPTO.toString());
-        rowList.add(menuRow);
-    }
-
-    private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage){
+    private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage){
         String buttonText = userMessage.getUser().getLanguage().get("MAIN_OPTIONS");
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
             Commands.MAIN_OPTIONS.toString());

@@ -26,29 +26,30 @@ public class ChoiceNumberSymbolMenu implements TelegramMenu {
         return inlineKeyboardMarkup;
     }
 
+    private String getButtonText(int symbolsAfterComma, UserMessage userMessage,
+        String languageText) {
+        int userSymbolsAfterComma = userMessage.getUser().getSymbolsAfterComma();
+        String emoji = userSymbolsAfterComma == symbolsAfterComma ? MARK_EMOJI : "";
+        return emoji + userMessage.getUser().getLanguage().get(languageText);
+    }
+
     private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        int symbolsAfterComma = userMessage.getUser().getSymbolsAfterComma();
-        String emoji = symbolsAfterComma == 2 ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("NUMBERS_2");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(2, userMessage, "NUMBERS_2"),
             Commands.NUMBERS_2.toString());
         rowList.add(menuRow);
     }
 
     private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        int symbolsAfterComma = userMessage.getUser().getSymbolsAfterComma();
-        String emoji = symbolsAfterComma == 3 ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("NUMBERS_3");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(3, userMessage, "NUMBERS_3"),
             Commands.NUMBERS_3.toString());
         rowList.add(menuRow);
     }
 
     private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        int symbolsAfterComma = userMessage.getUser().getSymbolsAfterComma();
-        String emoji = symbolsAfterComma == 4 ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("NUMBERS_4");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(4, userMessage, "NUMBERS_4"),
             Commands.NUMBERS_4.toString());
         rowList.add(menuRow);
     }
