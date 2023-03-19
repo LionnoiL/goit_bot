@@ -71,7 +71,9 @@ public enum CommandsUa {
     OPTIONS_LANGUAGE("Мова"),
     UA_BUTTON("Українська"),
     EN_BUTTON("English"),
-    PL_BUTTON("Polski");
+    PL_BUTTON("Polski"),
+    BITCOIN("Bitcoin"),
+    ETHEREUM("Ethereum");
     private final String text;
 
     CommandsUa(String text) {

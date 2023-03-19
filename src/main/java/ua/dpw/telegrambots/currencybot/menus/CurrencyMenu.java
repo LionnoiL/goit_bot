@@ -20,6 +20,8 @@ public class CurrencyMenu {
         addRow1(rowList, userMessage);
         addRow2(rowList, userMessage);
         addRow3(rowList, userMessage);
+        addRow4(rowList, userMessage);
+        addRow5(rowList, userMessage);
 
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
@@ -44,6 +46,24 @@ public class CurrencyMenu {
     }
 
     private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<Currency> currencies = userMessage.getUser().getCurrencies();
+        String emoji = currencies.contains(Currency.BITCOIN) ? MARK_EMOJI : "";
+        String buttonText = emoji + userMessage.getUser().getLanguage().get("BITCOIN");
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+            Commands.CURRENCY_BITCOIN.toString());
+        rowList.add(menuRow);
+    }
+
+    private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
+        List<Currency> currencies = userMessage.getUser().getCurrencies();
+        String emoji = currencies.contains(Currency.ETHEREUM) ? MARK_EMOJI : "";
+        String buttonText = emoji + userMessage.getUser().getLanguage().get("ETHEREUM");
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+            Commands.CURRENCY_ETHEREUM.toString());
+        rowList.add(menuRow);
+    }
+
+    private void addRow5(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         String buttonText = userMessage.getUser().getLanguage().get("BACK");
         rowList.add(MenuUtils.createMenuRow(buttonText, Commands.MAIN_OPTIONS.toString()));
     }

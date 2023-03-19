@@ -5,7 +5,6 @@ import ua.dpw.telegrambots.bot.services.TelegramService;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.GetInfoCommand;
-import ua.dpw.telegrambots.currencybot.commands.mainmenu.GetInfoCrypto;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.MainMenuCommand;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.OptionsMenuCommand;
 import ua.dpw.telegrambots.currencybot.commands.options.*;
@@ -47,9 +46,6 @@ public class CurrencyBotMessageHandler {
             case NUMBERS_4:
                 new OptionsNumberSimbolsCommand().execute(userMessage);
                 break;
-            case CURRYNCY_CRYPTO:
-                new GetInfoCrypto().execute(userMessage);;
-                break;
             case OPTIONS_BANK:
             case BANK_PRIVATBANK:
             case BANK_MONOBANK:
@@ -60,6 +56,8 @@ public class CurrencyBotMessageHandler {
             case OPTIONS_CURRENCY:
             case CURRENCY_EUR:
             case CURRENCY_USD:
+            case CURRENCY_BITCOIN:
+            case CURRENCY_ETHEREUM:
                 new OptionsCurrencyCommand().execute(userMessage);
                 break;
             case OPTIONS_NOTIFICATIONS:

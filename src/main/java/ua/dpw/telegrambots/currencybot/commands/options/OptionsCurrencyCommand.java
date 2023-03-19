@@ -38,6 +38,12 @@ public class OptionsCurrencyCommand extends BotCommand {
             case CURRENCY_USD:
                 userService.updateUser(userMessage.getUser(), Currency.USD);
                 break;
+            case CURRENCY_BITCOIN:
+                userService.updateUser(userMessage.getUser(), Currency.BITCOIN);
+                break;
+            case CURRENCY_ETHEREUM:
+                userService.updateUser(userMessage.getUser(), Currency.ETHEREUM);
+                break;
             default:
         }
     }

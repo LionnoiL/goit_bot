@@ -8,7 +8,9 @@ import lombok.Getter;
 public enum Currency {
     UAN(980, "Гривня", "Hryvnia", "₴"),
     USD(840, "Долар", "Dollar", "$"),
-    EUR(978, "Євро", "Euro", "€");
+    EUR(978, "Євро", "Euro", "€"),
+    BITCOIN(0, "", "", ""),
+    ETHEREUM(0, "", "", "");
 
     private int id;
     private String nameUKR;
