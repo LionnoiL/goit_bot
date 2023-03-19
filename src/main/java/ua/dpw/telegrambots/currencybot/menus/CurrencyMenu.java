@@ -27,9 +27,9 @@ public class CurrencyMenu {
         return inlineKeyboardMarkup;
     }
 
-    private String getButtonText(Currency userCurrency, UserMessage userMessage, String languageText){
-        List<Currency> currencies = userMessage.getUser().getCurrencies();
-        String emoji = currencies.contains(userCurrency) ? MARK_EMOJI : "";
+    private String getButtonText(Currency currency, UserMessage userMessage, String languageText){
+        List<Currency> userCurrencies = userMessage.getUser().getCurrencies();
+        String emoji = userCurrencies.contains(currency) ? MARK_EMOJI : "";
         return emoji + userMessage.getUser().getLanguage().get(languageText);
     }
 

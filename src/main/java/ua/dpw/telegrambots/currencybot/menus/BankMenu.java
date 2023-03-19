@@ -28,38 +28,39 @@ public class BankMenu implements TelegramMenu {
         return inlineKeyboardMarkup;
     }
 
+    private String getButtonText(Bank bank, UserMessage userMessage, String languageText) {
+        Bank userBank = userMessage.getUser().getBank();
+        String emoji = bank.equals(userBank) ? MARK_EMOJI : "";
+        return emoji + userMessage.getUser().getLanguage().get(languageText);
+    }
+
     private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        Bank bank = userMessage.getUser().getBank();
-        String emoji = Bank.PRIVATBANK.equals(bank) ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("PRIVATBANK");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
-            Commands.BANK_PRIVATBANK.toString());
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(Bank.PRIVATBANK, userMessage, "PRIVATBANK"),
+            Commands.BANK_PRIVATBANK.toString()
+        );
         rowList.add(menuRow);
     }
 
     private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        Bank bank = userMessage.getUser().getBank();
-        String emoji = Bank.MONOBANK.equals(bank) ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("MONOBANK");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
-            Commands.BANK_MONOBANK.toString());
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(Bank.MONOBANK, userMessage, "MONOBANK"),
+            Commands.BANK_MONOBANK.toString()
+        );
         rowList.add(menuRow);
     }
 
     private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        Bank bank = userMessage.getUser().getBank();
-        String emoji = Bank.OSCHADBANK.equals(bank) ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("OSCHADBANK");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
-            Commands.BANK_OSCHADBANK.toString());
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(Bank.OSCHADBANK, userMessage, "OSCHADBANK"),
+            Commands.BANK_OSCHADBANK.toString()
+        );
         rowList.add(menuRow);
     }
 
     private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        Bank bank = userMessage.getUser().getBank();
-        String emoji = Bank.NBU.equals(bank) ? MARK_EMOJI : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get("NBU");
-        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
+        List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
+            getButtonText(Bank.NBU, userMessage, "NBU"),
             Commands.BANK_NBU.toString());
         rowList.add(menuRow);
     }
