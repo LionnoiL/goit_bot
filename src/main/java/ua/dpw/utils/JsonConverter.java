@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JsonConverter {
-    private static final Gson GSON = new Gson();
+    public static final Gson GSON = new Gson();
 
     public static <T> List<T> convertJsonStringToList(String response,
         Class<T> typeListElementClass) {

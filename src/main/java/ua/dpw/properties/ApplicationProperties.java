@@ -1,5 +1,7 @@
 package ua.dpw.properties;
 
+import static ua.dpw.utils.JsonConverter.GSON;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.File;
@@ -40,7 +42,7 @@ public class ApplicationProperties {
 
     public static void saveUsersListToFile() {
         FilesUtils.saveTextFile(JSON_USERS_FILE_NAME,
-            new Gson().toJson(AppLauncher.APPLICATION_PROPERTIES.getUsers()));
+            GSON.toJson(AppLauncher.APPLICATION_PROPERTIES.getUsers()));
     }
 
     private void loadFromFile() {

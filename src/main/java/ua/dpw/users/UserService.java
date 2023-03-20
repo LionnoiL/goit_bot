@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import ua.dpw.AppLauncher;
 import ua.dpw.currency.bank.Bank;
 import ua.dpw.currency.currencies.Currency;
+import ua.dpw.language.LanguageSwitcher;
 import ua.dpw.notifications.Scheduler;
 import ua.dpw.properties.ApplicationProperties;
 
@@ -37,7 +38,9 @@ public class UserService {
     }
 
     public User getUserById(long userId) {
-        return AppLauncher.APPLICATION_PROPERTIES.getUsers().get(userId);
+        User user = AppLauncher.APPLICATION_PROPERTIES.getUsers().get(userId);
+        user.setLanguage(LanguageSwitcher.setLanguageMap(user.getLangCode()));
+        return user;
     }
 
     public void updateUser(User user, Bank bank) {
