@@ -25,7 +25,7 @@ public enum CommandsEng {
   CURRENCY_USD("USD"),
   CURRENCY_EUR("EUR"),
   MESSAGE_SERVICE_HEADER("Currency from %s:"),
-  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAN:\nBuy\t%s\nSell\t%s"),
+  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAH:\nBuy\t%s\nSell\t%s"),
   MESSAGE_SERVICE_BANK_RATES_NOT_FOUND("At the moment, there is no information about the exchange rates of \"%s\". Please select another bank in the settings."),
   MESSAGE_CURRENCY_NOT_SELECTED("To get information about the exchange rate, please select the currency you are interested in in the settings."),
   CRYPTOCURRENCY("Cryptocurrency"),

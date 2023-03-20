@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Currency {
-    UAN(980, "Гривня", "Hryvnia", "₴"),
+    UAH(980, "Гривня", "Hryvnia", "₴"),
     USD(840, "Долар", "Dollar", "$"),
     EUR(978, "Євро", "Euro", "€"),
     BITCOIN(0, "", "", ""),

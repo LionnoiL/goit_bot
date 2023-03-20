@@ -25,7 +25,7 @@ public enum CommandsPl {
   CURRENCY_USD("USD"),
   CURRENCY_EUR("EUR"),
   MESSAGE_SERVICE_HEADER("Waluta od %s:"),
-  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAN:\nKupić\t%s\nSprzedać\t%s"),
+  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAH:\nKupić\t%s\nSprzedać\t%s"),
   MESSAGE_SERVICE_BANK_RATES_NOT_FOUND("Informacje o kursach walut dla banku \"%s\" nieobecny! Proszę wybrać inny bank w ustawieniach."),
   MESSAGE_CURRENCY_NOT_SELECTED("Aby uzyskać informacje o kursie walut, wybierz w ustawieniach interesującą Cię walutę."),
   CRYPTOCURRENCY("Kryptowaluty"),
