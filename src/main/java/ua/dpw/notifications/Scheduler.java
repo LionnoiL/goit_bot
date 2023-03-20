@@ -53,7 +53,7 @@ public class Scheduler {
         return LocalDateTime.now().getHour();
     }
 
-    private static void sendUsersNotifications(int currentHour) {
+    public static void sendUsersNotifications(int currentHour) {
         Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
         TelegramService telegramService = new TelegramService(new CurrencySender());
         UserService userService = new UserService();
@@ -62,10 +62,10 @@ public class Scheduler {
                 .map(Map.Entry::getValue)
                 .filter(el -> el.getAlertTime() == currentHour + el.getDeltaHours())
                 .forEach(el -> {
-                    telegramService.sendMessage(el.getUserId(),
-                            MessageService.getInformationMessageByUser(el));
-
                     User user = userService.getUserById(el.getUserId());
+                    telegramService.sendMessage(user.getUserId(),
+                            MessageService.getInformationMessageByUser(user));
+
                     UserMessage userMessage = new UserMessage();
                     userMessage.setUser(user);
                     InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);

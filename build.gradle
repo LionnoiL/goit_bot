@@ -48,6 +48,7 @@ jar {
     manifest {
         attributes 'Main-Class': 'ua.dpw.AppLauncher'
     }
+    archiveName("currencybot.jar")
     from configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
