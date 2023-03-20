@@ -39,7 +39,9 @@ public class UserService {
 
     public User getUserById(long userId) {
         User user = AppLauncher.APPLICATION_PROPERTIES.getUsers().get(userId);
-        user.setLanguage(LanguageSwitcher.setLanguageMap(user.getLangCode()));
+        if  (user!=null){
+            user.setLanguage(LanguageSwitcher.setLanguageMap(user.getLangCode()));
+        }
         return user;
     }
 
