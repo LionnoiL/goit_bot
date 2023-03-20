@@ -36,7 +36,7 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
             return currencyRateResponses.stream()
                 .filter(item -> (codeCurr.containsKey(item.getCurrencyCodeA())
                     || codeCurr.containsKey(item.getCurrencyCodeB()))
-                    && item.getCurrencyCodeB().equals(Currency.UAN.getId()))
+                    && item.getCurrencyCodeB().equals(Currency.UAH.getId()))
                 .map(item -> new CurrencyRate(
                     Bank.MONOBANK,
                     Calendar.getInstance(),
