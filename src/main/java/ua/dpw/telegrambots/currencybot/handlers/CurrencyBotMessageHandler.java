@@ -5,6 +5,7 @@ import ua.dpw.telegrambots.bot.services.TelegramService;
 import ua.dpw.telegrambots.bot.services.UserMessage;
 import ua.dpw.telegrambots.currencybot.commands.Commands;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.GetInfoCommand;
+import ua.dpw.telegrambots.currencybot.commands.mainmenu.HelpInfoCommand;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.MainMenuCommand;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.OptionsMenuCommand;
 import ua.dpw.telegrambots.currencybot.commands.options.*;
@@ -37,8 +38,14 @@ public class CurrencyBotMessageHandler {
 
     private static void processCallback(UserMessage userMessage) {
         switch (Commands.valueOf(userMessage.getCallBack())) {
+            case MAIN_GET_INFO:
+                new GetInfoCommand().execute(userMessage);
+                break;
             case MAIN_OPTIONS:
                 new OptionsMenuCommand().execute(userMessage);
+                break;
+            case HELP:
+                new HelpInfoCommand().execute(userMessage);
                 break;
             case OPTIONS_NUMBER_SYMBOL_AFTER_COMMA:
             case NUMBERS_2:
@@ -108,7 +115,7 @@ public class CurrencyBotMessageHandler {
                 new OptionsUserTimeCommand().execute(userMessage);
                 break;
             default:
-                new GetInfoCommand().execute(userMessage);
+                new MainMenuCommand().execute(userMessage);
                 break;
         }
     }

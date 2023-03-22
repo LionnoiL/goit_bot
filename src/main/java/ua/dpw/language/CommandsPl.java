@@ -12,7 +12,7 @@ public enum CommandsPl {
   HEADSIGN_USERTIME("Wprowadź teraz swoje godziny ⤵"),
   BACK("⬅ Wróć"),
   MAIN_MENU("Menu główne"),
-  MAIN_GET_INFO("Waluta"),
+  MAIN_GET_INFO("Kurs wymiany"),
   MAIN_OPTIONS("Opcje"),
   OPTIONS_NUMBER_SYMBOL_AFTER_COMMA("Symbole po przecinku"),
   OPTIONS_BANK("Bank"),
@@ -25,7 +25,7 @@ public enum CommandsPl {
   CURRENCY_USD("USD"),
   CURRENCY_EUR("EUR"),
   MESSAGE_SERVICE_HEADER("Waluta od %s:"),
-  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAH:\nKupić\t%s\nSprzedać\t%s"),
+  MESSAGE_SERVICE_BODY_ROW("\n%s/UAH:\nKupić\t%s\nSprzedać\t%s"),
   MESSAGE_SERVICE_BANK_RATES_NOT_FOUND("Informacje o kursach walut dla banku \"%s\" nieobecny! Proszę wybrać inny bank w ustawieniach."),
   MESSAGE_CURRENCY_NOT_SELECTED("Aby uzyskać informacje o kursie walut, wybierz w ustawieniach interesującą Cię walutę."),
   CRYPTOCURRENCY("Kryptowaluty"),
@@ -73,7 +73,14 @@ public enum CommandsPl {
   EN_BUTTON("English"),
   PL_BUTTON("Polski"),
   BITCOIN("Bitcoin"),
-  ETHEREUM("Ethereum");
+  ETHEREUM("Ethereum"),
+  HOME("Dom"),
+  HELP("Pomoc"),
+  HELP_MESSAGE(
+      "Ten bot pomoże Ci śledzić aktualne kursy walut z różnych banków. "
+          + "Bot może przekazywać informacje zarówno na żądanie, jak i automatycznie według określonego harmonogramu.\n\n"
+          + "Aby uzyskać kurs wybranego banku, kliknij przycisk „Kurs wymiany” w menu głównym\n\n"
+          + "Aby skonfigurować wygodny tryb pracy bota, skorzystaj z sekcji menu „Ustawienia”.");
 
   private final String text;
 

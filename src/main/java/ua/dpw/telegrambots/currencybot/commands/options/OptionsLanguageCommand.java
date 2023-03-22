@@ -21,7 +21,7 @@ public class OptionsLanguageCommand extends BotCommand {
         updateUserLanguage(userMessage);
 
         InlineKeyboardMarkup menu = new LanguageMenu().createMenu(userMessage);
-        getTelegramService().sendMessage(userMessage.getChatId(),
+        getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
             userMessage.getUser().getLanguage().get("OPTIONS_LANGUAGE"),
             menu);
     }

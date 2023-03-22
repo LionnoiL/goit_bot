@@ -59,5 +59,6 @@ public enum Commands {
   TIME_22,
   TIME_23,
   CURRENCY_BITCOIN,
-  CURRENCY_ETHEREUM
+  CURRENCY_ETHEREUM,
+  HELP
 }

@@ -21,7 +21,7 @@ public class OptionsCurrencyCommand extends BotCommand {
         updateUserCurrency(userMessage);
 
         InlineKeyboardMarkup menu = new CurrencyMenu().createMenu(userMessage);
-        getTelegramService().sendMessage(userMessage.getChatId(),
+        getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
             userMessage.getUser().getLanguage().get("HEADSIGN_CURRENCYMENU"),
             menu);
     }

@@ -14,6 +14,7 @@ import ua.dpw.users.UserService;
 public class UserMessage {
 
     private Long chatId;
+    private int messageId;
     private String userFirstName;
     private String textFromUser;
     private String callBack;
@@ -43,6 +44,7 @@ public class UserMessage {
         }
         if (update.hasCallbackQuery()) {
             userMessage.setCallBack(update.getCallbackQuery().getData());
+            userMessage.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
         }
 
         Long userId = message.getChatId();

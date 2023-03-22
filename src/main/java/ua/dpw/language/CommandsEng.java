@@ -25,7 +25,7 @@ public enum CommandsEng {
   CURRENCY_USD("USD"),
   CURRENCY_EUR("EUR"),
   MESSAGE_SERVICE_HEADER("Currency from %s:"),
-  MESSAGE_SERVICE_BODY_ROW("\n\n%s/UAH:\nBuy\t%s\nSell\t%s"),
+  MESSAGE_SERVICE_BODY_ROW("\n%s/UAH:\nBuy\t%s\nSell\t%s"),
   MESSAGE_SERVICE_BANK_RATES_NOT_FOUND("At the moment, there is no information about the exchange rates of \"%s\". Please select another bank in the settings."),
   MESSAGE_CURRENCY_NOT_SELECTED("To get information about the exchange rate, please select the currency you are interested in in the settings."),
   CRYPTOCURRENCY("Cryptocurrency"),
@@ -73,7 +73,14 @@ public enum CommandsEng {
   TIME_22("22"),
   TIME_23("23"),
   BITCOIN("Bitcoin"),
-  ETHEREUM("Ethereum");
+  ETHEREUM("Ethereum"),
+  HOME("Home"),
+  HELP("Help"),
+  HELP_MESSAGE(
+        "This bot will help you track current exchange rates from different banks. "
+            + "The bot can provide information both on request and automatically according to the specified schedule.\n\n"
+            + "To get the exchange rate of the selected bank, click the \"Currency rates\" button in the main menu\n\n"
+            + "To configure the bot's convenient operating mode, use the \"Settings\" menu section.");
 
   private final String text;
 

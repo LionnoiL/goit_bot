@@ -1,6 +1,8 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
 import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
+import static ua.dpw.telegrambots.bot.services.Emoji.HOUSE;
+import static ua.dpw.telegrambots.bot.services.Emoji.WHITE_HEAVY_CHECK_MARK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,7 @@ public class LanguageMenu implements TelegramMenu {
 
     private String getButtonText(String langCode, UserMessage userMessage, String languageText) {
         String userLangCode = userMessage.getUser().getLangCode();
-        String emoji = langCode.equals(userLangCode) ? MARK_EMOJI : "";
+        String emoji = langCode.equals(userLangCode) ?  WHITE_HEAVY_CHECK_MARK.toString() : "";
         return emoji + userMessage.getUser().getLanguage().get(languageText);
     }
 
@@ -55,7 +57,11 @@ public class LanguageMenu implements TelegramMenu {
     }
 
     private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        String buttonText = userMessage.getUser().getLanguage().get("BACK");
-        rowList.add(MenuUtils.createMenuRow(buttonText, Commands.MAIN_OPTIONS.toString()));
+        rowList.add(MenuUtils.createMenuRow(
+            userMessage.getUser().getLanguage().get("BACK"),
+            Commands.MAIN_OPTIONS.toString(),
+            HOUSE.toString() + userMessage.getUser().getLanguage().get("HOME"),
+            Commands.MAIN_MENU.toString()
+        ));
     }
 }

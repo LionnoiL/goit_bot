@@ -21,7 +21,7 @@ public class OptionsNotificationCommand extends BotCommand {
         updateUserNotificationsTime(userMessage);
 
         InlineKeyboardMarkup notificationMenu = new NotificationMenu().createMenu(userMessage);
-        getTelegramService().sendMessage(userMessage.getChatId(),
+        getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
             userMessage.getUser().getLanguage().get("HEADSIGN_NOTIFICATIONTIME"),
             notificationMenu);
     }

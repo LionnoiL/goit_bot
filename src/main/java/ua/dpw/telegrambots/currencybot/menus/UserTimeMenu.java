@@ -1,6 +1,7 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
-import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
+import static ua.dpw.telegrambots.bot.services.Emoji.HOUSE;
+import static ua.dpw.telegrambots.bot.services.Emoji.WHITE_HEAVY_CHECK_MARK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class UserTimeMenu {
     private InlineKeyboardButton createButton(UserMessage userMessage, int hour,
         String langButtonText, String callBack) {
         int userTime = Scheduler.getCurrentHour() + userMessage.getUser().getDeltaHours();
-        String emoji = hour == userTime ? MARK_EMOJI : "";
+        String emoji = hour == userTime ? WHITE_HEAVY_CHECK_MARK.toString() : "";
         String buttonText = emoji + userMessage.getUser().getLanguage().get(langButtonText);
         return MenuUtils.createButton(buttonText, callBack);
     }
@@ -86,7 +87,11 @@ public class UserTimeMenu {
     }
 
     private void addRow6(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        String buttonText = userMessage.getUser().getLanguage().get("BACK");
-        rowList.add(MenuUtils.createMenuRow(buttonText, Commands.OPTIONS_NOTIFICATIONS.toString()));
+        rowList.add(MenuUtils.createMenuRow(
+            userMessage.getUser().getLanguage().get("BACK"),
+            Commands.OPTIONS_NOTIFICATIONS.toString(),
+            HOUSE.toString() + userMessage.getUser().getLanguage().get("HOME"),
+            Commands.MAIN_MENU.toString()
+        ));
     }
 }

@@ -21,7 +21,7 @@ public class OptionsUserTimeCommand extends BotCommand {
         updateUserDeltaTime(userMessage);
 
         InlineKeyboardMarkup notificationMenu = new UserTimeMenu().createMenu(userMessage);
-        getTelegramService().sendMessage(userMessage.getChatId(),
+        getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
             userMessage.getUser().getLanguage().get("HEADSIGN_USERTIME"),
             notificationMenu);
     }
