@@ -6,8 +6,6 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.List;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import ua.dpw.currency.currencies.Currency;
 import ua.dpw.users.User;
 

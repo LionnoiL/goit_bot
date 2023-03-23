@@ -1,6 +1,5 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
-import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
 import static ua.dpw.telegrambots.bot.services.Emoji.HOUSE;
 import static ua.dpw.telegrambots.bot.services.Emoji.WHITE_HEAVY_CHECK_MARK;
 

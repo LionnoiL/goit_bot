@@ -27,7 +27,6 @@ public class ApplicationProperties {
     public static final String APPLICATION_PROPERTIES_FILE_NAME =
         CONFIG_PATH + "application.properties";
     public static final String JSON_USERS_FILE_NAME = BASE_PATH + "users.json";
-    public static final String MARK_EMOJI = "✔";
     private static final Logger LOG = LogManager.getLogger(ApplicationProperties.class);
     private int decimalPrecision;
     private Bank bank;

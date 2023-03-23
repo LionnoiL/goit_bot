@@ -1,6 +1,5 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
-import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
 import static ua.dpw.telegrambots.bot.services.Emoji.HOUSE;
 import static ua.dpw.telegrambots.bot.services.Emoji.WHITE_HEAVY_CHECK_MARK;
 
@@ -31,7 +30,8 @@ public class ChoiceNumberSymbolMenu implements TelegramMenu {
     private String getButtonText(int symbolsAfterComma, UserMessage userMessage,
         String languageText) {
         int userSymbolsAfterComma = userMessage.getUser().getSymbolsAfterComma();
-        String emoji = userSymbolsAfterComma == symbolsAfterComma ?  WHITE_HEAVY_CHECK_MARK.toString() : "";
+        String emoji =
+            userSymbolsAfterComma == symbolsAfterComma ? WHITE_HEAVY_CHECK_MARK.toString() : "";
         return emoji + userMessage.getUser().getLanguage().get(languageText);
     }
 

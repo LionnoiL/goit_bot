@@ -1,6 +1,5 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
-import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
 import static ua.dpw.telegrambots.bot.services.Emoji.HOUSE;
 import static ua.dpw.telegrambots.bot.services.Emoji.WHITE_HEAVY_CHECK_MARK;
 
@@ -8,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import ua.dpw.currency.bank.Bank;
 import ua.dpw.telegrambots.bot.menus.MenuUtils;
 import ua.dpw.telegrambots.bot.menus.TelegramMenu;
 import ua.dpw.telegrambots.bot.services.UserMessage;
@@ -31,7 +29,7 @@ public class LanguageMenu implements TelegramMenu {
 
     private String getButtonText(String langCode, UserMessage userMessage, String languageText) {
         String userLangCode = userMessage.getUser().getLangCode();
-        String emoji = langCode.equals(userLangCode) ?  WHITE_HEAVY_CHECK_MARK.toString() : "";
+        String emoji = langCode.equals(userLangCode) ? WHITE_HEAVY_CHECK_MARK.toString() : "";
         return emoji + userMessage.getUser().getLanguage().get(languageText);
     }
 
