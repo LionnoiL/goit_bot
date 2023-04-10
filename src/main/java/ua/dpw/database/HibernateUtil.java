@@ -1,5 +1,6 @@
 package ua.dpw.database;
 
+import java.io.File;
 import lombok.Getter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,14 +23,10 @@ public final class HibernateUtil {
     private SessionFactory sessionFactory;
 
     private HibernateUtil() {
-        sessionFactory = new Configuration()
-            .addAnnotatedClass(User.class)
-            .addAnnotatedClass(Bank.class)
-            .addAnnotatedClass(Currency.class)
-            .addAnnotatedClass(CurrencyRate.class)
-            .addAnnotatedClass(CurrencyRateChanges.class)
+        File f = new File("config/hibernate.cfg.xml");
+        sessionFactory = new Configuration().configure(f)
             .buildSessionFactory();
-        Migrate.migrate((String) sessionFactory.getProperties().get("hibernate.connection.url"));
+        Migrate.migrate("jdbc:h2:./db/currency_bot");
     }
 
     public static HibernateUtil getInstance() {
