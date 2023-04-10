@@ -14,26 +14,26 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 public class MainMenu implements TelegramMenu {
 
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         addRow1(rowList, userMessage);
         addRow2(rowList, userMessage);
         addRow3(rowList, userMessage);
 
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
     }
 
     private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        String buttonText = userMessage.getUser().getLanguage().get("MAIN_GET_INFO");
+        String buttonText = userMessage.getUser().getTranslate("MAIN_GET_INFO");
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
             Commands.MAIN_GET_INFO.toString());
         rowList.add(menuRow);
     }
 
     private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        String buttonText = userMessage.getUser().getLanguage().get("MAIN_OPTIONS");
+        String buttonText = userMessage.getUser().getTranslate("MAIN_OPTIONS");
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
             Commands.MAIN_OPTIONS.toString());
         rowList.add(menuRow);
@@ -41,7 +41,7 @@ public class MainMenu implements TelegramMenu {
 
     private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         String buttonText =
-            INFORMATION_SOURCE.toString() + userMessage.getUser().getLanguage().get("HELP");
+            INFORMATION_SOURCE.toString() + userMessage.getUser().getTranslate("HELP");
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(buttonText,
             Commands.HELP.toString());
         rowList.add(menuRow);

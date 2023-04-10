@@ -22,7 +22,7 @@ public class OptionsNotificationCommand extends BotCommand {
 
         InlineKeyboardMarkup notificationMenu = new NotificationMenu().createMenu(userMessage);
         getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
-            userMessage.getUser().getLanguage().get("HEADSIGN_NOTIFICATIONTIME"),
+            userMessage.getUser().getTranslate("HEADSIGN_NOTIFICATIONTIME"),
             notificationMenu);
     }
 
@@ -63,6 +63,9 @@ public class OptionsNotificationCommand extends BotCommand {
                 break;
             case ALERT_18:
                 userService.updateUserAlertTime(user, 18);
+                break;
+            case ALERT_AFTER_CHANGE:
+                userService.updateUserAlertTime(user, 200);
                 break;
             case ALERT_OFF:
                 userService.updateUserAlertTime(user, 100);

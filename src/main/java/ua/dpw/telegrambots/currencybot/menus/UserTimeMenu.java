@@ -15,7 +15,6 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 public class UserTimeMenu {
 
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         addRow1(rowList, userMessage);
@@ -25,6 +24,7 @@ public class UserTimeMenu {
         addRow5(rowList, userMessage);
         addRow6(rowList, userMessage);
 
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
     }
@@ -33,7 +33,7 @@ public class UserTimeMenu {
         String langButtonText, String callBack) {
         int userTime = Scheduler.getCurrentHour() + userMessage.getUser().getDeltaHours();
         String emoji = hour == userTime ? WHITE_HEAVY_CHECK_MARK.toString() : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get(langButtonText);
+        String buttonText = emoji + userMessage.getUser().getTranslate(langButtonText);
         return MenuUtils.createButton(buttonText, callBack);
     }
 
@@ -88,9 +88,9 @@ public class UserTimeMenu {
 
     private void addRow6(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         rowList.add(MenuUtils.createMenuRow(
-            userMessage.getUser().getLanguage().get("BACK"),
+            userMessage.getUser().getTranslate("BACK"),
             Commands.OPTIONS_NOTIFICATIONS.toString(),
-            HOUSE.toString() + userMessage.getUser().getLanguage().get("HOME"),
+            HOUSE.toString() + userMessage.getUser().getTranslate("HOME"),
             Commands.MAIN_MENU.toString()
         ));
     }

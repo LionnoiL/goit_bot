@@ -1,5 +1,6 @@
 package ua.dpw.currency.services;
 
+import static ua.dpw.database.Service.CURRENCY_SERVICE;
 import static ua.dpw.utils.JsonConverter.GSON;
 
 import com.google.gson.JsonObject;
@@ -18,15 +19,20 @@ public class CurrencyRateCryptoService {
         List<Currency> userCurrencies = user.getCurrencies();
         StringBuilder result = new StringBuilder();
         try {
-            if (userCurrencies.contains(Currency.BITCOIN)) {
-                String response = Jsoup.connect(URL_BTC).ignoreContentType(true).get().body().text();
+            if (userCurrencies.contains(CURRENCY_SERVICE.getByName("BITCOIN"))) {
+                String response = Jsoup.connect(URL_BTC).ignoreContentType(true).get().body()
+                    .text();
                 JsonObject obj = GSON.fromJson(response, JsonObject.class);
-                result.append("Bitcoin       " + obj.get("data").getAsJsonObject().get("last").toString() + " USD\n");
+                result.append(
+                    "Bitcoin       " + obj.get("data").getAsJsonObject().get("last").toString()
+                        + " USD\n");
             }
-            if (userCurrencies.contains(Currency.ETHEREUM)) {
-                String response = Jsoup.connect(URL_ETH).ignoreContentType(true).get().body().text();
+            if (userCurrencies.contains(CURRENCY_SERVICE.getByName("ETHEREUM"))) {
+                String response = Jsoup.connect(URL_ETH).ignoreContentType(true).get().body()
+                    .text();
                 JsonObject obj = GSON.fromJson(response, JsonObject.class);
-                result.append("Ethereum " + obj.get("data").getAsJsonObject().get("last").toString() + " USD\n");
+                result.append("Ethereum " + obj.get("data").getAsJsonObject().get("last").toString()
+                    + " USD\n");
             }
         } catch (IOException e) {
             return "";

@@ -15,7 +15,6 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 public class LanguageMenu implements TelegramMenu {
 
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         addRow1(rowList, userMessage);
@@ -23,6 +22,7 @@ public class LanguageMenu implements TelegramMenu {
         addRow3(rowList, userMessage);
         addRow4(rowList, userMessage);
 
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
     }
@@ -30,7 +30,7 @@ public class LanguageMenu implements TelegramMenu {
     private String getButtonText(String langCode, UserMessage userMessage, String languageText) {
         String userLangCode = userMessage.getUser().getLangCode();
         String emoji = langCode.equals(userLangCode) ? WHITE_HEAVY_CHECK_MARK.toString() : "";
-        return emoji + userMessage.getUser().getLanguage().get(languageText);
+        return emoji + userMessage.getUser().getTranslate(languageText);
     }
 
     private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
@@ -56,9 +56,9 @@ public class LanguageMenu implements TelegramMenu {
 
     private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         rowList.add(MenuUtils.createMenuRow(
-            userMessage.getUser().getLanguage().get("BACK"),
+            userMessage.getUser().getTranslate("BACK"),
             Commands.MAIN_OPTIONS.toString(),
-            HOUSE.toString() + userMessage.getUser().getLanguage().get("HOME"),
+            HOUSE.toString() + userMessage.getUser().getTranslate("HOME"),
             Commands.MAIN_MENU.toString()
         ));
     }

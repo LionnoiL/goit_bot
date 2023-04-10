@@ -1,7 +1,8 @@
 package ua.dpw.telegrambots.currencybot.commands.options;
 
+import static ua.dpw.database.Service.CURRENCY_SERVICE;
+
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import ua.dpw.currency.currencies.Currency;
 import ua.dpw.telegrambots.bot.commands.BotCommand;
 import ua.dpw.telegrambots.bot.services.TelegramService;
 import ua.dpw.telegrambots.bot.services.UserMessage;
@@ -22,7 +23,7 @@ public class OptionsCurrencyCommand extends BotCommand {
 
         InlineKeyboardMarkup menu = new CurrencyMenu().createMenu(userMessage);
         getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
-            userMessage.getUser().getLanguage().get("HEADSIGN_CURRENCYMENU"),
+            userMessage.getUser().getTranslate("HEADSIGN_CURRENCYMENU"),
             menu);
     }
 
@@ -33,16 +34,18 @@ public class OptionsCurrencyCommand extends BotCommand {
         UserService userService = new UserService();
         switch (Commands.valueOf(userMessage.getCallBack())) {
             case CURRENCY_EUR:
-                userService.updateUser(userMessage.getUser(), Currency.EUR);
+                userService.updateUser(userMessage.getUser(), CURRENCY_SERVICE.getByName("EUR"));
                 break;
             case CURRENCY_USD:
-                userService.updateUser(userMessage.getUser(), Currency.USD);
+                userService.updateUser(userMessage.getUser(), CURRENCY_SERVICE.getByName("USD"));
                 break;
             case CURRENCY_BITCOIN:
-                userService.updateUser(userMessage.getUser(), Currency.BITCOIN);
+                userService.updateUser(userMessage.getUser(),
+                    CURRENCY_SERVICE.getByName("BITCOIN"));
                 break;
             case CURRENCY_ETHEREUM:
-                userService.updateUser(userMessage.getUser(), Currency.ETHEREUM);
+                userService.updateUser(userMessage.getUser(),
+                    CURRENCY_SERVICE.getByName("ETHEREUM"));
                 break;
             default:
         }

@@ -17,7 +17,8 @@ public class MenuUtils {
         return row;
     }
 
-    public static List<InlineKeyboardButton> createMenuRow(String buttonText, String callBackText, String button2Text, String callBack2Text) {
+    public static List<InlineKeyboardButton> createMenuRow(String buttonText,
+        String callBackText, String button2Text, String callBack2Text) {
         List<InlineKeyboardButton> row = new ArrayList<>();
 
         InlineKeyboardButton button1 = new InlineKeyboardButton(buttonText);

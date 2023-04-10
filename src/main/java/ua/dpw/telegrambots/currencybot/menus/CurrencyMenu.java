@@ -1,5 +1,6 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
+import static ua.dpw.database.Service.CURRENCY_SERVICE;
 import static ua.dpw.telegrambots.bot.services.Emoji.HOUSE;
 import static ua.dpw.telegrambots.bot.services.Emoji.WHITE_HEAVY_CHECK_MARK;
 
@@ -15,7 +16,6 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 public class CurrencyMenu {
 
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         addRow1(rowList, userMessage);
@@ -24,19 +24,20 @@ public class CurrencyMenu {
         addRow4(rowList, userMessage);
         addRow5(rowList, userMessage);
 
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
     }
 
-    private String getButtonText(Currency currency, UserMessage userMessage, String languageText){
+    private String getButtonText(Currency currency, UserMessage userMessage, String languageText) {
         List<Currency> userCurrencies = userMessage.getUser().getCurrencies();
-        String emoji = userCurrencies.contains(currency) ?  WHITE_HEAVY_CHECK_MARK.toString() : "";
-        return emoji + userMessage.getUser().getLanguage().get(languageText);
+        String emoji = userCurrencies.contains(currency) ? WHITE_HEAVY_CHECK_MARK.toString() : "";
+        return emoji + userMessage.getUser().getTranslate(languageText);
     }
 
     private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
-            getButtonText(Currency.USD, userMessage, "CURRENCY_USD"),
+            getButtonText(CURRENCY_SERVICE.getByName("USD"), userMessage, "CURRENCY_USD"),
             Commands.CURRENCY_USD.toString()
         );
         rowList.add(menuRow);
@@ -44,7 +45,7 @@ public class CurrencyMenu {
 
     private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
-            getButtonText(Currency.EUR, userMessage, "CURRENCY_EUR"),
+            getButtonText(CURRENCY_SERVICE.getByName("EUR"), userMessage, "CURRENCY_EUR"),
             Commands.CURRENCY_EUR.toString()
         );
         rowList.add(menuRow);
@@ -52,7 +53,7 @@ public class CurrencyMenu {
 
     private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
-            getButtonText(Currency.BITCOIN, userMessage, "BITCOIN"),
+            getButtonText(CURRENCY_SERVICE.getByName("BITCOIN"), userMessage, "BITCOIN"),
             Commands.CURRENCY_BITCOIN.toString()
         );
         rowList.add(menuRow);
@@ -60,16 +61,16 @@ public class CurrencyMenu {
 
     private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
-            getButtonText(Currency.ETHEREUM, userMessage, "ETHEREUM"),
+            getButtonText(CURRENCY_SERVICE.getByName("ETHEREUM"), userMessage, "ETHEREUM"),
             Commands.CURRENCY_ETHEREUM.toString());
         rowList.add(menuRow);
     }
 
     private void addRow5(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         rowList.add(MenuUtils.createMenuRow(
-            userMessage.getUser().getLanguage().get("BACK"),
+            userMessage.getUser().getTranslate("BACK"),
             Commands.MAIN_OPTIONS.toString(),
-            HOUSE.toString() + userMessage.getUser().getLanguage().get("HOME"),
+            HOUSE.toString() + userMessage.getUser().getTranslate("HOME"),
             Commands.MAIN_MENU.toString()
         ));
     }

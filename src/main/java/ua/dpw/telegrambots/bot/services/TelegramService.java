@@ -17,8 +17,8 @@ public class TelegramService {
     private static final Logger LOG = LogManager.getLogger(TelegramService.class);
     private final BotSender botSender;
 
-    public TelegramService(BotSender botSender) {
-        this.botSender = botSender;
+    public TelegramService(BotSender pBotSender) {
+        this.botSender = pBotSender;
     }
 
     public void sendMessage(Long chatId, String text, ReplyKeyboard replyKeyboard) {
@@ -67,7 +67,7 @@ public class TelegramService {
         try {
             botSender.execute(botApiMethod);
         } catch (Exception e) {
-            LOG.warn("Exception: " + e);
+            LOG.warn("Exception: {}", e.toString());
         }
     }
 }

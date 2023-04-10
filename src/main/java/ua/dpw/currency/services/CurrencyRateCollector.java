@@ -1,8 +1,9 @@
 package ua.dpw.currency.services;
 
+import static ua.dpw.database.Service.RATES_SERVICE;
+
 import java.util.List;
 import ua.dpw.currency.rates.CurrencyRate;
-import ua.dpw.currency.storage.CurrencyRateStorage;
 
 public class CurrencyRateCollector {
 
@@ -16,7 +17,7 @@ public class CurrencyRateCollector {
     public void collectAllRates() {
         for (CurrencyRetrievalService retrievalService : retrievalServices) {
             List<CurrencyRate> listRates = retrievalService.getCurrencyRates();
-            CurrencyRateStorage.saveRateToCache(listRates);
+            RATES_SERVICE.saveRateToDataBase(listRates);
         }
     }
 }

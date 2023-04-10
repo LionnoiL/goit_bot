@@ -1,5 +1,6 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
+import static ua.dpw.database.Service.BANK_SERVICE;
 import static ua.dpw.telegrambots.bot.services.Emoji.HOUSE;
 import static ua.dpw.telegrambots.bot.services.Emoji.WHITE_HEAVY_CHECK_MARK;
 
@@ -16,7 +17,6 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 public class BankMenu implements TelegramMenu {
 
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         addRow1(rowList, userMessage);
@@ -25,6 +25,7 @@ public class BankMenu implements TelegramMenu {
         addRow4(rowList, userMessage);
         addRow5(rowList, userMessage);
 
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
     }
@@ -32,12 +33,12 @@ public class BankMenu implements TelegramMenu {
     private String getButtonText(Bank bank, UserMessage userMessage, String languageText) {
         Bank userBank = userMessage.getUser().getBank();
         String emoji = bank.equals(userBank) ? WHITE_HEAVY_CHECK_MARK.toString() : "";
-        return emoji + userMessage.getUser().getLanguage().get(languageText);
+        return emoji + userMessage.getUser().getTranslate(languageText);
     }
 
     private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
-            getButtonText(Bank.PRIVATBANK, userMessage, "PRIVATBANK"),
+            getButtonText(BANK_SERVICE.getByName("PRIVATBANK"), userMessage, "PRIVATBANK"),
             Commands.BANK_PRIVATBANK.toString()
         );
         rowList.add(menuRow);
@@ -45,7 +46,7 @@ public class BankMenu implements TelegramMenu {
 
     private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
-            getButtonText(Bank.MONOBANK, userMessage, "MONOBANK"),
+            getButtonText(BANK_SERVICE.getByName("MONOBANK"), userMessage, "MONOBANK"),
             Commands.BANK_MONOBANK.toString()
         );
         rowList.add(menuRow);
@@ -53,7 +54,7 @@ public class BankMenu implements TelegramMenu {
 
     private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
-            getButtonText(Bank.OSCHADBANK, userMessage, "OSCHADBANK"),
+            getButtonText(BANK_SERVICE.getByName("OSCHADBANK"), userMessage, "OSCHADBANK"),
             Commands.BANK_OSCHADBANK.toString()
         );
         rowList.add(menuRow);
@@ -61,16 +62,16 @@ public class BankMenu implements TelegramMenu {
 
     private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> menuRow = MenuUtils.createMenuRow(
-            getButtonText(Bank.NBU, userMessage, "NBU"),
+            getButtonText(BANK_SERVICE.getByName("NBU"), userMessage, "NBU"),
             Commands.BANK_NBU.toString());
         rowList.add(menuRow);
     }
 
     private void addRow5(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         rowList.add(MenuUtils.createMenuRow(
-            userMessage.getUser().getLanguage().get("BACK"),
+            userMessage.getUser().getTranslate("BACK"),
             Commands.MAIN_OPTIONS.toString(),
-            HOUSE.toString() + userMessage.getUser().getLanguage().get("HOME"),
+            HOUSE.toString() + userMessage.getUser().getTranslate("HOME"),
             Commands.MAIN_MENU.toString()
         ));
     }

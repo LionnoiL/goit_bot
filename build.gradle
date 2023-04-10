@@ -2,6 +2,19 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'checkstyle'
+checkstyle {
+    toolVersion '10.9.3'
+    configFile file("src/main/resources/checkstyle.xml")
+}
+checkstyleMain {
+    source ='src/main/java'
+}
+checkstyleTest {
+    source ='src/test/java'
+}
+
+
 group 'ua.dpw'
 version '1.0-SNAPSHOT'
 
@@ -21,9 +34,6 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.26'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation 'org.jsoup:jsoup:1.15.4'
@@ -45,6 +55,29 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.h2database/h2
     implementation 'com.h2database:h2:2.1.214'
+
+    // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
+    implementation 'org.hibernate.orm:hibernate-core:6.1.7.Final'
+
+    // https://mvnrepository.com/artifact/checkstyle/checkstyle
+    implementation 'checkstyle:checkstyle:3.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation 'org.mockito:mockito-core:5.2.0'
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.2.0'
+
+    // https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito2
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+
+    // https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+
+
 
 }
 
