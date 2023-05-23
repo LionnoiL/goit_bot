@@ -2,6 +2,19 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'checkstyle'
+checkstyle {
+    toolVersion '10.9.3'
+    configFile file("src/main/resources/checkstyle.xml")
+}
+checkstyleMain {
+    source ='src/main/java'
+}
+checkstyleTest {
+    source ='src/test/java'
+}
+
+
 group 'ua.dpw'
 version '1.0-SNAPSHOT'
 
@@ -22,9 +35,6 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.26'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation 'org.jsoup:jsoup:1.15.4'
 
@@ -37,6 +47,50 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl
     implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0'
 
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+    implementation 'org.apache.commons:commons-dbcp2:2.9.0'
+
+    // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
+    implementation 'org.flywaydb:flyway-core:9.11.0'
+
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    implementation 'com.h2database:h2:2.1.214'
+
+    // https://mvnrepository.com/artifact/checkstyle/checkstyle
+    implementation 'checkstyle:checkstyle:3.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation 'org.mockito:mockito-core:5.2.0'
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.2.0'
+
+    // https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito2
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+
+    // https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+
+    implementation 'org.jboss.logging:jboss-logging:3.5.0.Final'
+
+    //++HIBERNATE
+    implementation 'org.hibernate.orm:hibernate-core:6.2.0.Final'
+
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+
+    implementation 'com.fasterxml:classmate:1.5.1'
+
+    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.2'
+
+    implementation 'org.hibernate.common:hibernate-commons-annotations:6.0.6.Final'
+
+    implementation 'net.bytebuddy:byte-buddy:1.12.18'
+
+    implementation 'org.antlr:antlr4-runtime:4.10.1'
+    //--HIBERNATE
 }
 
 test {

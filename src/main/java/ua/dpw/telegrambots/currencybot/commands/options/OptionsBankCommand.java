@@ -1,7 +1,8 @@
 package ua.dpw.telegrambots.currencybot.commands.options;
 
+import static ua.dpw.database.Service.BANK_SERVICE;
+
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import ua.dpw.currency.bank.Bank;
 import ua.dpw.telegrambots.bot.commands.BotCommand;
 import ua.dpw.telegrambots.bot.services.TelegramService;
 import ua.dpw.telegrambots.bot.services.UserMessage;
@@ -22,7 +23,7 @@ public class OptionsBankCommand extends BotCommand {
 
         InlineKeyboardMarkup menu = new BankMenu().createMenu(userMessage);
         getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
-            userMessage.getUser().getLanguage().get("HEADSIGN_BANKSMENU"),
+            userMessage.getUser().getTranslate("HEADSIGN_BANKSMENU"),
             menu);
     }
 
@@ -33,16 +34,16 @@ public class OptionsBankCommand extends BotCommand {
         UserService userService = new UserService();
         switch (Commands.valueOf(userMessage.getCallBack())) {
             case BANK_PRIVATBANK:
-                userService.updateUser(userMessage.getUser(), Bank.PRIVATBANK);
+                userService.updateUser(userMessage.getUser(), BANK_SERVICE.getByName("PRIVATBANK"));
                 break;
             case BANK_MONOBANK:
-                userService.updateUser(userMessage.getUser(), Bank.MONOBANK);
+                userService.updateUser(userMessage.getUser(), BANK_SERVICE.getByName("MONOBANK"));
                 break;
             case BANK_NBU:
-                userService.updateUser(userMessage.getUser(), Bank.NBU);
+                userService.updateUser(userMessage.getUser(), BANK_SERVICE.getByName("NBU"));
                 break;
             case BANK_OSCHADBANK:
-                userService.updateUser(userMessage.getUser(), Bank.OSCHADBANK);
+                userService.updateUser(userMessage.getUser(), BANK_SERVICE.getByName("OSCHADBANK"));
                 break;
             default:
         }

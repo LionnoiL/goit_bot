@@ -18,23 +18,23 @@ public class Message {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        if (!header.isEmpty()){
+        if (!header.isEmpty()) {
             sb.append(header);
-            if(!headerDelimiter.isEmpty()){
+            if (!headerDelimiter.isEmpty()) {
                 sb.append(headerDelimiter);
             }
         }
 
-        if (!body.isEmpty()){
+        if (!body.isEmpty()) {
             sb.append(body);
-            if(!bodyDelimiter.isEmpty()){
+            if (!bodyDelimiter.isEmpty()) {
                 sb.append(bodyDelimiter);
             }
         }
 
-        if (!footer.isEmpty()){
+        if (!footer.isEmpty()) {
             sb.append(footer);
-            if(!footerDelimiter.isEmpty()){
+            if (!footerDelimiter.isEmpty()) {
                 sb.append(footerDelimiter);
             }
         }
@@ -42,7 +42,7 @@ public class Message {
         return sb.toString();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return toString().isEmpty();
     }
 }

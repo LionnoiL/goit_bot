@@ -1,13 +1,12 @@
 package ua.dpw.notifications;
 
-import static ua.dpw.AppLauncher.APPLICATION_PROPERTIES;
+import static ua.dpw.database.Service.USER_SERVICE;
 
 import java.time.LocalDateTime;
 import java.util.Calendar;
-import java.util.Map;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -18,7 +17,6 @@ import ua.dpw.telegrambots.currencybot.menus.MainMenu;
 import ua.dpw.telegrambots.currencybot.messages.MessageService;
 import ua.dpw.telegrambots.currencybot.sender.CurrencySender;
 import ua.dpw.users.User;
-import ua.dpw.users.UserService;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Scheduler {
@@ -32,20 +30,32 @@ public class Scheduler {
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 1);
 
-        TimerTask timerTask = new TimerTask() {
+        TimerTask timerTaskSendNotification = new TimerTask() {
             @Override
             public void run() {
-                int currentHour = getCurrentHour();
-                sendUsersNotifications(currentHour);
+                sendUsersNotifications();
+            }
+        };
+
+        TimerTask timerTaskRateCollect = new TimerTask() {
+            @Override
+            public void run() {
                 currencyRateCollector.collectAllRates();
+                sendUsersNotificationsAfterChangeRate();
             }
         };
 
         Timer timer = new Timer();
         timer.schedule(
-                timerTask,
-                calendar.getTime(),
-                3600000
+            timerTaskSendNotification,
+            calendar.getTime(),
+            3600000
+        );
+
+        timer.schedule(
+            timerTaskRateCollect,
+            calendar.getTime(),
+            100000
         );
     }
 
@@ -53,25 +63,32 @@ public class Scheduler {
         return LocalDateTime.now().getHour();
     }
 
-    public static void sendUsersNotifications(int currentHour) {
-        Map<Long, User> users = APPLICATION_PROPERTIES.getUsers();
-        TelegramService telegramService = new TelegramService(new CurrencySender());
-        UserService userService = new UserService();
-        users.entrySet()
-                .stream()
-                .map(Map.Entry::getValue)
-                .filter(el -> el.getAlertTime() == currentHour + el.getDeltaHours())
-                .forEach(el -> {
-                    User user = userService.getUserById(el.getUserId());
-                    telegramService.sendMessage(user.getUserId(),
-                            MessageService.getInformationMessageByUser(user));
+    public static void sendUsersNotifications() {
+        int currentHour = getCurrentHour();
+        List<User> users = USER_SERVICE.getAllByAlertTime(currentHour);
+        for (User user : users) {
+            sendMessageWithRatesToUser(user, false);
+        }
+    }
 
-                    UserMessage userMessage = new UserMessage();
-                    userMessage.setUser(user);
-                    InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
-                    telegramService.sendMessage(el.getUserId(),
-                            user.getLanguage().get("HEADSIGN_MAINMENU"),
-                            mainMenu);
-                });
+    public static void sendUsersNotificationsAfterChangeRate() {
+        List<User> users = USER_SERVICE.getUsersFromCurrencyChanges();
+        for (User user : users) {
+            sendMessageWithRatesToUser(user, true);
+        }
+        USER_SERVICE.deleteCurrencyChanges();
+    }
+
+    private static void sendMessageWithRatesToUser(User user, boolean rateWithDelta) {
+        TelegramService telegramService = new TelegramService(new CurrencySender());
+        telegramService.sendMessage(user.getUserId(),
+            MessageService.getInformationMessageByUser(user, rateWithDelta));
+
+        UserMessage userMessage = new UserMessage();
+        userMessage.setUser(user);
+        InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
+        telegramService.sendMessage(user.getUserId(),
+            user.getTranslate("HEADSIGN_MAINMENU"),
+            mainMenu);
     }
 }

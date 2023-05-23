@@ -1,6 +1,5 @@
 package ua.dpw.telegrambots.currencybot.menus;
 
-import static ua.dpw.properties.ApplicationProperties.MARK_EMOJI;
 import static ua.dpw.telegrambots.bot.services.Emoji.ALARM_CLOCK;
 import static ua.dpw.telegrambots.bot.services.Emoji.HOUSE;
 
@@ -8,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import ua.dpw.currency.bank.Bank;
 import ua.dpw.telegrambots.bot.menus.MenuUtils;
 import ua.dpw.telegrambots.bot.menus.TelegramMenu;
 import ua.dpw.telegrambots.bot.services.UserMessage;
@@ -17,7 +15,6 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 public class NotificationMenu implements TelegramMenu {
 
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         addRow1(rowList, userMessage);
@@ -27,6 +24,7 @@ public class NotificationMenu implements TelegramMenu {
         addRow5(rowList, userMessage);
         addRow6(rowList, userMessage);
 
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
     }
@@ -35,12 +33,12 @@ public class NotificationMenu implements TelegramMenu {
         String langButtonText, String callBack) {
         int notificationTime = userMessage.getUser().getAlertTime();
         String emoji = notificationTime == hour ? ALARM_CLOCK.toString() : "";
-        String buttonText = emoji + userMessage.getUser().getLanguage().get(langButtonText);
+        String buttonText = emoji + userMessage.getUser().getTranslate(langButtonText);
         return MenuUtils.createButton(buttonText, callBack);
     }
 
     private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        String buttonText = userMessage.getUser().getLanguage().get("OPTIONS_USERTIME");
+        String buttonText = userMessage.getUser().getTranslate("OPTIONS_USERTIME");
         rowList.add(MenuUtils.createMenuRow(buttonText, Commands.OPTIONS_USERTIME.toString()));
     }
 
@@ -71,15 +69,16 @@ public class NotificationMenu implements TelegramMenu {
     private void addRow5(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> row = new ArrayList<>();
         row.add(createButton(userMessage, 18, "ALERT_18", Commands.ALERT_18.toString()));
+        row.add(createButton(userMessage, 200, "ALERT_AFTER_CHANGE", Commands.ALERT_AFTER_CHANGE.toString()));
         row.add(createButton(userMessage, 100, "ALERT_OFF", Commands.ALERT_OFF.toString()));
         rowList.add(row);
     }
 
     private void addRow6(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         rowList.add(MenuUtils.createMenuRow(
-            userMessage.getUser().getLanguage().get("BACK"),
+            userMessage.getUser().getTranslate("BACK"),
             Commands.MAIN_OPTIONS.toString(),
-            HOUSE.toString() + userMessage.getUser().getLanguage().get("HOME"),
+            HOUSE.toString() + userMessage.getUser().getTranslate("HOME"),
             Commands.MAIN_MENU.toString()
         ));
     }

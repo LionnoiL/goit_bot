@@ -24,12 +24,12 @@ public class GetInfoCommand extends BotCommand {
     private void sendMainMenu(UserMessage userMessage) {
         InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
         getTelegramService().sendMessage(userMessage.getChatId(),
-            userMessage.getUser().getLanguage().get("HEADSIGN_MAINMENU"),
+            userMessage.getUser().getTranslate("HEADSIGN_MAINMENU"),
             mainMenu);
     }
 
     private void sendRatesInfo(UserMessage userMessage) {
         getTelegramService().sendMessage(userMessage.getChatId(),
-            MessageService.getInformationMessageByUser(userMessage.getUser()));
+            MessageService.getInformationMessageByUser(userMessage.getUser(), false));
     }
 }

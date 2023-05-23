@@ -22,7 +22,7 @@ public class OptionsLanguageCommand extends BotCommand {
 
         InlineKeyboardMarkup menu = new LanguageMenu().createMenu(userMessage);
         getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
-            userMessage.getUser().getLanguage().get("OPTIONS_LANGUAGE"),
+            userMessage.getUser().getTranslate("OPTIONS_LANGUAGE"),
             menu);
     }
 
@@ -45,7 +45,7 @@ public class OptionsLanguageCommand extends BotCommand {
                 break;
             default:
         }
-        userService.addUser(user);
+        userService.update(user);
         userMessage.setUser(user);
     }
 }

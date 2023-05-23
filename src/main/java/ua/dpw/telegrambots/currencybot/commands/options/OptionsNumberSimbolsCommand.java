@@ -22,7 +22,7 @@ public class OptionsNumberSimbolsCommand extends BotCommand {
 
         InlineKeyboardMarkup menu = new ChoiceNumberSymbolMenu().createMenu(userMessage);
         getTelegramService().sendEditedMenu(userMessage.getChatId(), userMessage.getMessageId(),
-            userMessage.getUser().getLanguage().get("HEADSIGN_COMMASYMBOLS"),
+            userMessage.getUser().getTranslate("HEADSIGN_COMMASYMBOLS"),
             menu);
     }
 

@@ -17,7 +17,7 @@ public class MainMenuCommand extends BotCommand {
     public void execute(UserMessage userMessage) {
         InlineKeyboardMarkup mainMenu = new MainMenu().createMenu(userMessage);
         getTelegramService().sendMessage(userMessage.getChatId(),
-            userMessage.getUser().getLanguage().get("HEADSIGN_MAINMENU"),
+            userMessage.getUser().getTranslate("HEADSIGN_MAINMENU"),
             mainMenu);
     }
 }

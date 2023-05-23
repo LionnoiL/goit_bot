@@ -1,5 +1,7 @@
 package ua.dpw;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -9,6 +11,7 @@ import ua.dpw.notifications.Scheduler;
 import ua.dpw.properties.ApplicationProperties;
 import ua.dpw.telegrambots.currencybot.CurrencyBot;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AppLauncher {
 
     public static final ApplicationProperties APPLICATION_PROPERTIES = new ApplicationProperties();

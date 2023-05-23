@@ -12,7 +12,6 @@ import ua.dpw.telegrambots.currencybot.commands.Commands;
 public class OptionsMenu implements TelegramMenu {
 
     public InlineKeyboardMarkup createMenu(UserMessage userMessage) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         addRow1(rowList, userMessage);
@@ -20,21 +19,22 @@ public class OptionsMenu implements TelegramMenu {
         addRow3(rowList, userMessage);
         addRow4(rowList, userMessage);
 
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
     }
 
     private void addRow1(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        String buttonText = userMessage.getUser().getLanguage().get("OPTIONS_CURRENCY");
+        String buttonText = userMessage.getUser().getTranslate("OPTIONS_CURRENCY");
         rowList.add(MenuUtils.createMenuRow(buttonText, Commands.OPTIONS_CURRENCY.toString()));
     }
 
     private void addRow2(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> row = new ArrayList<>();
-        row.add(MenuUtils.createButton(userMessage.getUser().getLanguage().get("OPTIONS_BANK"),
+        row.add(MenuUtils.createButton(userMessage.getUser().getTranslate("OPTIONS_BANK"),
             Commands.OPTIONS_BANK.toString()));
         row.add(MenuUtils.createButton(
-            userMessage.getUser().getLanguage().get("OPTIONS_NUMBER_SYMBOL_AFTER_COMMA"),
+            userMessage.getUser().getTranslate("OPTIONS_NUMBER_SYMBOL_AFTER_COMMA"),
             Commands.OPTIONS_NUMBER_SYMBOL_AFTER_COMMA.toString()));
         rowList.add(row);
     }
@@ -42,15 +42,15 @@ public class OptionsMenu implements TelegramMenu {
     private void addRow3(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
         List<InlineKeyboardButton> row = new ArrayList<>();
         row.add(
-            MenuUtils.createButton(userMessage.getUser().getLanguage().get("OPTIONS_NOTIFICATIONS"),
+            MenuUtils.createButton(userMessage.getUser().getTranslate("OPTIONS_NOTIFICATIONS"),
                 Commands.OPTIONS_NOTIFICATIONS.toString()));
-        row.add(MenuUtils.createButton(userMessage.getUser().getLanguage().get("OPTIONS_LANGUAGE"),
+        row.add(MenuUtils.createButton(userMessage.getUser().getTranslate("OPTIONS_LANGUAGE"),
             Commands.OPTIONS_LANGUAGE.toString()));
         rowList.add(row);
     }
 
     private void addRow4(List<List<InlineKeyboardButton>> rowList, UserMessage userMessage) {
-        String buttonText = userMessage.getUser().getLanguage().get("BACK");
+        String buttonText = userMessage.getUser().getTranslate("BACK");
         rowList.add(MenuUtils.createMenuRow(buttonText, Commands.MAIN_MENU.toString()));
     }
 }

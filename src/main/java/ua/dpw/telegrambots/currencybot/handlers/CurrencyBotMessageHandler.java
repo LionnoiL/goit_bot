@@ -8,11 +8,18 @@ import ua.dpw.telegrambots.currencybot.commands.mainmenu.GetInfoCommand;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.HelpInfoCommand;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.MainMenuCommand;
 import ua.dpw.telegrambots.currencybot.commands.mainmenu.OptionsMenuCommand;
-import ua.dpw.telegrambots.currencybot.commands.options.*;
+import ua.dpw.telegrambots.currencybot.commands.options.OptionsBankCommand;
+import ua.dpw.telegrambots.currencybot.commands.options.OptionsCurrencyCommand;
+import ua.dpw.telegrambots.currencybot.commands.options.OptionsLanguageCommand;
+import ua.dpw.telegrambots.currencybot.commands.options.OptionsNotificationCommand;
+import ua.dpw.telegrambots.currencybot.commands.options.OptionsNumberSimbolsCommand;
+import ua.dpw.telegrambots.currencybot.commands.options.OptionsUserTimeCommand;
 import ua.dpw.telegrambots.currencybot.sender.CurrencySender;
 import ua.dpw.users.User;
 
-public class CurrencyBotMessageHandler {
+public final class CurrencyBotMessageHandler {
+
+    private static boolean isProcessed = false;
 
     private CurrencyBotMessageHandler() {
     }
@@ -37,86 +44,112 @@ public class CurrencyBotMessageHandler {
     }
 
     private static void processCallback(UserMessage userMessage) {
+        isProcessed = false;
+        processCallbackMainInfo(userMessage);
+        processCallbackMainOptions(userMessage);
+        processCallbackHelp(userMessage);
+        processCallbackSymbolAfterComma(userMessage);
+        processCallbackBank(userMessage);
+        processCallbackCurrency(userMessage);
+        processCallbackNotification(userMessage);
+        processCallbackLanguage(userMessage);
+        processCallbackTime(userMessage);
+
+        if (!isProcessed) {
+            new MainMenuCommand().execute(userMessage);
+        }
+    }
+
+    private static void processCallbackMainInfo(UserMessage userMessage) {
         switch (Commands.valueOf(userMessage.getCallBack())) {
             case MAIN_GET_INFO:
                 new GetInfoCommand().execute(userMessage);
-                break;
-            case MAIN_OPTIONS:
-                new OptionsMenuCommand().execute(userMessage);
-                break;
-            case HELP:
-                new HelpInfoCommand().execute(userMessage);
-                break;
-            case OPTIONS_NUMBER_SYMBOL_AFTER_COMMA:
-            case NUMBERS_2:
-            case NUMBERS_3:
-            case NUMBERS_4:
-                new OptionsNumberSimbolsCommand().execute(userMessage);
-                break;
-            case OPTIONS_BANK:
-            case BANK_PRIVATBANK:
-            case BANK_MONOBANK:
-            case BANK_OSCHADBANK:
-            case BANK_NBU:
-                new OptionsBankCommand().execute(userMessage);
-                break;
-            case OPTIONS_CURRENCY:
-            case CURRENCY_EUR:
-            case CURRENCY_USD:
-            case CURRENCY_BITCOIN:
-            case CURRENCY_ETHEREUM:
-                new OptionsCurrencyCommand().execute(userMessage);
-                break;
-            case OPTIONS_NOTIFICATIONS:
-            case ALERT_9:
-            case ALERT_10:
-            case ALERT_11:
-            case ALERT_12:
-            case ALERT_13:
-            case ALERT_14:
-            case ALERT_15:
-            case ALERT_16:
-            case ALERT_17:
-            case ALERT_18:
-            case ALERT_OFF:
-                new OptionsNotificationCommand().execute(userMessage);
-                break;
-            case OPTIONS_LANGUAGE:
-            case EN_BUTTON:
-            case UA_BUTTON:
-            case PL_BUTTON:
-                new OptionsLanguageCommand().execute(userMessage);
-                break;
-            case OPTIONS_USERTIME:
-            case TIME_0:
-            case TIME_1:
-            case TIME_2:
-            case TIME_3:
-            case TIME_4:
-            case TIME_5:
-            case TIME_6:
-            case TIME_7:
-            case TIME_8:
-            case TIME_9:
-            case TIME_10:
-            case TIME_11:
-            case TIME_12:
-            case TIME_13:
-            case TIME_14:
-            case TIME_15:
-            case TIME_16:
-            case TIME_17:
-            case TIME_18:
-            case TIME_19:
-            case TIME_20:
-            case TIME_21:
-            case TIME_22:
-            case TIME_23:
-                new OptionsUserTimeCommand().execute(userMessage);
+                isProcessed = true;
                 break;
             default:
-                new MainMenuCommand().execute(userMessage);
+        }
+    }
+
+    private static void processCallbackMainOptions(UserMessage userMessage) {
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case MAIN_OPTIONS:
+                new OptionsMenuCommand().execute(userMessage);
+                isProcessed = true;
                 break;
+            default:
+        }
+    }
+
+    private static void processCallbackHelp(UserMessage userMessage) {
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case HELP:
+                new HelpInfoCommand().execute(userMessage);
+                isProcessed = true;
+                break;
+            default:
+        }
+    }
+
+    private static void processCallbackSymbolAfterComma(UserMessage userMessage) {
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case OPTIONS_NUMBER_SYMBOL_AFTER_COMMA, NUMBERS_2, NUMBERS_3, NUMBERS_4:
+                new OptionsNumberSimbolsCommand().execute(userMessage);
+                isProcessed = true;
+                break;
+            default:
+        }
+    }
+
+    private static void processCallbackBank(UserMessage userMessage) {
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case OPTIONS_BANK, BANK_PRIVATBANK, BANK_MONOBANK, BANK_OSCHADBANK, BANK_NBU:
+                new OptionsBankCommand().execute(userMessage);
+                isProcessed = true;
+                break;
+            default:
+        }
+    }
+
+    private static void processCallbackCurrency(UserMessage userMessage) {
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case OPTIONS_CURRENCY, CURRENCY_EUR, CURRENCY_USD, CURRENCY_BITCOIN, CURRENCY_ETHEREUM:
+                new OptionsCurrencyCommand().execute(userMessage);
+                isProcessed = true;
+                break;
+            default:
+        }
+    }
+
+    private static void processCallbackNotification(UserMessage userMessage) {
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case OPTIONS_NOTIFICATIONS, ALERT_9, ALERT_10, ALERT_11, ALERT_12, ALERT_13, ALERT_14,
+                ALERT_15, ALERT_16, ALERT_17, ALERT_18, ALERT_AFTER_CHANGE, ALERT_OFF:
+                new OptionsNotificationCommand().execute(userMessage);
+                isProcessed = true;
+                break;
+            default:
+        }
+    }
+
+    private static void processCallbackLanguage(UserMessage userMessage) {
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case OPTIONS_LANGUAGE, EN_BUTTON, UA_BUTTON, PL_BUTTON:
+                new OptionsLanguageCommand().execute(userMessage);
+                isProcessed = true;
+                break;
+            default:
+        }
+    }
+
+    private static void processCallbackTime(UserMessage userMessage) {
+        switch (Commands.valueOf(userMessage.getCallBack())) {
+            case OPTIONS_USERTIME, TIME_0, TIME_1, TIME_2, TIME_3, TIME_4, TIME_5, TIME_6, TIME_7,
+                TIME_8, TIME_9, TIME_10, TIME_11, TIME_12, TIME_13, TIME_14, TIME_15, TIME_16,
+                TIME_17, TIME_18, TIME_19, TIME_20, TIME_21, TIME_22, TIME_23:
+                new OptionsUserTimeCommand().execute(userMessage);
+                isProcessed = true;
+                break;
+            default:
         }
     }
 
@@ -141,7 +174,7 @@ public class CurrencyBotMessageHandler {
             user.setNewUser(false);
             TelegramService telegramService = new TelegramService(new CurrencySender());
             telegramService.sendMessage(user.getUserId(),
-                user.getLanguage().get("START_MESSAGE"));
+                user.getTranslate("START_MESSAGE"));
             new MainMenuCommand().execute(userMessage);
             return true;
         }

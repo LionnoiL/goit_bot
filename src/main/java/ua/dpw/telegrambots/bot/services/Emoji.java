@@ -91,6 +91,8 @@ public enum Emoji {
     HEAVY_DIVISION_SIGN(null, '\u2797'),
     BLACK_RIGHTWARDS_ARROW(null, '\u27A1'),
     CURLY_LOOP(null, '\u27B0'),
+    RED_TRIANGLE_UP('\uD83D', '\uDD3A'),
+    RED_TRIANGLE_DOWN('\uD83D', '\uDD3B'),
 
     // Transport and map symbols Group
     ROCKET('\uD83D', '\uDE80'),
@@ -161,12 +163,12 @@ public enum Emoji {
     WAVING_HAND_SIGN('\uD83D', '\uDC4B'),
     HOUSE('\uD83C', '\uDFE0');
 
-    Character firstChar;
-    Character secondChar;
+    private Character firstChar;
+    private Character secondChar;
 
-    Emoji(Character firstChar, Character secondChar) {
-        this.firstChar = firstChar;
-        this.secondChar = secondChar;
+    Emoji(Character pFirstChar, Character pSecondChar) {
+        this.firstChar = pFirstChar;
+        this.secondChar = pSecondChar;
     }
 
     @Override
