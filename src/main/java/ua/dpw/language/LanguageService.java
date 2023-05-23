@@ -11,7 +11,7 @@ public class LanguageService {
         String result = "";
         try (Session session = HibernateUtil.openSession()) {
             String sql = """
-                SELECT LANGUAGE_VALUE FROM LANGUAGE_VALUES 
+                SELECT LANGUAGE_VALUE FROM LANGUAGE_VALUES
                 WHERE LANGUAGE_CODE = :lang_code AND LANGUAGE_KEY = :key
                 """;
             Query<String> query = session.createNativeQuery(sql, String.class);

@@ -5,11 +5,6 @@ import lombok.Getter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ua.dpw.currency.bank.Bank;
-import ua.dpw.currency.currencies.Currency;
-import ua.dpw.currency.rates.CurrencyRate;
-import ua.dpw.currency.rates.CurrencyRateChanges;
-import ua.dpw.users.User;
 
 public final class HibernateUtil {
 
@@ -23,10 +18,9 @@ public final class HibernateUtil {
     private SessionFactory sessionFactory;
 
     private HibernateUtil() {
-        File f = new File("config/hibernate.cfg.xml");
-        sessionFactory = new Configuration().configure(f)
-            .buildSessionFactory();
         Migrate.migrate("jdbc:h2:./db/currency_bot");
+        File f = new File("config/hibernate.cfg.xml");
+        sessionFactory = new Configuration().configure(f).buildSessionFactory();
     }
 
     public static HibernateUtil getInstance() {
