@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+  <session-factory>
+
+    <!-- Database connection settings -->
+    <property name="connection.driver_class">org.h2.Driver</property>
+    <property name="connection.url">jdbc:h2:./db/currency_bot</property>
+    <property name="connection.username"/>
+    <property name="connection.password"/>
+
+    <property name="hibernate.default_schema">PUBLIC</property>
+
+    <!-- JDBC connection pool (use the built-in) -->
+    <property name="connection.pool_size">10</property>
+
+    <!-- SQL dialect -->
+    <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+
+    <!-- Disable the second-level cache  -->
+    <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">false</property>
+
+    <mapping class="ua.dpw.users.User"/>
+    <mapping class="ua.dpw.currency.bank.Bank"/>
+    <mapping class="ua.dpw.currency.currencies.Currency"/>
+    <mapping class="ua.dpw.currency.rates.CurrencyRate"/>
+    <mapping class="ua.dpw.currency.rates.CurrencyRateChanges"/>
+
+  </session-factory>
+
+</hibernate-configuration>
