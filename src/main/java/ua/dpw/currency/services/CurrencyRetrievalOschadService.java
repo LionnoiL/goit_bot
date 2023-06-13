@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,9 +15,9 @@ import org.jsoup.select.Elements;
 import ua.dpw.currency.bank.Bank;
 import ua.dpw.currency.rates.CurrencyRate;
 
+@Slf4j
 public class CurrencyRetrievalOschadService implements CurrencyRetrievalService {
 
-    private static final Logger LOG = LogManager.getLogger(CurrencyRetrievalOschadService.class);
     private static final String URL = "https://www.oschadbank.ua/currency-rate";
     private static final Bank BANK = BANK_SERVICE.getByName("OSCHADBANK");
 
@@ -43,7 +42,7 @@ public class CurrencyRetrievalOschadService implements CurrencyRetrievalService 
                 ))
                 .toList();
         } catch (IOException e) {
-            LOG.warn("Error get rates from Oschadbank api");
+            log.error("Error get rates from Oschadbank api");
         }
         return new ArrayList<>();
     }

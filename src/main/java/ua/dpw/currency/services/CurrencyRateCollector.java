@@ -8,7 +8,7 @@ import ua.dpw.currency.rates.CurrencyRate;
 public class CurrencyRateCollector {
 
     private List<CurrencyRetrievalService> retrievalServices = List.of(
-        new CurrencyRetrievalOschadService(),
+       // new CurrencyRetrievalOschadService(),
         new CurrencyRetrievalMonoService(),
         new CurrencyRetrievalNbuService(),
         new CurrencyRetrievalPrivatService()

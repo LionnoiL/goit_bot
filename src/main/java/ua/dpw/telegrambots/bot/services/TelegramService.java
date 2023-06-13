@@ -2,8 +2,7 @@ package ua.dpw.telegrambots.bot.services;
 
 import static java.lang.Math.toIntExact;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -12,9 +11,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import ua.dpw.telegrambots.bot.sender.BotSender;
 
+@Slf4j
 public class TelegramService {
 
-    private static final Logger LOG = LogManager.getLogger(TelegramService.class);
     private final BotSender botSender;
 
     public TelegramService(BotSender pBotSender) {
@@ -53,7 +52,8 @@ public class TelegramService {
         execute(sendMessage);
     }
 
-    public void sendEditedMenu(long chatId, long messageId, String text, InlineKeyboardMarkup keyboardMarkup) {
+    public void sendEditedMenu(long chatId, long messageId, String text,
+        InlineKeyboardMarkup keyboardMarkup) {
         EditMessageText message = EditMessageText.builder()
             .chatId(chatId)
             .messageId(toIntExact(messageId))
@@ -67,7 +67,7 @@ public class TelegramService {
         try {
             botSender.execute(botApiMethod);
         } catch (Exception e) {
-            LOG.warn("Exception: {}", e.toString());
+            log.error("Exception: {}", e.toString());
         }
     }
 }

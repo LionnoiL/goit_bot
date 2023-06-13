@@ -6,17 +6,16 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import ua.dpw.currency.bank.Bank;
 import ua.dpw.currency.rates.CurrencyRate;
 import ua.dpw.database.Service;
 import ua.dpw.utils.JsonConverter;
 
+@Slf4j
 class CurrencyRetrievalNbuService implements CurrencyRetrievalService {
 
-    private static final Logger LOG = LogManager.getLogger(CurrencyRetrievalNbuService.class);
     private static final String URL_EUR = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=USD&date=&json";
     private static final String URL_USD = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=&json";
     private static final Bank BANK = BANK_SERVICE.getByName("NBU");
@@ -42,7 +41,7 @@ class CurrencyRetrievalNbuService implements CurrencyRetrievalService {
                 ))
                 .toList();
         } catch (IOException e) {
-            LOG.warn("Error get rates from NBU api");
+            log.error("Error get rates from NBU api");
         }
         return new ArrayList<>();
     }

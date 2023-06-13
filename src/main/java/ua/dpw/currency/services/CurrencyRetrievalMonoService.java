@@ -1,6 +1,5 @@
 package ua.dpw.currency.services;
 
-
 import static ua.dpw.database.Service.BANK_SERVICE;
 import static ua.dpw.database.Service.CURRENCY_SERVICE;
 
@@ -9,18 +8,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import ua.dpw.currency.bank.Bank;
 import ua.dpw.currency.currencies.Currency;
 import ua.dpw.currency.rates.CurrencyRate;
 import ua.dpw.utils.JsonConverter;
 
-
+@Slf4j
 class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
 
-    private static final Logger LOG = LogManager.getLogger(CurrencyRetrievalMonoService.class);
     private static final String URL = "https://api.monobank.ua/bank/currency";
     private static final Bank BANK = BANK_SERVICE.getByName("MONOBANK");
 
@@ -49,7 +46,7 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
                 ))
                 .toList();
         } catch (IOException e) {
-            LOG.warn("Error get rates from Monobank api");
+            log.error("Error get rates from Monobank api");
         }
         return new ArrayList<>();
     }

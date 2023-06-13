@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -28,9 +27,8 @@ import ua.dpw.currency.currencies.Currency;
 import ua.dpw.database.HibernateUtil;
 import ua.dpw.notifications.Scheduler;
 
+@Slf4j
 public class UserService {
-
-    private static final Logger LOG = LogManager.getLogger(UserService.class);
 
     public static void loadUsersFromFile() {
         String jsonFileName = "db/users.json";
@@ -48,7 +46,7 @@ public class UserService {
                     }
                 }
             } catch (Exception e) {
-                LOG.warn("Error read users file from {}", jsonFileName);
+                log.error("Error read users file from {}", jsonFileName);
             }
         }
     }
@@ -117,7 +115,7 @@ public class UserService {
 
     public User createUserWithDefaultProperties(long userId, String firstName, String lastName,
         String langCode) {
-        LOG.info("Add new user with id {} {} {}", userId, firstName, lastName);
+        log.info("Add new user with id {} {} {}", userId, firstName, lastName);
         User user = new User();
         user.setUserId(userId);
         user.setUserName(firstName);

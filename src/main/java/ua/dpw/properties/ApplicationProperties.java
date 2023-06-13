@@ -5,18 +5,17 @@ import static ua.dpw.database.Service.CURRENCY_SERVICE;
 import static ua.dpw.users.UserService.loadUsersFromFile;
 
 import lombok.Getter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import ua.dpw.currency.bank.Bank;
 import ua.dpw.currency.currencies.Currency;
 
+@Slf4j
 @Getter
 public class ApplicationProperties {
 
     public static final String CONFIG_PATH = "config/";
     public static final String APPLICATION_PROPERTIES_FILE_NAME =
         CONFIG_PATH + "application.properties";
-    private static final Logger LOG = LogManager.getLogger(ApplicationProperties.class);
     private int decimalPrecision;
     private Bank bank;
     private Currency currency;

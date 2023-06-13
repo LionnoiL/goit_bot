@@ -11,6 +11,7 @@ public class Migrate {
         Flyway flyway = Flyway
             .configure()
             .dataSource(url, "", "")
+            .loggers("slf4j")
             .load();
         flyway.migrate();
     }

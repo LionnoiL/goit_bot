@@ -7,8 +7,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import ua.dpw.currency.services.CurrencyRateCollector;
 import ua.dpw.telegrambots.bot.services.TelegramService;
@@ -18,10 +22,12 @@ import ua.dpw.telegrambots.currencybot.messages.MessageService;
 import ua.dpw.telegrambots.currencybot.sender.CurrencySender;
 import ua.dpw.users.User;
 
+@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Scheduler {
 
     public static void setTimeReceived() {
+        log.info("set timer");
         CurrencyRateCollector currencyRateCollector = new CurrencyRateCollector();
         currencyRateCollector.collectAllRates();
         int initialHour = getCurrentHour() + 1;
@@ -33,15 +39,19 @@ public class Scheduler {
         TimerTask timerTaskSendNotification = new TimerTask() {
             @Override
             public void run() {
+                log.info("start send notification task");
                 sendUsersNotifications();
+                log.info("end send notification task");
             }
         };
 
         TimerTask timerTaskRateCollect = new TimerTask() {
             @Override
             public void run() {
+                log.info("start task rate collector");
                 currencyRateCollector.collectAllRates();
                 sendUsersNotificationsAfterChangeRate();
+                log.info("end task rate collector");
             }
         };
 
@@ -52,11 +62,13 @@ public class Scheduler {
             3600000
         );
 
-        timer.schedule(
+        Timer timerrateCollect = new Timer();
+        timerrateCollect.schedule(
             timerTaskRateCollect,
             calendar.getTime(),
-            100000
+            600000
         );
+
     }
 
     public static int getCurrentHour() {

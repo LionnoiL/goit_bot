@@ -2,12 +2,14 @@ package ua.dpw.telegrambots.bot.services;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ua.dpw.telegrambots.currencybot.CurrencyBot;
 import ua.dpw.users.User;
 import ua.dpw.users.UserService;
 
+@Slf4j
 @Getter
 @Setter
 public class UserMessage {
@@ -33,7 +35,7 @@ public class UserMessage {
         addCallBackToUserMessage(userMessage, update);
         addUserToUserMessage(userMessage, message);
 
-        CurrencyBot.LOG.info(
+        log.info(
             "[" + userMessage.getChatId() + ", " + userMessage.getUserFirstName() + "] : "
                 + userMessage.getTextFromUser() + ", callback[" + userMessage.getCallBack()
                 + "]");
@@ -46,7 +48,7 @@ public class UserMessage {
         } else if (update.hasCallbackQuery()) {
             return update.getCallbackQuery().getMessage();
         } else {
-            CurrencyBot.LOG.info("Unexpected update from user");
+            log.info("Unexpected update from user");
             return null;
         }
     }
