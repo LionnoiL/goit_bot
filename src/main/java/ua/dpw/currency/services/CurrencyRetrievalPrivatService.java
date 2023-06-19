@@ -39,7 +39,7 @@ public class CurrencyRetrievalPrivatService implements CurrencyRetrievalService 
         } catch (IOException e) {
             log.error("Error get rates from Privatbank api");
         }
-        log.info("Start oschad rate");
+        log.info("End privat rate");
         return result;
     }
 }
