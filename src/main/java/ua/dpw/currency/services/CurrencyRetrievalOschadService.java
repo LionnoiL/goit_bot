@@ -23,13 +23,14 @@ public class CurrencyRetrievalOschadService implements CurrencyRetrievalService 
 
     @Override
     public List<CurrencyRate> getCurrencyRates() {
-
+        log.info("Start oschad rate");
+        List<CurrencyRate> result = new ArrayList<>();
         try {
             Document document = Jsoup.connect(URL).get();
             Element currencyRateTable = document.getElementsByTag("tbody").get(1);
             Elements tableRows = currencyRateTable.getElementsByTag("tr");
 
-            return tableRows.stream()
+            result = tableRows.stream()
                 .filter(element -> element.select("td:nth-child(2)").text().equals("USD")
                     || element.select("td:nth-child(2)").text().equals("EUR"))
                 .map(item -> new CurrencyRate(
@@ -44,6 +45,7 @@ public class CurrencyRetrievalOschadService implements CurrencyRetrievalService 
         } catch (IOException e) {
             log.error("Error get rates from Oschadbank api");
         }
-        return new ArrayList<>();
+        log.info("End oschad rate");
+        return result;
     }
 }

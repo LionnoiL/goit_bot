@@ -26,13 +26,15 @@ class CurrencyRetrievalNbuService implements CurrencyRetrievalService {
 
     @Override
     public List<CurrencyRate> getCurrencyRates() {
+        log.info("Start nbu rate");
+        List<CurrencyRate> result = new ArrayList<>();
         try {
             String response = Jsoup.connect(URL_EUR).ignoreContentType(true).get().body().text();
 
             List<JsonObject> currencyRateResponses = convertToDto(response);
             currencyRateResponses.addAll(
                 convertToDto(Jsoup.connect(URL_USD).ignoreContentType(true).get().body().text()));
-            return currencyRateResponses.stream()
+            result = currencyRateResponses.stream()
                 .map(item -> new CurrencyRate(
                     BANK,
                     Service.CURRENCY_SERVICE.getByCode(item.get("r030").getAsInt()),
@@ -43,6 +45,7 @@ class CurrencyRetrievalNbuService implements CurrencyRetrievalService {
         } catch (IOException e) {
             log.error("Error get rates from NBU api");
         }
-        return new ArrayList<>();
+        log.info("End nbu rate");
+        return result;
     }
 }

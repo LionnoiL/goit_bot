@@ -28,6 +28,8 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
 
     @Override
     public List<CurrencyRate> getCurrencyRates() {
+        log.info("Start monobank rate");
+        List<CurrencyRate> result = new ArrayList<>();
         Currency uah = CURRENCY_SERVICE.getByName("UAH");
 
         try {
@@ -35,7 +37,7 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
             List<JsonObject> responseJson = JsonConverter.convertJsonStringToList(
                 response, JsonObject.class);
 
-            return responseJson.stream()
+            result = responseJson.stream()
                 .filter(item -> codeCurr.containsKey(item.get("currencyCodeA").getAsInt())
                     && item.get("currencyCodeB").getAsInt() == uah.getCode())
                 .map(item -> new CurrencyRate(
@@ -48,6 +50,7 @@ class CurrencyRetrievalMonoService implements CurrencyRetrievalService {
         } catch (IOException e) {
             log.error("Error get rates from Monobank api");
         }
-        return new ArrayList<>();
+        log.info("End monobank rate");
+        return result;
     }
 }
