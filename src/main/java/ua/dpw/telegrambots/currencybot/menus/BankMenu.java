@@ -21,7 +21,7 @@ public class BankMenu implements TelegramMenu {
 
         addRow1(rowList, userMessage);
         addRow2(rowList, userMessage);
-        addRow3(rowList, userMessage);
+        //addRow3(rowList, userMessage);
         addRow4(rowList, userMessage);
         addRow5(rowList, userMessage);
 
